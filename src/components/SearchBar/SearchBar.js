@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { AsyncTypeahead } from 'react-bootstrap-typeahead';
+import { AsyncTypeahead, Highlighter } from 'react-bootstrap-typeahead';
 import { withRouter } from 'react-router-dom';
 import { FormGroup, InputGroup, Button } from 'react-bootstrap';
 import axios from '../../axios-settings';
@@ -23,7 +23,7 @@ class SearchBar extends Component {
   //   this.setState({ searchHistoryStorage: history });
   // }
 
-  findMatchingStrings = (stringToMatch, query) =>
+  isMatchingStrings = (stringToMatch, query) =>
     stringToMatch
       .toLowerCase()
       .trim()
@@ -43,16 +43,16 @@ class SearchBar extends Component {
         const filteredResponse = response.data.results.filter(val => {
           switch (val.media_type) {
             case 'person':
-              return this.findMatchingStrings(val.name, query);
+              return this.isMatchingStrings(val.name, query);
             case 'movie':
               return (
-                this.findMatchingStrings(val.title, query) ||
-                this.findMatchingStrings(val.original_title, query)
+                this.isMatchingStrings(val.title, query) ||
+                this.isMatchingStrings(val.original_title, query)
               );
             case 'tv':
               return (
-                this.findMatchingStrings(val.name, query) ||
-                this.findMatchingStrings(val.original_name, query)
+                this.isMatchingStrings(val.name, query) ||
+                this.isMatchingStrings(val.original_name, query)
               );
             default:
               return '';
@@ -115,16 +115,16 @@ class SearchBar extends Component {
     this.setState({ touched: false, isNoMatch: false });
   };
 
-  searchSelectedStation = station => {
+  searchSelected = selection => {
     const { history } = this.props;
 
-    if (station.length !== 1) {
+    if (selection.length !== 1) {
       return;
     }
-    this.addToSearchHistory(station[0]);
+    // this.addToSearchHistory(station[0]);
     history.push(
-      `/${encodeURIComponent(station[0].Name.replace(/\//g, '_'))}/${
-        station[0].SiteId
+      `/${encodeURIComponent(selection[0].media_type.replace(/\//g, '_'))}/${
+        selection[0].id
       }`
     );
     this.clearSearch();
@@ -147,6 +147,42 @@ class SearchBar extends Component {
     // this.fetchFromSessionStorage();
   };
 
+  formatMenuItemChildren = (text, icon, props) => [
+    <i className={icon} key="icon" />,
+    <Highlighter key="name" search={props.text}>
+      {text}
+    </Highlighter>
+  ];
+
+  renderMenuItemChildren = (option, props) => {
+    switch (option.media_type) {
+      case 'tv':
+        return this.isMatchingStrings(option.name, props.text)
+          ? this.formatMenuItemChildren(option.name, 'fa fa-tv pr-2', props)
+          : this.formatMenuItemChildren(
+              option.original_name,
+              'fas fa-tv',
+              props
+            );
+      case 'person':
+        return this.formatMenuItemChildren(
+          option.name,
+          'fa fa-user pr-2',
+          props
+        );
+      case 'movie':
+        return this.isMatchingStrings(option.title, props.text)
+          ? this.formatMenuItemChildren(option.title, 'fa fa-film pr-2', props)
+          : this.formatMenuItemChildren(
+              option.original_title,
+              'fa fa-film pr-2',
+              props
+            );
+      default:
+        return [];
+    }
+  };
+
   render() {
     const {
       isNoMatch,
@@ -166,7 +202,7 @@ class SearchBar extends Component {
             highlightOnlyResult
             bsSize="large"
             minLength={searchMinLength}
-            placeholder="From station..."
+            placeholder="Search for a movie, tv show, person..."
             emptyLabel={searchEmptyLabel}
             filterBy={option =>
               option.title ||
@@ -175,15 +211,16 @@ class SearchBar extends Component {
               option.original_name
             }
             labelKey={option =>
-              option.title ||
-              option.original_title ||
               option.name ||
-              option.original_name
+              option.original_name ||
+              option.title ||
+              option.original_title
             }
+            renderMenuItemChildren={this.renderMenuItemChildren}
             useCache={false}
             options={searchResults}
             onFocus={this.onFocusHandler}
-            onChange={selected => this.searchSelectedStation(selected)}
+            onChange={selected => this.searchSelected(selected)}
             onInputChange={e => {
               this.onInputChangeHandler(e);
             }}
