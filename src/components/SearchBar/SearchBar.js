@@ -11,7 +11,7 @@ class SearchBar extends Component {
     searchResults: [],
     // searchHistoryStorage: [],
     searchMinLength: 3,
-    searchEmptyLabel: 'No stations were found.',
+    searchEmptyLabel: 'No movies found.',
     isNoMatch: false,
     isLoading: false,
     isError: false,
@@ -23,6 +23,12 @@ class SearchBar extends Component {
   //   this.setState({ searchHistoryStorage: history });
   // }
 
+  findMatchingStrings = (stringToMatch, query) =>
+    stringToMatch
+      .toLowerCase()
+      .trim()
+      .includes(query.toLowerCase().trim());
+
   fetchFromApi = query => {
     this.setState({ isLoading: true });
 
@@ -30,16 +36,29 @@ class SearchBar extends Component {
       .get(
         `search/multi?api_key=${
           process.env.REACT_APP_TMDB_API_KEY
-        }&language=en-US&query=${query}&page=1&include_adult=false`
+        }&query=${query}&include_adult=false`
       )
       .then(response => {
-        const filteredResponse = response.data.filter(
-          val =>
-            val.Name.toLowerCase()
-              .trim()
-              .includes(query.toLowerCase().trim()) ||
-            val.SiteId.trim().includes(query.trim())
-        );
+        console.log(response.data.results);
+        const filteredResponse = response.data.results.filter(val => {
+          switch (val.media_type) {
+            case 'person':
+              return this.findMatchingStrings(val.name, query);
+            case 'movie':
+              return (
+                this.findMatchingStrings(val.title, query) ||
+                this.findMatchingStrings(val.original_title, query)
+              );
+            case 'tv':
+              return (
+                this.findMatchingStrings(val.name, query) ||
+                this.findMatchingStrings(val.original_name, query)
+              );
+            default:
+              return {};
+          }
+        });
+        console.log(filteredResponse);
         const isEmpty = filteredResponse.length === 0;
         this.setState({
           isLoading: false,
@@ -53,7 +72,7 @@ class SearchBar extends Component {
           isLoading: false,
           isError: true,
           searchEmptyLabel:
-            'An Error has occurred while fetching data from SL. Please try again.',
+            'An Error has occurred while fetching data from TMDB. Please try again.',
           isNoMatch: true
         });
       });
@@ -114,7 +133,7 @@ class SearchBar extends Component {
 
   onInputChangeHandler = e => {
     if (e.length < 3) {
-      this.fetchFromSessionStorage();
+      // this.fetchFromSessionStorage();
       this.setState({ isNoMatch: false });
     }
   };
@@ -125,7 +144,7 @@ class SearchBar extends Component {
       return;
     }
     this.setState({ touched: true });
-    this.fetchFromSessionStorage();
+    // this.fetchFromSessionStorage();
   };
 
   render() {
@@ -149,8 +168,18 @@ class SearchBar extends Component {
             minLength={searchMinLength}
             placeholder="From station..."
             emptyLabel={searchEmptyLabel}
-            filterBy={option => option.Name}
-            labelKey="Name"
+            filterBy={option =>
+              option.title ||
+              option.original_title ||
+              option.name ||
+              option.original_name
+            }
+            labelKey={option =>
+              option.title ||
+              option.original_title ||
+              option.name ||
+              option.original_name
+            }
             useCache={false}
             options={searchResults}
             onFocus={this.onFocusHandler}
