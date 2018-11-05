@@ -7,7 +7,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const rootElement = document.getElementById('root');
-const app = <App />;
+const app = <App class="bg-light" />;
 
 ReactDOM.render(app, rootElement);
 

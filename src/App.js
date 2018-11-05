@@ -1,16 +1,36 @@
 import React, { Component } from 'react';
 import axios from './axios-settings';
 
-// eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
-  testApiCall = () => {
-    axios.get(
-      `search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false`
-    );
+  state = {
+    testData: null
   };
 
+  componentDidMount() {
+    this.testApiCall();
+  }
+
+  testApiCall = () =>
+    axios
+      .get(
+        `search/multi?api_key=${
+          process.env.REACT_APP_TMDB_API_KEY
+        }&language=en-US&query=lord&page=1&include_adult=false`
+      )
+      .then(response => {
+        this.setState({ testData: response.data });
+      });
+
   render() {
-    return <div>{test}</div>;
+    let rend = null;
+    const data = this.state;
+    if (data.testData) {
+      console.log(data.testData.results);
+      rend = data.testData.results.map(answser => answser.title);
+      console.log(rend);
+    }
+
+    return <div className="text-light">{rend}</div>;
   }
 }
 
