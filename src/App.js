@@ -3,10 +3,13 @@ import axios from './axios-settings';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
-  testApiCall = () => 'Hello';
+  testApiCall = () => {
+    axios.get(
+      `search/movie?api_key=<<api_key>>&language=en-US&page=1&include_adult=false`
+    );
+  };
 
   render() {
-    const test = this.testApiCall();
     return <div>{test}</div>;
   }
 }
