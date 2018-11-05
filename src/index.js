@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { HashRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import './index.css';
-import App from './App';
+import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 
 const rootElement = document.getElementById('root');
-const app = <App class="bg-light" />;
+const app = (
+  <HashRouter>
+    <App class="bg-light" />
+  </HashRouter>
+);
 
 ReactDOM.render(app, rootElement);
 
