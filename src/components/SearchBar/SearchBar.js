@@ -55,7 +55,7 @@ class SearchBar extends Component {
                 this.findMatchingStrings(val.original_name, query)
               );
             default:
-              return {};
+              return '';
           }
         });
         console.log(filteredResponse);
