@@ -25,7 +25,6 @@ class SearchBar extends Component {
 
   fetchFromApi = query => {
     this.setState({ isLoading: true });
-
     axios
       .get(
         `search/multi?api_key=${
@@ -89,20 +88,21 @@ class SearchBar extends Component {
 
   searchSelected = selection => {
     const { history } = this.props;
-
     if (selection.length !== 1) {
       return;
     }
-    history.push(
-      `/${encodeURIComponent(selection[0].media_type.replace(/\//g, '_'))}/${
-        selection[0].id
-      }`
-    );
-    this.clearSearch();
+    // console.log(selection[0]);
+    history.push(`/search/${encodeURIComponent(selection[0])}}`);
+    setTimeout(() => {
+      console.log(this.typeahead);
+    }, 10);
+
+    // this.clearSearch();
     this.typeahead.getInstance().blur();
   };
 
   onInputChangeHandler = e => {
+    console.log(e);
     const updatedState = { ...this.state };
     updatedState.input = e;
     if (e.length < 3) {
@@ -176,6 +176,7 @@ class SearchBar extends Component {
             isLoading={false}
             selectHintOnEnter
             highlightOnlyResult
+            hint={false}
             bsSize="large"
             minLength={searchMinLength}
             placeholder="Search for a movie, tv show, person..."
