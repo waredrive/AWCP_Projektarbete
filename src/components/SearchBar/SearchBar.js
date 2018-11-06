@@ -9,7 +9,6 @@ import './SearchBar.css';
 class SearchBar extends Component {
   state = {
     searchResults: [],
-    // searchHistoryStorage: [],
     searchMinLength: 3,
     searchEmptyLabel: 'No movies found.',
     isNoMatch: false,
@@ -17,11 +16,6 @@ class SearchBar extends Component {
     isError: false,
     touched: false
   };
-
-  // componentWillMount() {
-  //   const history = this.getSearchHistory();
-  //   this.setState({ searchHistoryStorage: history });
-  // }
 
   isMatchingStrings = (stringToMatch, query) =>
     stringToMatch
@@ -78,37 +72,6 @@ class SearchBar extends Component {
       });
   };
 
-  // fetchFromSessionStorage = () => {
-  //   const searchHistory = [...this.state.searchHistoryStorage];
-  //   const minLength = this.state.searchHistoryStorage.length > 0 ? 0 : 3;
-  //   this.setState({ searchResults: searchHistory, searchMinLength: minLength });
-  // };
-
-  // getSearchHistory() {
-  //   let storage = [];
-  //   if (sessionStorage) {
-  //     if (sessionStorage.getItem('searchHistory')) {
-  //       storage = JSON.parse(sessionStorage.getItem('searchHistory'));
-  //     }
-  //   }
-  //   return storage;
-  // }
-
-  // addToSearchHistory = station => {
-  //   const storage = [...this.state.searchHistoryStorage];
-
-  //   if (sessionStorage) {
-  //     if (!storage.some(s => s.Name === station.Name)) {
-  //       storage.unshift(station);
-  //     }
-  //     if (storage.length > 5) {
-  //       storage.pop();
-  //     }
-  //     this.setState({ searchHistoryStorage: storage });
-  //     sessionStorage.setItem('searchHistory', JSON.stringify(storage));
-  //   }
-  // };
-
   clearSearch = () => {
     this.typeahead.getInstance().clear();
     this.typeahead.getInstance().focus();
@@ -121,7 +84,6 @@ class SearchBar extends Component {
     if (selection.length !== 1) {
       return;
     }
-    // this.addToSearchHistory(station[0]);
     history.push(
       `/${encodeURIComponent(selection[0].media_type.replace(/\//g, '_'))}/${
         selection[0].id
@@ -133,7 +95,6 @@ class SearchBar extends Component {
 
   onInputChangeHandler = e => {
     if (e.length < 3) {
-      // this.fetchFromSessionStorage();
       this.setState({ isNoMatch: false });
     }
   };
@@ -144,7 +105,6 @@ class SearchBar extends Component {
       return;
     }
     this.setState({ touched: true });
-    // this.fetchFromSessionStorage();
   };
 
   formatMenuItemChildren = (text, icon, props) => [
@@ -226,7 +186,6 @@ class SearchBar extends Component {
             }}
             onSearch={query => {
               this.fetchFromApi(query);
-              // query.trim().length > 2 ? this.fetchFromApi(query) : this.fetchFromSessionStorage();
             }}
             ref={ref => {
               this.typeahead = ref;
