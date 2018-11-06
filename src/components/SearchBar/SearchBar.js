@@ -23,6 +23,29 @@ class SearchBar extends Component {
       .trim()
       .includes(query.toLowerCase().trim());
 
+  formatSearchResults = (results, query) => {
+    const fromatedResults = [];
+
+    results.filter(result => {
+      switch (result.media_type) {
+        case 'person':
+          return this.isMatchingStrings(result.name, query);
+        case 'movie':
+          return (
+            this.isMatchingStrings(result.title, query) ||
+            this.isMatchingStrings(result.original_title, query)
+          );
+        case 'tv':
+          return (
+            this.isMatchingStrings(result.name, query) ||
+            this.isMatchingStrings(result.original_name, query)
+          );
+        default:
+          return '';
+      }
+    });
+  };
+
   fetchFromApi = query => {
     this.setState({ isLoading: true });
     axios
@@ -32,29 +55,33 @@ class SearchBar extends Component {
         }&query=${query}&include_adult=false`
       )
       .then(response => {
-        console.log(response.data.results);
-        const filteredResponse = response.data.results.filter(val => {
-          switch (val.media_type) {
-            case 'person':
-              return this.isMatchingStrings(val.name, query);
-            case 'movie':
-              return (
-                this.isMatchingStrings(val.title, query) ||
-                this.isMatchingStrings(val.original_title, query)
-              );
-            case 'tv':
-              return (
-                this.isMatchingStrings(val.name, query) ||
-                this.isMatchingStrings(val.original_name, query)
-              );
-            default:
-              return '';
-          }
-        });
-        const isEmpty = filteredResponse.length === 0;
+        // console.log(response.data.results);
+        // const filteredResponse = response.data.results.filter(val => {
+        //   switch (val.media_type) {
+        //     case 'person':
+        //       return this.isMatchingStrings(val.name, query);
+        //     case 'movie':
+        //       return (
+        //         this.isMatchingStrings(val.title, query) ||
+        //         this.isMatchingStrings(val.original_title, query)
+        //       );
+        //     case 'tv':
+        //       return (
+        //         this.isMatchingStrings(val.name, query) ||
+        //         this.isMatchingStrings(val.original_name, query)
+        //       );
+        //     default:
+        //       return '';
+        //   }
+        // });
+        const formatedResults = this.formatSearchResults(
+          response.data.results,
+          query
+        );
+        const isEmpty = response.data.results.length === 0;
         this.setState({
           isLoading: false,
-          searchResults: filteredResponse,
+          searchResults: formatedResults,
           isNoMatch: isEmpty
         });
       })
