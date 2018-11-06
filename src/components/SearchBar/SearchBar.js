@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AsyncTypeahead, Highlighter } from 'react-bootstrap-typeahead';
 import { withRouter } from 'react-router-dom';
 import { FormGroup, InputGroup, Button } from 'react-bootstrap';
-import axios from '../../axios-settings';
+import fetchSearchFromAPI from '../../shared/fetchSearchFromAPI';
 
 import './SearchBar.css';
 
@@ -56,19 +56,13 @@ class SearchBar extends Component {
 
   fetchFromApi = query => {
     this.setState({ isLoading: true });
-    axios
-      .get(
-        `search/multi?api_key=${
-          process.env.REACT_APP_TMDB_API_KEY
-        }&query=${query}&include_adult=false`
-      )
+    fetchSearchFromAPI(query)
       .then(response => {
         const formatedResults = this.formatSearchResults(
-          response.data.results,
+          response.results,
           query
         );
-        console.log(formatedResults);
-        const isEmpty = response.data.results.length === 0;
+        const isEmpty = response.results.length === 0;
         this.setState({
           isLoading: false,
           searchResults: formatedResults,
@@ -76,7 +70,6 @@ class SearchBar extends Component {
         });
       })
       .catch(error => {
-        console.log(error);
         this.setState({
           isLoading: false,
           isError: true,
@@ -108,7 +101,7 @@ class SearchBar extends Component {
     if (selection.length !== 1) {
       return;
     }
-    history.push(`/search/${encodeURIComponent(selection[0].name)}`);
+    history.push(`/search?query=${encodeURIComponent(selection[0].name)}`);
     this.clearSearch();
     this.typeahead.getInstance().blur();
   };
