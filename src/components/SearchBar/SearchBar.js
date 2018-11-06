@@ -52,7 +52,6 @@ class SearchBar extends Component {
               return '';
           }
         });
-        console.log(filteredResponse);
         const isEmpty = filteredResponse.length === 0;
         this.setState({
           isLoading: false,
