@@ -11,10 +11,10 @@ class SearchBar extends Component {
     searchResults: [],
     searchMinLength: 3,
     searchEmptyLabel: 'No movies found.',
+    input: '',
     isNoMatch: false,
     isLoading: false,
-    isError: false,
-    touched: false
+    isError: false
   };
 
   isMatchingStrings = (stringToMatch, query) =>
@@ -72,9 +72,19 @@ class SearchBar extends Component {
   };
 
   clearSearch = () => {
+    const { input } = this.state;
+
+    if (input.length === 0) {
+      return;
+    }
+
     this.typeahead.getInstance().clear();
     this.typeahead.getInstance().focus();
-    this.setState({ touched: false, isNoMatch: false });
+    this.setState({
+      isTouched: false,
+      isNoMatch: false,
+      input: ''
+    });
   };
 
   searchSelected = selection => {
@@ -93,47 +103,34 @@ class SearchBar extends Component {
   };
 
   onInputChangeHandler = e => {
+    const updatedState = { ...this.state };
+    updatedState.input = e;
     if (e.length < 3) {
-      this.setState({ isNoMatch: false });
+      updatedState.isNoMatch = false;
     }
+    this.setState({ ...updatedState });
   };
 
-  onFocusHandler = () => {
-    const { touched } = this.state;
-    if (touched || !this.typeahead.state.query.length === 0) {
-      return;
-    }
-    this.setState({ touched: true });
-  };
-
-  formatMenuItemChildren = (text, icon, props) => [
+  formatMenuItemChild = (text, icon, props) => [
     <i className={icon} key="icon" />,
     <Highlighter key="name" search={props.text}>
       {text}
     </Highlighter>
   ];
 
-  renderMenuItemChildren = (option, props) => {
-    switch (option.media_type) {
+  renderMenuItemChildren = (result, props) => {
+    switch (result.media_type) {
       case 'tv':
-        return this.isMatchingStrings(option.name, props.text)
-          ? this.formatMenuItemChildren(option.name, 'fa fa-tv pr-2', props)
-          : this.formatMenuItemChildren(
-              option.original_name,
-              'fas fa-tv',
-              props
-            );
+        return this.isMatchingStrings(result.name, props.text)
+          ? this.formatMenuItemChild(result.name, 'fa fa-tv pr-2', props)
+          : this.formatMenuItemChild(result.original_name, 'fas fa-tv', props);
       case 'person':
-        return this.formatMenuItemChildren(
-          option.name,
-          'fa fa-user pr-2',
-          props
-        );
+        return this.formatMenuItemChild(result.name, 'fa fa-user pr-2', props);
       case 'movie':
-        return this.isMatchingStrings(option.title, props.text)
-          ? this.formatMenuItemChildren(option.title, 'fa fa-film pr-2', props)
-          : this.formatMenuItemChildren(
-              option.original_title,
+        return this.isMatchingStrings(result.title, props.text)
+          ? this.formatMenuItemChild(result.title, 'fa fa-film pr-2', props)
+          : this.formatMenuItemChild(
+              result.original_title,
               'fa fa-film pr-2',
               props
             );
@@ -148,13 +145,33 @@ class SearchBar extends Component {
       searchMinLength,
       searchEmptyLabel,
       searchResults,
-      isLoading
+      isLoading,
+      input
     } = this.state;
+
+    const buttonStyle = isNoMatch
+      ? {
+          backgroundColor: '#dc3545',
+          borderColor: 'red',
+          color: 'white'
+        }
+      : null;
+
+    let buttonIcon = '';
+    if (input.length === 0) {
+      buttonIcon = 'fa fa-search fa-fw';
+    } else if (isLoading) {
+      buttonIcon = 'fa fa-circle-o-notch fa-spin fa-fw';
+    } else {
+      buttonIcon = 'fa fa-close fa-fw';
+    }
 
     return (
       <FormGroup className="input-group mt-1" validationState="error">
         <InputGroup>
           <AsyncTypeahead
+            maxHeight="700px"
+            maxResults={10}
             isInvalid={isNoMatch}
             isLoading={false}
             selectHintOnEnter
@@ -178,7 +195,6 @@ class SearchBar extends Component {
             renderMenuItemChildren={this.renderMenuItemChildren}
             useCache={false}
             options={searchResults}
-            onFocus={this.onFocusHandler}
             onChange={selected => this.searchSelected(selected)}
             onInputChange={e => {
               this.onInputChangeHandler(e);
@@ -193,22 +209,10 @@ class SearchBar extends Component {
           <InputGroup.Button className="input-group-append">
             <Button
               className="btn btn-light btn-lg rounded-right"
-              style={
-                isNoMatch
-                  ? {
-                      backgroundColor: '#dc3545',
-                      borderColor: 'red',
-                      color: 'white'
-                    }
-                  : null
-              }
+              style={buttonStyle}
               onClick={this.clearSearch}
             >
-              {isLoading ? (
-                <i className="fa fa-circle-o-notch fa-spin fa-fw" />
-              ) : (
-                <i className="fa fa-close fa-fw" />
-              )}
+              <i className={buttonIcon} />
             </Button>
           </InputGroup.Button>
         </InputGroup>
