@@ -23,28 +23,36 @@ class SearchBar extends Component {
       .trim()
       .includes(query.toLowerCase().trim());
 
-  formatSearchResults = (results, query) => {
-    const fromatedResults = [];
+  formatSearchResults = (results, query) =>
+    results.map(result => {
+      let matchedName = '';
+      let typeIcon = '';
 
-    results.filter(result => {
-      switch (result.media_type) {
-        case 'person':
-          return this.isMatchingStrings(result.name, query);
-        case 'movie':
-          return (
-            this.isMatchingStrings(result.title, query) ||
-            this.isMatchingStrings(result.original_title, query)
-          );
-        case 'tv':
-          return (
-            this.isMatchingStrings(result.name, query) ||
-            this.isMatchingStrings(result.original_name, query)
-          );
-        default:
-          return '';
+      if (
+        result.media_type === 'person' &&
+        this.isMatchingStrings(result.name, query)
+      ) {
+        typeIcon = 'fa fa-user pr-2';
+        matchedName = result.name;
       }
+      if (result.media_type === 'movie') {
+        typeIcon = 'fa fa-film pr-2';
+        if (this.isMatchingStrings(result.title, query)) {
+          matchedName = result.title;
+        } else if (this.isMatchingStrings(result.original_title, query)) {
+          matchedName = result.original_title;
+        }
+      }
+      if (result.media_type === 'tv') {
+        typeIcon = 'fa fa-tv pr-2';
+        if (this.isMatchingStrings(result.name, query)) {
+          matchedName = result.name;
+        } else if (this.isMatchingStrings(result.original_name, query)) {
+          matchedName = result.original_name;
+        }
+      }
+      return { name: matchedName, type: result.media_type, icon: typeIcon };
     });
-  };
 
   fetchFromApi = query => {
     this.setState({ isLoading: true });
@@ -55,29 +63,11 @@ class SearchBar extends Component {
         }&query=${query}&include_adult=false`
       )
       .then(response => {
-        // console.log(response.data.results);
-        // const filteredResponse = response.data.results.filter(val => {
-        //   switch (val.media_type) {
-        //     case 'person':
-        //       return this.isMatchingStrings(val.name, query);
-        //     case 'movie':
-        //       return (
-        //         this.isMatchingStrings(val.title, query) ||
-        //         this.isMatchingStrings(val.original_title, query)
-        //       );
-        //     case 'tv':
-        //       return (
-        //         this.isMatchingStrings(val.name, query) ||
-        //         this.isMatchingStrings(val.original_name, query)
-        //       );
-        //     default:
-        //       return '';
-        //   }
-        // });
         const formatedResults = this.formatSearchResults(
           response.data.results,
           query
         );
+        console.log(formatedResults);
         const isEmpty = response.data.results.length === 0;
         this.setState({
           isLoading: false,
@@ -118,18 +108,12 @@ class SearchBar extends Component {
     if (selection.length !== 1) {
       return;
     }
-    // console.log(selection[0]);
-    history.push(`/search/${encodeURIComponent(selection[0])}}`);
-    setTimeout(() => {
-      console.log(this.typeahead);
-    }, 10);
-
-    // this.clearSearch();
+    history.push(`/search/${encodeURIComponent(selection[0].name)}`);
+    this.clearSearch();
     this.typeahead.getInstance().blur();
   };
 
   onInputChangeHandler = e => {
-    console.log(e);
     const updatedState = { ...this.state };
     updatedState.input = e;
     if (e.length < 3) {
@@ -145,26 +129,12 @@ class SearchBar extends Component {
     </Highlighter>
   ];
 
-  renderMenuItemChildren = (result, props) => {
-    switch (result.media_type) {
-      case 'tv':
-        return this.isMatchingStrings(result.name, props.text)
-          ? this.formatMenuItemChild(result.name, 'fa fa-tv pr-2', props)
-          : this.formatMenuItemChild(result.original_name, 'fas fa-tv', props);
-      case 'person':
-        return this.formatMenuItemChild(result.name, 'fa fa-user pr-2', props);
-      case 'movie':
-        return this.isMatchingStrings(result.title, props.text)
-          ? this.formatMenuItemChild(result.title, 'fa fa-film pr-2', props)
-          : this.formatMenuItemChild(
-              result.original_title,
-              'fa fa-film pr-2',
-              props
-            );
-      default:
-        return [];
-    }
-  };
+  renderMenuItemChildren = (result, props) => [
+    <i className={result.icon} key="icon" />,
+    <Highlighter key="name" search={props.text}>
+      {result.name}
+    </Highlighter>
+  ];
 
   render() {
     const {
@@ -208,18 +178,8 @@ class SearchBar extends Component {
             minLength={searchMinLength}
             placeholder="Search for a movie, tv show, person..."
             emptyLabel={searchEmptyLabel}
-            filterBy={option =>
-              option.title ||
-              option.original_title ||
-              option.name ||
-              option.original_name
-            }
-            labelKey={option =>
-              option.name ||
-              option.original_name ||
-              option.title ||
-              option.original_title
-            }
+            filterBy={option => option.name}
+            labelKey={option => option.name}
             renderMenuItemChildren={this.renderMenuItemChildren}
             useCache={false}
             options={searchResults}
