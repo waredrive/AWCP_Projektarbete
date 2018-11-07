@@ -9,7 +9,7 @@ import './SearchBar.css';
 class SearchBar extends Component {
   state = {
     searchResults: [],
-    searchMinLength: 0,
+    searchMinLength: 1,
     searchEmptyLabel: 'No movies found.',
     input: '',
     isNoMatch: false,
@@ -81,9 +81,7 @@ class SearchBar extends Component {
   };
 
   clearSearch = () => {
-    const { input } = this.state;
-
-    if (input.length === 0) {
+    if (this.typeahead.state.query.length === 0) {
       return;
     }
 
