@@ -1,19 +1,23 @@
 import React, { Component } from 'react';
-import fetchSearchFromAPI from '../../shared/fetchSearchFromAPI';
+import { fetchFromAPI } from '../../shared/fetchFromAPI';
 
-// eslint-disable-next-line react/prefer-stateless-function
 class SearchResults extends Component {
   state = {
-    results: []
+    movies: [],
+    persons: [],
+    shows: []
   };
 
   componentDidMount() {
+    const types = ['movie', 'tv', 'person'];
     const { location } = this.props;
-    const query = new URLSearchParams(location.search);
-    let res;
-    fetchSearchFromAPI(query.get('query')).then(results =>
-      console.log(results)
-    );
+    const queryParam = new URLSearchParams(location.search);
+    const query = queryParam.get('query');
+    types.forEach(type => {
+      fetchFromAPI(query, 1, type).then(response =>
+        console.log(response.total_results, response.results)
+      );
+    });
   }
 
   render() {
