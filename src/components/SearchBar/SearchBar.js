@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { AsyncTypeahead, Highlighter } from 'react-bootstrap-typeahead';
 import { withRouter } from 'react-router-dom';
 import { FormGroup, InputGroup, Button } from 'react-bootstrap';
-import fetchSearchFromAPI from '../../shared/fetchSearchFromAPI';
+import { fetchSearchFromAPI } from '../../shared/fetchSearchFromAPI';
 
 import './SearchBar.css';
 
 class SearchBar extends Component {
   state = {
     searchResults: [],
-    searchMinLength: 3,
+    searchMinLength: 0,
     searchEmptyLabel: 'No movies found.',
     input: '',
     isNoMatch: false,
