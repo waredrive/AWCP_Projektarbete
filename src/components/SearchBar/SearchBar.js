@@ -69,7 +69,7 @@ class SearchBar extends Component {
           isNoMatch: isEmpty
         });
       })
-      .catch(error => {
+      .catch(() => {
         this.setState({
           isLoading: false,
           isError: true,
