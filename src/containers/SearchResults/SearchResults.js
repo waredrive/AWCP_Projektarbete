@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
-import {
-  fetchSearchesFromAPI,
-  fetchImagesFromAPI
-} from '../../shared/fetchFromAPI';
+import { fetchSearchesFromAPI } from '../../shared/fetchFromAPI';
+import { MovieSummaryCard } from '../../components/Movies/MovieSummaryCard/MovieSummaryCard';
 
 class SearchResults extends Component {
   state = {
@@ -55,7 +52,7 @@ class SearchResults extends Component {
         style = 'page-item active';
       }
       pagination.push(
-        <li className={style}>
+        <li className={style} key={i}>
           <a className="page-link" id={i}>
             {i}
           </a>
@@ -85,74 +82,14 @@ class SearchResults extends Component {
   render() {
     const movies = this.state.movies.map(movie => movie);
     console.log(movies);
-    return (
+    return movies.map(movie => (
       <div>
-        {movies.map(movie => (
-          <div>
-            {movie.results.map(result => (
-              <div className="card my-3 container">
-                {/* <h5 className="card-header">{result.title}</h5> */}
-                <div className="card-body">
-                  <img
-                    className="float-left mr-3 mb-3"
-                    src={
-                      result.poster_path
-                        ? `https://image.tmdb.org/t/p/w185/${
-                            result.poster_path
-                          }`
-                        : 'https://imgplaceholder.com/185x278/393939/8A8A8A/fa-image'
-                    }
-                    alt="poster"
-                  />
-                  <div className="d-flex align-items-start">
-                    <div
-                      style={{ minWidth: '50px', width: '50px' }}
-                      className="d-inline-block mr-3"
-                    >
-                      <CircularProgressbar
-                        percentage={result.vote_average * 10}
-                        text={`${result.vote_average}`}
-                        background
-                        backgroundPadding={6}
-                        styles={{
-                          background: {
-                            fill: '#3e98c7'
-                          },
-                          text: {
-                            fill: '#fff',
-                            fontSize: '2rem'
-                          },
-                          path: {
-                            stroke: '#fff'
-                          },
-                          trail: { stroke: 'transparent' }
-                        }}
-                      />
-                    </div>
-                    <div className="d-inline-block">
-                      <h5 className="card-title mb-0 pb-0">{result.title}</h5>
-                      <p className="font-italic">{result.release_date}</p>
-                    </div>
-                  </div>
-                  <p className="card-text">
-                    {result.overview
-                      ? result.overview
-                      : "We don't have a description of this movie."}
-                  </p>
-                  <button
-                    type="button"
-                    className="btn btn-outline-secondary btn-block btn-lg mt-2"
-                  >
-                    More details
-                  </button>
-                </div>
-              </div>
-            ))}
-            {this.createPagination(2, movie.total_pages)}
-          </div>
+        {movie.results.map(result => (
+          <MovieSummaryCard movie={result} key={result.id} />
         ))}
+        {this.createPagination(1, movie.total_pages)}
       </div>
-    );
+    ));
   }
 }
 
