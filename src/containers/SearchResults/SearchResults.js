@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import 'react-circular-progressbar/dist/styles.css';
 import { fetchSearchesFromAPI } from '../../shared/fetchFromAPI';
-import { MovieSummaryCard } from '../../components/Movies/MovieSummaryCard/MovieSummaryCard';
+import { MovieAndTvSummaryCard } from '../../shared/MovieAndTvSummaryCard/MovieAndTvSummaryCard';
+import { Pagination } from '../../shared/Pagination/Pagination';
 
 class SearchResults extends Component {
   state = {
@@ -25,69 +26,33 @@ class SearchResults extends Component {
     this.setState({ ...updatedState });
   }
 
-  createPagination = (currentPage, totalPages) => {
-    const pagination = [];
-    let disableNext = false;
-    let disablePrevious = false;
-    let startPoint = 1;
-    let endPoint = 1;
-
-    if (Math.floor(currentPage / 10) * 10 === 0) {
-      startPoint = 1;
-      disablePrevious = true;
-    } else {
-      startPoint = Math.floor(currentPage / 10) * 10;
-    }
-
-    if (startPoint + 10 > totalPages) {
-      endPoint = totalPages + 1;
-      disableNext = true;
-    } else {
-      endPoint = startPoint + 10;
-    }
-
-    for (let i = startPoint; i < endPoint; i += 1) {
-      let style = 'page-item';
-      if (currentPage === i) {
-        style = 'page-item active';
-      }
-      pagination.push(
-        <li className={style} key={i}>
-          <a className="page-link" id={i}>
-            {i}
-          </a>
-        </li>
-      );
-    }
-
-    return (
-      <nav aria-label="Page navigation">
-        <ul className="pagination justify-content-center">
-          <li className="page-item">
-            <a className={disablePrevious ? 'page-link disabled' : 'page-link'}>
-              Previous
-            </a>
-          </li>
-          {pagination}
-          <li className="page-item">
-            <a className={disableNext ? 'page-link disabled' : 'page-link'}>
-              Next
-            </a>
-          </li>
-        </ul>
-      </nav>
-    );
-  };
-
   render() {
     const { movies } = this.state;
     const mov = movies.map(movie => movie);
+    console.log(mov);
     return movies.map(movie => (
       <div>
-        {movie.results.map(result => (
-          <MovieSummaryCard mov={result} key={result.id} />
-        ))}
-        {this.createPagination(1, mov.total_pages)}
+        {movie.results.map(result => {
+          const overviewText = result.overview
+            ? result.overview
+            : "We don't have a description of this movie.";
+          const posterImagePath = result.poster_path
+            ? `https://image.tmdb.org/t/p/w185/${result.poster_path}`
+            : 'https://imgplaceholder.com/185x278/393939/8A8A8A/fa-image';
+
+          return (
+            <MovieAndTvSummaryCard
+              key={result.id}
+              title={result.title}
+              overviewText={overviewText}
+              posterPath={posterImagePath}
+              voteAverage={result.vote_average}
+              vote_count={result.voteCount}
+              releaseDate={result.release_date}
+            />
+          );
+        })}
+        <Pagination currentPage={1} totalPages={mov.total_pages} />
       </div>
     ));
   }
