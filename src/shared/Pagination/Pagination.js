@@ -13,6 +13,7 @@ export const Pagination = props => {
     disablePrevious = true;
   } else {
     startPoint = Math.floor(currentPage / 10) * 10;
+    disablePrevious = false;
   }
 
   if (startPoint + 10 > totalPages) {
@@ -20,6 +21,7 @@ export const Pagination = props => {
     disableNext = true;
   } else {
     endPoint = startPoint + 10;
+    disableNext = false;
   }
 
   for (let i = startPoint; i < endPoint; i += 1) {

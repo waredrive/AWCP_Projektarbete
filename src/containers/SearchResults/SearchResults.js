@@ -3,6 +3,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import { fetchSearchesFromAPI } from '../../shared/fetchFromAPI';
 import { MovieAndTvSummaryCard } from '../../shared/MovieAndTvSummaryCard/MovieAndTvSummaryCard';
 import { Pagination } from '../../shared/Pagination/Pagination';
+import './SearchResults.css';
 
 class SearchResults extends Component {
   state = {
@@ -31,7 +32,25 @@ class SearchResults extends Component {
     const mov = movies.map(movie => movie);
     console.log(mov);
     return movies.map(movie => (
-      <div>
+      <div className="navigation">
+        <ul className="nav nav-tabs">
+          <li className="nav-item">
+            <a className="nav-link active" href="#">
+              Movies
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">
+              TV Shows
+            </a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">
+              People
+            </a>
+          </li>
+        </ul>
+
         {movie.results.map(result => {
           const overviewText = result.overview
             ? result.overview

@@ -35,7 +35,7 @@ export const MovieAndTvSummaryCard = props => {
               backgroundPadding={6}
               styles={{
                 background: {
-                  fill: '#3e98c7'
+                  fill: '#007bff'
                 },
                 text: {
                   fill: '#fff',
@@ -49,7 +49,9 @@ export const MovieAndTvSummaryCard = props => {
             />
           </div>
           <div className="d-inline-block">
-            <h5 className="card-title mb-0 pb-0">{title}</h5>
+            <h5 className="card-title mb-0 pb-0" title={title}>
+              {title}
+            </h5>
             <p className="font-italic">{releaseDate}</p>
           </div>
         </div>
@@ -57,6 +59,7 @@ export const MovieAndTvSummaryCard = props => {
         <button
           type="button"
           className="btn btn-outline-secondary btn-block btn-lg mt-2"
+          title={title}
         >
           More details
         </button>
