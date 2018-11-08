@@ -11,6 +11,7 @@
     "react": "^16.6.0",
     "react-bootstrap": "^0.32.4",
     "react-bootstrap-typeahead": "^3.2.4",
+    "react-circular-progressbar": "^1.0.0",
     "react-dom": "^16.6.0",
     "react-redux": "^5.1.0",
     "react-router": "^4.3.1",

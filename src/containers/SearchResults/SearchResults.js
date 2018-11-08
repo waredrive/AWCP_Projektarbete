@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import CircularProgressbar from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 import {
   fetchSearchesFromAPI,
   fetchImagesFromAPI
@@ -102,9 +104,36 @@ class SearchResults extends Component {
                     }
                     alt="poster"
                   />
-                  <h5 className="card-title">{result.title}</h5>
-                  <p>{result.release_date}</p>
-
+                  <div className="d-flex align-items-start">
+                    <div
+                      style={{ minWidth: '50px', width: '50px' }}
+                      className="d-inline-block mr-3"
+                    >
+                      <CircularProgressbar
+                        percentage={result.vote_average * 10}
+                        text={`${result.vote_average}`}
+                        background
+                        backgroundPadding={6}
+                        styles={{
+                          background: {
+                            fill: '#3e98c7'
+                          },
+                          text: {
+                            fill: '#fff',
+                            fontSize: '2rem'
+                          },
+                          path: {
+                            stroke: '#fff'
+                          },
+                          trail: { stroke: 'transparent' }
+                        }}
+                      />
+                    </div>
+                    <div className="d-inline-block">
+                      <h5 className="card-title mb-0 pb-0">{result.title}</h5>
+                      <p className="font-italic">{result.release_date}</p>
+                    </div>
+                  </div>
                   <p className="card-text">
                     {result.overview
                       ? result.overview
@@ -112,7 +141,7 @@ class SearchResults extends Component {
                   </p>
                   <button
                     type="button"
-                    className="btn btn-secondary btn-block btn-lg mt-2"
+                    className="btn btn-outline-secondary btn-block btn-lg mt-2"
                   >
                     More details
                   </button>
