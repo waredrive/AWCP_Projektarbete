@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AsyncTypeahead, Highlighter } from 'react-bootstrap-typeahead';
 import { withRouter } from 'react-router-dom';
 import { FormGroup, InputGroup, Button } from 'react-bootstrap';
-import { fetchFromAPI } from '../../shared/fetchFromAPI';
+import { fetchSearchesFromAPI } from '../../shared/fetchFromAPI';
 
 import './SearchBar.css';
 
@@ -56,7 +56,7 @@ class SearchBar extends Component {
 
   fetchFromApi = query => {
     this.setState({ isLoading: true });
-    fetchFromAPI(query)
+    fetchSearchesFromAPI(query)
       .then(response => {
         const formatedResults = this.formatSearchResults(
           response.results,

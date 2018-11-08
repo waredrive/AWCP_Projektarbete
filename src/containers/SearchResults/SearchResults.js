@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { fetchFromAPI } from '../../shared/fetchFromAPI';
+import {
+  fetchSearchesFromAPI,
+  fetchImagesFromAPI
+} from '../../shared/fetchFromAPI';
 
 class SearchResults extends Component {
   state = {
@@ -16,7 +19,7 @@ class SearchResults extends Component {
     const updatedState = { ...this.state };
 
     Object.keys(types).forEach(type => {
-      fetchFromAPI(query, type).then(response => {
+      fetchSearchesFromAPI(query, type).then(response => {
         updatedState[types[type]].push(response);
       });
     });
@@ -80,20 +83,39 @@ class SearchResults extends Component {
   render() {
     const movies = this.state.movies.map(movie => movie);
     console.log(movies);
-
     return (
       <div>
         {movies.map(movie => (
           <div>
             {movie.results.map(result => (
-              <div className="card my-3">
-                <h5 className="card-header">{result.title}</h5>
+              <div className="card my-3 container">
+                {/* <h5 className="card-header">{result.title}</h5> */}
                 <div className="card-body">
+                  <img
+                    className="float-left mr-3 mb-3"
+                    src={
+                      result.poster_path
+                        ? `https://image.tmdb.org/t/p/w185/${
+                            result.poster_path
+                          }`
+                        : 'https://imgplaceholder.com/185x278/393939/8A8A8A/fa-image'
+                    }
+                    alt="poster"
+                  />
                   <h5 className="card-title">{result.title}</h5>
-                  <p className="card-text">{result.overview}</p>
-                  <a href="#" className="btn btn-primary">
-                    Go somewhere
-                  </a>
+                  <p>{result.release_date}</p>
+
+                  <p className="card-text">
+                    {result.overview
+                      ? result.overview
+                      : "We don't have a description of this movie."}
+                  </p>
+                  <button
+                    type="button"
+                    className="btn btn-secondary btn-block btn-lg mt-2"
+                  >
+                    More details
+                  </button>
                 </div>
               </div>
             ))}
