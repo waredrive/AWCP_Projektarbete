@@ -47,7 +47,7 @@ class SearchResults extends Component {
               overviewText={overviewText}
               posterPath={posterImagePath}
               voteAverage={result.vote_average}
-              vote_count={result.voteCount}
+              voteCount={result.vote_count}
               releaseDate={result.release_date}
             />
           );

@@ -11,11 +11,13 @@ export const MovieAndTvSummaryCard = props => {
     releaseDate
   } = props;
 
+  const voteAvr = voteCount === 0 ? 'NR' : voteAverage;
+
   return (
     <div className="card my-3 container">
       <div className="card-body">
         <img
-          className="float-left mr-3 mb-3"
+          className="float-left border rounded mr-3 mb-3"
           src={posterPath}
           title={title}
           alt={`Poster of ${title}`}
@@ -23,12 +25,12 @@ export const MovieAndTvSummaryCard = props => {
         <div className="d-flex align-items-start">
           <div
             style={{ minWidth: '50px', width: '50px' }}
-            className="d-inline-block mr-3"
+            className="d-inline-block mr-3 mb-2"
             title={`Average vote: ${voteAverage}. Votes: ${voteCount}`}
           >
             <CircularProgressbar
               percentage={voteAverage * 10}
-              text={`${voteAverage}`}
+              text={voteAvr}
               background
               backgroundPadding={6}
               styles={{
