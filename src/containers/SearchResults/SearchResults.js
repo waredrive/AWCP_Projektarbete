@@ -80,14 +80,14 @@ class SearchResults extends Component {
   };
 
   render() {
-    const movies = this.state.movies.map(movie => movie);
-    console.log(movies);
+    const { movies } = this.state;
+    const mov = movies.map(movie => movie);
     return movies.map(movie => (
       <div>
         {movie.results.map(result => (
-          <MovieSummaryCard movie={result} key={result.id} />
+          <MovieSummaryCard mov={result} key={result.id} />
         ))}
-        {this.createPagination(1, movie.total_pages)}
+        {this.createPagination(1, mov.total_pages)}
       </div>
     ));
   }
