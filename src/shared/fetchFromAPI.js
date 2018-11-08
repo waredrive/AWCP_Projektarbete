@@ -1,9 +1,9 @@
-import axios from '../axios-settings';
+import axios from 'axios';
 
-export const fetchFromAPI = (query, page = 1, type = 'multi') =>
+export const fetchFromAPI = (query, type = 'multi', page = 1) =>
   axios
     .get(
-      `search/${type}?api_key=${
+      `https://api.themoviedb.org/3/search/${type}?api_key=${
         process.env.REACT_APP_TMDB_API_KEY
       }&query=${query}&language=en-US&page=${page}&include_adult=false`
     )
