@@ -3,11 +3,11 @@ import { fetchSearchesFromAPI } from '../../../shared/fetchFromAPI';
 import { MovieAndTvSummaryCard } from '../../../shared/MovieAndTvSummaryCard/MovieAndTvSummaryCard';
 import { PaginationNav } from '../../../shared/PaginationNav/PaginationNav';
 
-class MovieSearchResults extends Component {
+export class MovieSearchResults extends Component {
   state = {
     fetchedMovies: [],
     activePage: 1,
-    isLoading: false
+    pagesFetched: []
   };
 
   componentDidMount() {
@@ -16,37 +16,37 @@ class MovieSearchResults extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { searchQuery } = this.props;
-    const { activePage } = this.state;
-
-    if (prevProps.searchQuery === searchQuery) {
-      return;
-    }
-
-    if (prevState.activePage !== activePage) {
+    const { activePage, pagesFetched } = this.state;
+    if (
+      prevProps.searchQuery === searchQuery &&
+      prevState.activePage !== activePage &&
+      !pagesFetched.includes(activePage)
+    ) {
       this.fetchMoviesFromAPI(activePage, false);
-    } else {
-      console.log('here');
+    } else if (prevProps.searchQuery !== searchQuery) {
       this.fetchMoviesFromAPI();
     }
+    console.log(this.state);
   }
 
   fetchMoviesFromAPI = (page = 1, isNewSearch = true) => {
     const { searchQuery } = this.props;
-    const { fetchedMovies } = this.state;
-    let movies = [];
-    if (!isNewSearch) {
-      movies = [...fetchedMovies];
-    }
+    const { fetchedMovies, pagesFetched } = this.state;
 
-    this.setState({ isLoading: true });
-    fetchSearchesFromAPI(searchQuery, 'movie').then(response => {
-      movies.push(response);
-      this.setState({
-        fetchedMovies: movies,
-        activePage: page,
-        isLoading: false
-      });
-      console.log(this.state);
+    fetchSearchesFromAPI(searchQuery, 'movie', page).then(response => {
+      if (!isNewSearch) {
+        this.setState({
+          fetchedMovies: [...fetchedMovies, response],
+          activePage: page,
+          pagesFetched: [...pagesFetched, page]
+        });
+      } else {
+        this.setState({
+          fetchedMovies: [response],
+          activePage: page,
+          pagesFetched: [page]
+        });
+      }
     });
   };
 
@@ -55,12 +55,12 @@ class MovieSearchResults extends Component {
   };
 
   render() {
-    const { fetchedMovies, activePage } = this.state;
+    const { pagesFetched, fetchedMovies, activePage } = this.state;
 
     const searchPage = [];
     let pagination = null;
 
-    if (fetchedMovies.length === activePage) {
+    if (pagesFetched.includes(activePage)) {
       const searchResultsForChosenPage = fetchedMovies
         .filter(movie => movie.page === activePage)
         .map(result => result);
