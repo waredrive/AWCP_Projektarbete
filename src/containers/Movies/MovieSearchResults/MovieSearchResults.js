@@ -7,7 +7,7 @@ export class MovieSearchResults extends Component {
   state = {
     fetchedMovies: [],
     activePage: 1,
-    pagesFetched: []
+    fetchedPages: []
   };
 
   componentDidMount() {
@@ -16,37 +16,37 @@ export class MovieSearchResults extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     const { searchQuery } = this.props;
-    const { activePage, pagesFetched } = this.state;
+    const { activePage, fetchedPages } = this.state;
     if (
       prevProps.searchQuery === searchQuery &&
       prevState.activePage !== activePage &&
-      !pagesFetched.includes(activePage)
+      !fetchedPages.includes(activePage)
     ) {
       this.fetchMoviesFromAPI(activePage, false);
     } else if (prevProps.searchQuery !== searchQuery) {
       this.fetchMoviesFromAPI();
     }
-    console.log(this.state);
   }
 
   fetchMoviesFromAPI = (page = 1, isNewSearch = true) => {
     const { searchQuery } = this.props;
-    const { fetchedMovies, pagesFetched } = this.state;
 
     fetchSearchesFromAPI(searchQuery, 'movie', page).then(response => {
+      const { fetchedMovies, fetchedPages } = this.state;
+      let movies = [];
+      let pages = [];
       if (!isNewSearch) {
-        this.setState({
-          fetchedMovies: [...fetchedMovies, response],
-          activePage: page,
-          pagesFetched: [...pagesFetched, page]
-        });
-      } else {
-        this.setState({
-          fetchedMovies: [response],
-          activePage: page,
-          pagesFetched: [page]
-        });
+        movies = [...fetchedMovies];
+        pages = [...fetchedPages];
       }
+      movies.push(response);
+      pages.push(page);
+
+      this.setState({
+        fetchedMovies: movies,
+        activePage: page,
+        fetchedPages: pages
+      });
     });
   };
 
@@ -55,12 +55,12 @@ export class MovieSearchResults extends Component {
   };
 
   render() {
-    const { pagesFetched, fetchedMovies, activePage } = this.state;
+    const { fetchedPages, fetchedMovies, activePage } = this.state;
 
     const searchPage = [];
     let pagination = null;
 
-    if (pagesFetched.includes(activePage)) {
+    if (fetchedPages.includes(activePage)) {
       const searchResultsForChosenPage = fetchedMovies
         .filter(movie => movie.page === activePage)
         .map(result => result);
