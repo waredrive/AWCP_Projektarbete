@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
 import MovieSearchResults from '../Movies/MovieSearchResults/MovieSearchResults';
+import TvShowsSearchResults from '../TvShows/TvShowsSearchResults/TvShowsSearchResults';
 
 class SearchResults extends Component {
   state = {
@@ -71,7 +72,7 @@ class SearchResults extends Component {
             <MovieSearchResults searchQuery={this.fetchQueryString()} />
           </TabPane>
           <TabPane tabId="Tv">
-            <p>Hello</p>
+            <TvShowsSearchResults searchQuery={this.fetchQueryString()} />
           </TabPane>
         </TabContent>
       </div>

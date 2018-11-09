@@ -3,9 +3,9 @@ import { fetchSearchesFromAPI } from '../../../shared/fetchFromAPI';
 import { MovieAndTvSummaryCard } from '../../../shared/MovieAndTvSummaryCard/MovieAndTvSummaryCard';
 import { PaginationNav } from '../../../shared/PaginationNav/PaginationNav';
 
-export class MovieSearchResults extends Component {
+export class TvShowsSearchResults extends Component {
   state = {
-    fetchedMovies: [],
+    fetchedShows: [],
     activePage: 1,
     fetchedPages: []
   };
@@ -31,19 +31,20 @@ export class MovieSearchResults extends Component {
   fetchMoviesFromAPI = (page = 1, isNewSearch = true) => {
     const { searchQuery } = this.props;
 
-    fetchSearchesFromAPI(searchQuery, 'movie', page).then(response => {
-      const { fetchedMovies, fetchedPages } = this.state;
-      let movies = [];
+    fetchSearchesFromAPI(searchQuery, 'tv', page).then(response => {
+      console.log(response);
+      const { fetchedShows, fetchedPages } = this.state;
+      let shows = [];
       let pages = [];
       if (!isNewSearch) {
-        movies = [...fetchedMovies];
+        shows = [...fetchedShows];
         pages = [...fetchedPages];
       }
-      movies.push(response);
+      shows.push(response);
       pages.push(page);
 
       this.setState({
-        fetchedMovies: movies,
+        fetchedShows: shows,
         activePage: page,
         fetchedPages: pages
       });
@@ -55,20 +56,20 @@ export class MovieSearchResults extends Component {
   };
 
   render() {
-    const { fetchedPages, fetchedMovies, activePage } = this.state;
+    const { fetchedPages, fetchedShows, activePage } = this.state;
 
     const searchPage = [];
     let pagination = null;
 
     if (fetchedPages.includes(activePage)) {
-      const searchResultsForChosenPage = fetchedMovies
-        .filter(movie => movie.page === activePage)
+      const searchResultsForChosenPage = fetchedShows
+        .filter(show => show.page === activePage)
         .map(result => result);
 
       searchResultsForChosenPage[0].results.forEach(result => {
         const overviewText = result.overview
           ? result.overview
-          : "We don't have a description of this movie.";
+          : "We don't have a description of this Tv Show.";
         const posterImagePath = result.poster_path
           ? `https://image.tmdb.org/t/p/w185/${result.poster_path}`
           : 'https://imgplaceholder.com/185x278/393939/8A8A8A/fa-image';
@@ -76,12 +77,12 @@ export class MovieSearchResults extends Component {
         searchPage.push(
           <MovieAndTvSummaryCard
             key={result.id}
-            title={result.title}
+            title={result.name}
             overviewText={overviewText}
             posterPath={posterImagePath}
             voteAverage={result.vote_average}
             voteCount={result.vote_count}
-            releaseDate={result.release_date}
+            releaseDate={result.first_air_date}
           />
         );
       });
@@ -104,4 +105,4 @@ export class MovieSearchResults extends Component {
   }
 }
 
-export default MovieSearchResults;
+export default TvShowsSearchResults;
