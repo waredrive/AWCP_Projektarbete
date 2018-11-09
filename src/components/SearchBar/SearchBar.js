@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { AsyncTypeahead, Highlighter } from 'react-bootstrap-typeahead';
 import { withRouter } from 'react-router-dom';
-import { FormGroup, InputGroup, Button } from 'react-bootstrap';
+import { FormGroup, InputGroup, Button, InputGroupAddon } from 'reactstrap';
 import { fetchSearchesFromAPI } from '../../shared/fetchFromAPI';
 
 import './SearchBar.css';
@@ -155,7 +155,7 @@ class SearchBar extends Component {
     }
 
     return (
-      <FormGroup className="input-group mt-1" validationState="error">
+      <FormGroup className="input-group mt-1">
         <InputGroup>
           <AsyncTypeahead
             maxHeight="700px"
@@ -185,7 +185,7 @@ class SearchBar extends Component {
               this.typeahead = ref;
             }}
           />
-          <InputGroup.Button className="input-group-append">
+          <InputGroupAddon addonType="append">
             <Button
               className="btn btn-light btn-lg rounded-right"
               style={buttonStyle}
@@ -193,7 +193,7 @@ class SearchBar extends Component {
             >
               <i className={buttonIcon} />
             </Button>
-          </InputGroup.Button>
+          </InputGroupAddon>
         </InputGroup>
       </FormGroup>
     );
