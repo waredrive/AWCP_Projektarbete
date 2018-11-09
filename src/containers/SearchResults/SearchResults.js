@@ -65,11 +65,6 @@ class SearchResults extends Component {
               People
             </NavLink>
           </NavItem>
-          <NavItem>
-            <NavLink disabled href="#">
-              Disabled Link
-            </NavLink>
-          </NavItem>
         </Nav>
         <TabContent activeTab={activeTab}>
           <TabPane tabId="Movies">
