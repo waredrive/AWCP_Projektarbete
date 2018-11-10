@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
 import { fetchSearchesFromAPI } from '../../../shared/fetchFromAPI';
-import { MovieAndTvSummaryCard } from '../../../shared/MovieAndTvSummaryCard/MovieAndTvSummaryCard';
+import { PeopleSummaryCard } from '../../../components/People/PeopleSummaryCard/PeopleSummeryCard';
 import { PaginationNav } from '../../../shared/PaginationNav/PaginationNav';
 
-export class TvShowsSearchResults extends Component {
+export class PeopleSearchResults extends Component {
   state = {
-    fetchedShows: [],
+    fetchedPeople: [],
     activePage: 1,
     fetchedPages: []
   };
 
   componentDidMount() {
-    this.fetchShowsFromAPI();
+    this.fetchPeopleFromAPI();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -22,29 +22,28 @@ export class TvShowsSearchResults extends Component {
       prevState.activePage !== activePage &&
       !fetchedPages.includes(activePage)
     ) {
-      this.fetchShowsFromAPI(activePage, false);
+      this.fetchPeopleFromAPI(activePage, false);
     } else if (prevProps.searchQuery !== searchQuery) {
-      this.fetchShowsFromAPI();
+      this.fetchPeopleFromAPI();
     }
   }
 
-  fetchShowsFromAPI = (page = 1, isNewSearch = true) => {
+  fetchPeopleFromAPI = (page = 1, isNewSearch = true) => {
     const { searchQuery } = this.props;
 
-    fetchSearchesFromAPI(searchQuery, 'tv', page).then(response => {
-      console.log(response);
-      const { fetchedShows, fetchedPages } = this.state;
-      let shows = [];
+    fetchSearchesFromAPI(searchQuery, 'person', page).then(response => {
+      const { fetchedPeople, fetchedPages } = this.state;
+      let people = [];
       let pages = [];
       if (!isNewSearch) {
-        shows = [...fetchedShows];
+        people = [...fetchedPeople];
         pages = [...fetchedPages];
       }
-      shows.push(response);
+      people.push(response);
       pages.push(page);
 
       this.setState({
-        fetchedShows: shows,
+        fetchedPeople: people,
         activePage: page,
         fetchedPages: pages
       });
@@ -56,33 +55,33 @@ export class TvShowsSearchResults extends Component {
   };
 
   render() {
-    const { fetchedPages, fetchedShows, activePage } = this.state;
+    const { fetchedPages, fetchedPeople, activePage } = this.state;
 
     const searchPage = [];
     let pagination = null;
 
     if (fetchedPages.includes(activePage)) {
-      const searchResultsForChosenPage = fetchedShows
+      const searchResultsForChosenPage = fetchedPeople
         .filter(show => show.page === activePage)
         .map(result => result);
 
       searchResultsForChosenPage[0].results.forEach(result => {
-        const overviewText = result.overview
-          ? result.overview
-          : "We don't have a description of this Tv Show.";
-        const posterImagePath = result.poster_path
-          ? `https://image.tmdb.org/t/p/w185/${result.poster_path}`
-          : 'https://imgplaceholder.com/185x278/393939/8A8A8A/fa-image';
+        const knownFor = result.known_for
+          ? result.known_for.map(
+              production => production.title || production.name
+            )
+          : [];
+
+        const profilePath = result.profile_path
+          ? `https://image.tmdb.org/t/p/w154/${result.profile_path}`
+          : 'https://imgplaceholder.com/154x231/393939/8A8A8A/fa-image';
 
         searchPage.push(
-          <MovieAndTvSummaryCard
+          <PeopleSummaryCard
             key={result.id}
-            title={result.name}
-            overviewText={overviewText}
-            posterPath={posterImagePath}
-            voteAverage={result.vote_average}
-            voteCount={result.vote_count}
-            releaseDate={result.first_air_date}
+            name={result.name}
+            knownFor={knownFor}
+            profilePath={profilePath}
           />
         );
       });
@@ -105,4 +104,4 @@ export class TvShowsSearchResults extends Component {
   }
 }
 
-export default TvShowsSearchResults;
+export default PeopleSearchResults;

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
-import MovieSearchResults from '../Movies/MovieSearchResults/MovieSearchResults';
-import TvShowsSearchResults from '../TvShows/TvShowsSearchResults/TvShowsSearchResults';
+import { MovieSearchResults } from '../Movies/MovieSearchResults/MovieSearchResults';
+import { TvShowsSearchResults } from '../TvShows/TvShowsSearchResults/TvShowsSearchResults';
+import { PeopleSearchResults } from '../People/PeopleSearchResults/PeopleSearchResults';
 
 class SearchResults extends Component {
   state = {
@@ -73,6 +74,9 @@ class SearchResults extends Component {
           </TabPane>
           <TabPane tabId="Tv">
             <TvShowsSearchResults searchQuery={this.fetchQueryString()} />
+          </TabPane>
+          <TabPane tabId="People">
+            <PeopleSearchResults searchQuery={this.fetchQueryString()} />
           </TabPane>
         </TabContent>
       </div>

@@ -3,7 +3,10 @@ import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 export class PaginationNav extends Component {
   changePage = page => {
-    const { onPageChanged } = this.props;
+    const { onPageChanged, currentPage, totalPages } = this.props;
+    if (page === currentPage || page > totalPages || page < 1) {
+      return;
+    }
     onPageChanged(page);
   };
 
@@ -45,11 +48,17 @@ export class PaginationNav extends Component {
       <div className="row justify-content-center">
         <Pagination aria-label="Page navigation">
           <PaginationItem disabled={disablePrevious}>
-            <PaginationLink previous />
+            <PaginationLink
+              previous
+              onClick={() => this.changePage(currentPage - 1)}
+            />
           </PaginationItem>
           {pagination}
           <PaginationItem disabled={disableNext}>
-            <PaginationLink next />
+            <PaginationLink
+              next
+              onClick={() => this.changePage(currentPage + 1)}
+            />
           </PaginationItem>
         </Pagination>
       </div>
