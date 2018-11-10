@@ -9,4 +9,11 @@ export const fetchSearchesFromAPI = (query, type = 'multi', page = 1) =>
     )
     .then(response => response.data);
 
-export default fetchSearchesFromAPI;
+export const fetchDetailsFromAPI = (type, id) =>
+  axios
+    .get(
+      `https://api.themoviedb.org/3/${type}/${id}?api_key=${
+        process.env.REACT_APP_TMDB_API_KEY
+      }&language=en-US`
+    )
+    .then(response => response.data);

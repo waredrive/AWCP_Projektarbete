@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { fetchSearchesFromAPI } from '../../../shared/fetchFromAPI';
-import { PeopleSummaryCard } from '../../../components/People/PeopleSummaryCard/PeopleSummeryCard';
+import { PersonSummaryCard } from '../../../components/Person/PersonSummaryCard/PersonSummaryCard';
 import { PaginationNav } from '../../../shared/PaginationNav/PaginationNav';
 
 export class PeopleSearchResults extends Component {
@@ -28,6 +28,12 @@ export class PeopleSearchResults extends Component {
     }
   }
 
+  fetchQueryString = () => {
+    const { location } = this.props;
+    const queryParam = new URLSearchParams(location.search);
+    return queryParam.get('query');
+  };
+
   fetchPeopleFromAPI = (page = 1, isNewSearch = true) => {
     const { searchQuery } = this.props;
 
@@ -54,6 +60,11 @@ export class PeopleSearchResults extends Component {
     this.setState({ activePage: page });
   };
 
+  onShowDetailsClickHandler = id => {
+    const { history } = this.props;
+    history.push(`/person/${id}`);
+  };
+
   render() {
     const { fetchedPages, fetchedPeople, activePage } = this.state;
 
@@ -77,11 +88,12 @@ export class PeopleSearchResults extends Component {
           : 'https://imgplaceholder.com/154x231/393939/8A8A8A/fa-image';
 
         searchPage.push(
-          <PeopleSummaryCard
+          <PersonSummaryCard
             key={result.id}
             name={result.name}
             knownFor={knownFor}
             profilePath={profilePath}
+            onShowDetailsClick={() => this.onShowDetailsClickHandler(result.id)}
           />
         );
       });

@@ -32,7 +32,6 @@ export class TvShowsSearchResults extends Component {
     const { searchQuery } = this.props;
 
     fetchSearchesFromAPI(searchQuery, 'tv', page).then(response => {
-      console.log(response);
       const { fetchedShows, fetchedPages } = this.state;
       let shows = [];
       let pages = [];
@@ -53,6 +52,11 @@ export class TvShowsSearchResults extends Component {
 
   onPageChangedHandler = page => {
     this.setState({ activePage: page });
+  };
+
+  onShowDetailsClickHandler = id => {
+    const { history } = this.props;
+    history.push(`/tv/${id}`);
   };
 
   render() {
@@ -83,6 +87,7 @@ export class TvShowsSearchResults extends Component {
             voteAverage={result.vote_average}
             voteCount={result.vote_count}
             releaseDate={result.first_air_date}
+            onShowDetailsClick={() => this.onShowDetailsClickHandler(result.id)}
           />
         );
       });

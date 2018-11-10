@@ -54,6 +54,11 @@ export class MovieSearchResults extends Component {
     this.setState({ activePage: page });
   };
 
+  onShowDetailsClickHandler = id => {
+    const { history } = this.props;
+    history.push(`/movie/${id}`);
+  };
+
   render() {
     const { fetchedPages, fetchedMovies, activePage } = this.state;
 
@@ -82,6 +87,7 @@ export class MovieSearchResults extends Component {
             voteAverage={result.vote_average}
             voteCount={result.vote_count}
             releaseDate={result.release_date}
+            onShowDetailsClick={() => this.onShowDetailsClickHandler(result.id)}
           />
         );
       });

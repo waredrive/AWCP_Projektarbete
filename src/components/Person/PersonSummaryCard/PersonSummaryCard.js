@@ -1,7 +1,7 @@
 import React from 'react';
 
-export const PeopleSummaryCard = props => {
-  const { knownFor, profilePath, name } = props;
+export const PersonSummaryCard = props => {
+  const { knownFor, profilePath, name, onShowDetailsClick } = props;
 
   const known =
     knownFor.length > 1 ? (
@@ -36,6 +36,7 @@ export const PeopleSummaryCard = props => {
           type="button"
           className="btn btn-outline-secondary btn-block btn-lg mt-2"
           title={name}
+          onClick={onShowDetailsClick}
         >
           More details
         </button>
@@ -44,4 +45,4 @@ export const PeopleSummaryCard = props => {
   );
 };
 
-export default PeopleSummaryCard;
+export default PersonSummaryCard;

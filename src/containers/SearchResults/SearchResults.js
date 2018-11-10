@@ -29,7 +29,7 @@ class SearchResults extends Component {
     const { activeTab } = this.state;
     return (
       <div>
-        <Nav pills className=" bg-light rounded">
+        <Nav pills className="bg-light rounded">
           <NavItem>
             <NavLink
               className={classnames({
@@ -70,13 +70,22 @@ class SearchResults extends Component {
         </Nav>
         <TabContent activeTab={activeTab}>
           <TabPane tabId="Movies">
-            <MovieSearchResults searchQuery={this.fetchQueryString()} />
+            <MovieSearchResults
+              searchQuery={this.fetchQueryString()}
+              {...this.props}
+            />
           </TabPane>
           <TabPane tabId="Tv">
-            <TvShowsSearchResults searchQuery={this.fetchQueryString()} />
+            <TvShowsSearchResults
+              searchQuery={this.fetchQueryString()}
+              {...this.props}
+            />
           </TabPane>
           <TabPane tabId="People">
-            <PeopleSearchResults searchQuery={this.fetchQueryString()} />
+            <PeopleSearchResults
+              searchQuery={this.fetchQueryString()}
+              {...this.props}
+            />
           </TabPane>
         </TabContent>
       </div>

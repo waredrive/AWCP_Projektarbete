@@ -1,6 +1,5 @@
 import React from 'react';
-import CircularProgressbar from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import RatingBar from '../RatingBar/RatingBar';
 
 export const MovieAndTvSummaryCard = props => {
   const {
@@ -9,10 +8,9 @@ export const MovieAndTvSummaryCard = props => {
     title,
     voteAverage,
     voteCount,
-    releaseDate
+    releaseDate,
+    onShowDetailsClick
   } = props;
-
-  const voteAvr = voteCount === 0 ? 'NR' : voteAverage;
 
   return (
     <div className="card my-3 container">
@@ -24,29 +22,11 @@ export const MovieAndTvSummaryCard = props => {
           alt={`Poster of ${title}`}
         />
         <div className="d-flex align-items-start">
-          <div
-            style={{ minWidth: '50px', width: '50px' }}
-            className="d-inline-block mr-3 mb-2"
-            title={`Average vote: ${voteAverage}. Votes: ${voteCount}`}
-          >
-            <CircularProgressbar
-              percentage={voteAverage * 10}
-              text={voteAvr}
-              background
-              backgroundPadding={6}
-              styles={{
-                background: {
-                  fill: '#007bff'
-                },
-                text: {
-                  fill: '#fff',
-                  fontSize: '2rem'
-                },
-                path: {
-                  stroke: '#fff'
-                },
-                trail: { stroke: 'transparent' }
-              }}
+          <div className="d-inline-block mr-3 mb-2">
+            <RatingBar
+              sizeInPixels={50}
+              voteAverage={voteAverage}
+              voteCount={voteCount}
             />
           </div>
           <div className="d-inline-block">
@@ -61,6 +41,7 @@ export const MovieAndTvSummaryCard = props => {
           type="button"
           className="btn btn-outline-secondary btn-block btn-lg mt-2"
           title={title}
+          onClick={onShowDetailsClick}
         >
           More details
         </button>
