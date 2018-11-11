@@ -11,7 +11,7 @@ import * as serviceWorker from './serviceWorker';
 const rootElement = document.getElementById('root');
 const app = (
   <HashRouter>
-    <App class="bg-light" />
+    <App />
   </HashRouter>
 );
 

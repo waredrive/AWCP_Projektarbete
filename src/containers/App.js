@@ -10,30 +10,30 @@ import { TvShowDetails } from '../components/TvShow/TvShowDetails/TvShowDetails'
 class App extends Component {
   render() {
     return (
-      <main className="container">
-        <div className="row">
-          <div className="col-md-12 my-5" style={{ minWidth: '480px' }}>
-            <SearchBar />
+      <main>
+        <div className="bg-light">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-12" style={{ minWidth: '480px' }}>
+                <SearchBar />
+              </div>
+            </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-md-12" style={{ minWidth: '480px' }}>
-            <Switch>
-              <Route path="/search/" exact component={SearchResults} />
-              <Route path="/movie/:id" exact component={MovieDetails} />
-              <Route path="/tv/:id" exact component={TvShowDetails} />
-              <Route path="/person/:id" exact component={PersonDetails} />
-              <Route
-                path="/error"
-                component={() => (
-                  <div>TempError</div>
-                  // <ErrorMessage>An Error has occurred while fetching data from SL. Please try again.</ErrorMessage>
-                )}
-              />
-              {/* <Route component={WelcomePage} /> */}
-            </Switch>
-          </div>
-        </div>
+        <Switch>
+          <Route path="/search/" exact component={SearchResults} />
+          <Route path="/movie/:id" exact component={MovieDetails} />
+          <Route path="/tv/:id" exact component={TvShowDetails} />
+          <Route path="/person/:id" exact component={PersonDetails} />
+          <Route
+            path="/error"
+            component={() => (
+              <div>TempError</div>
+              // <ErrorMessage>An Error has occurred while fetching data from SL. Please try again.</ErrorMessage>
+            )}
+          />
+          {/* <Route component={WelcomePage} /> */}
+        </Switch>
       </main>
     );
   }

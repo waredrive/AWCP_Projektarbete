@@ -28,66 +28,70 @@ class SearchResults extends Component {
   render() {
     const { activeTab } = this.state;
     return (
-      <div>
-        <Nav pills className="bg-light rounded">
-          <NavItem>
-            <NavLink
-              className={classnames({
-                active: activeTab === 'Movies'
-              })}
-              href="#"
-              onClick={() => {
-                this.toggleTabs('Movies');
-              }}
-            >
-              Movies
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              href="#"
-              className={classnames({ active: activeTab === 'Tv' })}
-              onClick={() => {
-                this.toggleTabs('Tv');
-              }}
-            >
-              Tv Shows
-            </NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink
-              href="#"
-              className={classnames({
-                active: activeTab === 'People'
-              })}
-              onClick={() => {
-                this.toggleTabs('People');
-              }}
-            >
-              People
-            </NavLink>
-          </NavItem>
-        </Nav>
-        <TabContent activeTab={activeTab}>
-          <TabPane tabId="Movies">
-            <MovieSearchResults
-              searchQuery={this.fetchQueryString()}
-              {...this.props}
-            />
-          </TabPane>
-          <TabPane tabId="Tv">
-            <TvShowsSearchResults
-              searchQuery={this.fetchQueryString()}
-              {...this.props}
-            />
-          </TabPane>
-          <TabPane tabId="People">
-            <PeopleSearchResults
-              searchQuery={this.fetchQueryString()}
-              {...this.props}
-            />
-          </TabPane>
-        </TabContent>
+      <div className="container mt-5">
+        <div className="row">
+          <div className="col-md-12" style={{ minWidth: '480px' }}>
+            <Nav pills className="bg-light rounded">
+              <NavItem>
+                <NavLink
+                  className={classnames({
+                    active: activeTab === 'Movies'
+                  })}
+                  href="#"
+                  onClick={() => {
+                    this.toggleTabs('Movies');
+                  }}
+                >
+                  Movies
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  href="#"
+                  className={classnames({ active: activeTab === 'Tv' })}
+                  onClick={() => {
+                    this.toggleTabs('Tv');
+                  }}
+                >
+                  Tv Shows
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  href="#"
+                  className={classnames({
+                    active: activeTab === 'People'
+                  })}
+                  onClick={() => {
+                    this.toggleTabs('People');
+                  }}
+                >
+                  People
+                </NavLink>
+              </NavItem>
+            </Nav>
+            <TabContent activeTab={activeTab}>
+              <TabPane tabId="Movies">
+                <MovieSearchResults
+                  searchQuery={this.fetchQueryString()}
+                  {...this.props}
+                />
+              </TabPane>
+              <TabPane tabId="Tv">
+                <TvShowsSearchResults
+                  searchQuery={this.fetchQueryString()}
+                  {...this.props}
+                />
+              </TabPane>
+              <TabPane tabId="People">
+                <PeopleSearchResults
+                  searchQuery={this.fetchQueryString()}
+                  {...this.props}
+                />
+              </TabPane>
+            </TabContent>
+          </div>
+        </div>
       </div>
     );
   }

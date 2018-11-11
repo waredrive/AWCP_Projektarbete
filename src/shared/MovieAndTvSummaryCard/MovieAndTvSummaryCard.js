@@ -1,5 +1,5 @@
 import React from 'react';
-import RatingBar from '../RatingBar/RatingBar';
+import { RatingBar } from '../RatingBar/RatingBar';
 
 export const MovieAndTvSummaryCard = props => {
   const {
@@ -27,6 +27,7 @@ export const MovieAndTvSummaryCard = props => {
               sizeInPixels={50}
               voteAverage={voteAverage}
               voteCount={voteCount}
+              color="#000"
             />
           </div>
           <div className="d-inline-block">

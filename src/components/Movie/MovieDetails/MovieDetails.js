@@ -37,40 +37,49 @@ export class MovieDetails extends Component {
       ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
       : 'https://imgplaceholder.com/185x278/393939/8A8A8A/fa-image';
     return (
-      <div className="container text-light">
-        <div className="row">
-          <Backdrop backdropPath={movie.backdrop_path}>
-            <div className="col-12 my-3">
-              <img
-                className="float-left border rounded mr-5"
-                src={posterImagePath}
-                title={movie.title}
-                alt={`Poster of ${movie.title}`}
-              />
-              <h1 className="mb-0">{movie.title}</h1>
-              <p className="font-weight-light h4">({yearOfProduction})</p>
-              <p className="font-italic h5 font-weight-light mt-4">
-                &quot;
-                {movie.tagline}
-                &quot;
-              </p>
-              <div className="my-5 d-inline-block">
-                <RatingBar
-                  sizeInPixels={60}
-                  voteAverage={movie.vote_average}
-                  voteCount={movie.vote_count}
+      <>
+        <Backdrop backdropPath={movie.backdrop_path}>
+          <div className="container text-light">
+            <div className="row">
+              <div className="col-12 my-3">
+                <img
+                  className="float-left mr-5 rounded"
+                  src={posterImagePath}
+                  title={movie.title}
+                  alt={`Poster of ${movie.title}`}
                 />
+                <h1 className="mb-1">{movie.title}</h1>
+                <p className="font-weight-light h4">({yearOfProduction})</p>
+                <p className="font-italic h5 font-weight-light mt-4">
+                  &quot;
+                  {movie.tagline}
+                  &quot;
+                </p>
+                <div className="my-5 d-inline-block">
+                  <RatingBar
+                    sizeInPixels={60}
+                    voteAverage={movie.vote_average}
+                    voteCount={movie.vote_count}
+                  />
+                </div>
+                <h4>Overview</h4>
+                <p>
+                  {movie.overview
+                    ? movie.overview
+                    : "We don't have a description of this movie."}
+                </p>
               </div>
-              <h4>Overview</h4>
-              <p>
-                {movie.overview
-                  ? movie.overview
-                  : "We don't have a description of this movie."}
-              </p>
             </div>
-          </Backdrop>
+          </div>
+        </Backdrop>
+        <div className="bg-light">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 my-3">test</div>
+            </div>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 }

@@ -3,8 +3,9 @@ import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 export const RatingBar = props => {
-  const { sizeInPixels, voteAverage, voteCount } = props;
+  const { sizeInPixels, color, voteAverage, voteCount } = props;
   const voteAvr = voteCount === 0 ? 'NR' : voteAverage;
+  console.log(`"${color}"`);
   return (
     <div
       style={{ minWidth: `${sizeInPixels}px`, width: `${sizeInPixels}px` }}
@@ -17,14 +18,14 @@ export const RatingBar = props => {
         backgroundPadding={6}
         styles={{
           background: {
-            fill: '#007bff'
+            fill: `"${color}"`
           },
           text: {
             fill: '#fff',
             fontSize: '2rem'
           },
           path: {
-            stroke: '#fff'
+            stroke: '#eeff00'
           },
           trail: { stroke: 'transparent' }
         }}

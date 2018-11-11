@@ -155,7 +155,7 @@ class SearchBar extends Component {
     }
 
     return (
-      <FormGroup className="input-group mt-1">
+      <FormGroup className="input-group my-4">
         <InputGroup>
           <AsyncTypeahead
             maxHeight="700px"
@@ -187,7 +187,7 @@ class SearchBar extends Component {
           />
           <InputGroupAddon addonType="append">
             <Button
-              className="btn btn-light btn-lg rounded-right"
+              className="btn btn-dark btn-lg rounded-right"
               style={buttonStyle}
               onClick={this.clearSearch}
             >
