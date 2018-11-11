@@ -11,20 +11,23 @@ export const MovieHeader = props => {
     quote,
     voteAverage,
     voteCount,
-    overview
+    overview,
+    crew
   } = props;
 
   return (
     <Backdrop backdropPath={backdropImagePath}>
       <div className="container text-light">
         <div className="row">
-          <div className="col-12 my-3">
+          <div className="col-4 mt-4 d-flex justify-content-center">
             <img
-              className="float-left mr-5 rounded"
+              className="rounded align-self-start"
               src={posterImagePath}
               title={title}
               alt={`Poster of ${title}`}
             />
+          </div>
+          <div className="col-8 my-3">
             <h1 className="mb-1">{title}</h1>
             <p className="font-weight-light h4">({yearOfProduction})</p>
             <p className="font-italic h5 font-weight-light mt-4">{quote}</p>
@@ -36,8 +39,17 @@ export const MovieHeader = props => {
                 hexColor="#000"
               />
             </div>
-            <h4>Overview</h4>
-            <p>{overview}</p>
+            <div>
+              <h4>Overview</h4>
+              <p>{overview}</p>
+            </div>
+            <div className="mt-5">
+              <h4>Crew</h4>
+              <div>
+                <h5 className="mb-0">Name</h5>
+                <p>Job title</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>

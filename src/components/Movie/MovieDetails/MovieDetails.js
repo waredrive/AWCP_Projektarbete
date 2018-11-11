@@ -73,7 +73,7 @@ export class MovieDetails extends Component {
                 <div className="row">
                   <h4 className="ml-3">Top Cast</h4>
                 </div>
-                <div className="row d-flex align-items-stretch">
+                <div className="row d-flex align-items-stretch float-left">
                   {actorCards}
                 </div>
               </div>
