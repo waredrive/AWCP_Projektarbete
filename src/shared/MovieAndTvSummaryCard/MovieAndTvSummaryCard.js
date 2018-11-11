@@ -24,10 +24,10 @@ export const MovieAndTvSummaryCard = props => {
         <div className="d-flex align-items-start">
           <div className="d-inline-block mr-3 mb-2">
             <RatingBar
+              hexColor="#282a2b"
               sizeInPixels={50}
               voteAverage={voteAverage}
               voteCount={voteCount}
-              color="#000"
             />
           </div>
           <div className="d-inline-block">

@@ -3,9 +3,18 @@ import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
 export const RatingBar = props => {
-  const { sizeInPixels, color, voteAverage, voteCount } = props;
+  const { sizeInPixels, hexColor, voteAverage, voteCount } = props;
   const voteAvr = voteCount === 0 ? 'NR' : voteAverage;
-  console.log(`"${color}"`);
+  let strokeColor;
+
+  if (voteAverage >= 6.6) {
+    strokeColor = '#1fe250';
+  } else if (voteAverage >= 3.3) {
+    strokeColor = '#eeff00';
+  } else {
+    strokeColor = '#ff3030';
+  }
+
   return (
     <div
       style={{ minWidth: `${sizeInPixels}px`, width: `${sizeInPixels}px` }}
@@ -18,14 +27,14 @@ export const RatingBar = props => {
         backgroundPadding={6}
         styles={{
           background: {
-            fill: `"${color}"`
+            fill: `${hexColor}`
           },
           text: {
             fill: '#fff',
             fontSize: '2rem'
           },
           path: {
-            stroke: '#eeff00'
+            stroke: `${strokeColor}`
           },
           trail: { stroke: 'transparent' }
         }}
