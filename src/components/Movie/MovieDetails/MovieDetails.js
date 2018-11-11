@@ -40,16 +40,7 @@ export class MovieDetails extends Component {
 
     return (
       <div className="container text-light">
-        <div
-          className="row"
-          style={{
-            backgroundImage: `url("https://image.tmdb.org/t/p/original/${
-              movie.backdrop_path
-            }")`,
-            opacity: '0.5',
-            filter: 'grayscale(100%)'
-          }}
-        >
+        <div className="row" id="detailsHeader">
           <div className="col-12 my-3">
             <img
               className="float-left border rounded mr-5"
@@ -58,7 +49,12 @@ export class MovieDetails extends Component {
               alt={`Poster of ${movie.title}`}
             />
             <h1 className="mb-0">{movie.title}</h1>
-            <h3 className="font-weight-light">({yearOfProduction})</h3>
+            <p className="font-weight-light h4">({yearOfProduction})</p>
+            <p className="font-italic h5 font-weight-light mt-4">
+              &quot;
+              {movie.tagline}
+              &quot;
+            </p>
             <div className="my-5 d-inline-block">
               <RatingBar
                 sizeInPixels={60}
