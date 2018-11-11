@@ -45,9 +45,19 @@ export const MovieHeader = props => {
             </div>
             <div className="mt-5">
               <h4>Crew</h4>
-              <div>
-                <h5 className="mb-0">Name</h5>
-                <p>Job title</p>
+              <div className="d-flex justify-content-between">
+                <div>
+                  <h5 className="mb-0">Name</h5>
+                  <p>Job title</p>
+                </div>
+                <div>
+                  <h5 className="mb-0">Name2</h5>
+                  <p>Job title2</p>
+                </div>
+                <div>
+                  <h5 className="mb-0">Name3</h5>
+                  <p>Job title3</p>
+                </div>
               </div>
             </div>
           </div>
