@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { fetchDetailsFromAPI } from '../../../shared/fetchFromAPI';
 import { RatingBar } from '../../../shared/RatingBar/RatingBar';
-import './MovieDetails.css';
+import styleClasses from './MovieDetails.module.css';
 
 export class MovieDetails extends Component {
   state = {
@@ -30,6 +30,24 @@ export class MovieDetails extends Component {
 
   // https://image.tmdb.org/t/p/original/pIUvQ9Ed35wlWhY2oU6OmwEsmzG.jpg
   render() {
+    const styleTest = {
+      position: 'relative',
+      ':after': {
+        content: "''",
+        display: 'block',
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        background:
+          'url(https://image.tmdb.org/t/p/original/pIUvQ9Ed35wlWhY2oU6OmwEsmzG.jpg) no-repeat center',
+        width: '100%',
+        height: '100%',
+        zIndex: '-1',
+        opacity: '0.4',
+        filter: 'grayscale(100%)'
+      }
+    };
+
     const { movie } = this.state;
     const yearOfProduction = movie.release_date
       ? movie.release_date.slice(0, 4)
@@ -37,10 +55,10 @@ export class MovieDetails extends Component {
     const posterImagePath = movie.poster_path
       ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
       : 'https://imgplaceholder.com/185x278/393939/8A8A8A/fa-image';
-
+    console.log(styleClasses);
     return (
-      <div className="container text-light">
-        <div className="row" id="detailsHeader">
+      <div className="container text-light" style={styleTest}>
+        <div className="row">
           <div className="col-12 my-3">
             <img
               className="float-left border rounded mr-5"
