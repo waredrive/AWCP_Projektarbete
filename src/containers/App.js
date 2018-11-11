@@ -12,9 +12,12 @@ class App extends Component {
     return (
       <main>
         <div className="bg-light">
-          <div className="container">
-            <div className="row">
-              <div className="col-md-12" style={{ minWidth: '480px' }}>
+          <div className="container-fluid" style={{ minWidth: '480px' }}>
+            <div className="row justify-content-center">
+              <div
+                className="col-md-12 mx-0 px-0"
+                style={{ maxWidth: '1100px' }}
+              >
                 <SearchBar />
               </div>
             </div>

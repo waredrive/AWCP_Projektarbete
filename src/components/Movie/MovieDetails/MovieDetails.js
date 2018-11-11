@@ -55,7 +55,7 @@ export class MovieDetails extends Component {
       : null;
 
     return (
-      <>
+      <div>
         <MovieHeader
           backdropImagePath={movie.backdrop_path}
           posterImagePath={posterImagePath}
@@ -88,7 +88,7 @@ export class MovieDetails extends Component {
             </div>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

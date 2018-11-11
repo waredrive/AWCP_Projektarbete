@@ -19,7 +19,7 @@ export const MovieHeader = props => {
     <Backdrop backdropPath={backdropImagePath}>
       <div className="container text-light">
         <div className="row">
-          <div className="col-4 mt-4 d-flex justify-content-center">
+          <div className="col-4 mt-4 d-flex">
             <img
               className="rounded align-self-start"
               src={posterImagePath}

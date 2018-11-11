@@ -13,7 +13,7 @@ export const MovieAndTvSummaryCard = props => {
   } = props;
 
   return (
-    <div className="card my-3 container">
+    <div className="card my-3">
       <div className="card-body">
         <img
           className="float-left border rounded mr-3 mb-3"

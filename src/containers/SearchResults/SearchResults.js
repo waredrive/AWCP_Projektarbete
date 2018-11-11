@@ -30,7 +30,7 @@ class SearchResults extends Component {
     return (
       <div className="container mt-5">
         <div className="row">
-          <div className="col-md-12" style={{ minWidth: '480px' }}>
+          <div className="col-md-12">
             <Nav pills className="bg-light rounded">
               <NavItem>
                 <NavLink
