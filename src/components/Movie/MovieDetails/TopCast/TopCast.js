@@ -25,8 +25,17 @@ export const TopCast = props => {
       <div className="row">
         <h4 className="ml-3">Top Cast</h4>
       </div>
-      <div className="row d-flex align-items-stretch float-left">
+      <div className="row d-flex align-items-stretch float-left mb-3">
         {actorCards}
+      </div>
+      <div className="row d-block pr-5">
+        <button
+          type="button"
+          className="btn btn-outline-secondary btn-block btn-lg ml-3"
+          title="Full Cast &amp; Crew"
+        >
+          Full Cast &amp; Crew
+        </button>
       </div>
     </div>
   );

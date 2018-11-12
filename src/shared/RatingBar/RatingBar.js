@@ -7,9 +7,9 @@ export const RatingBar = props => {
   const voteAvr = voteCount === 0 ? 'NR' : voteAverage;
   let strokeColor;
 
-  if (voteAverage >= 6.6) {
+  if (voteAverage >= 7) {
     strokeColor = '#1fe250';
-  } else if (voteAverage >= 3.3) {
+  } else if (voteAverage >= 4) {
     strokeColor = '#eeff00';
   } else {
     strokeColor = '#ff3030';
