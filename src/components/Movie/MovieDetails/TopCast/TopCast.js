@@ -31,7 +31,7 @@ export const TopCast = props => {
       <div className="row d-block pr-5">
         <button
           type="button"
-          className="btn btn-outline-secondary btn-block btn-lg ml-3"
+          className="btn btn-secondary btn-block btn-lg ml-3"
           title="Full Cast &amp; Crew"
         >
           Full Cast &amp; Crew
