@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { fetchDetailsFromAPI } from '../../../shared/fetchFromAPI';
-import { ActorCard } from '../../../shared/ActorCard/ActorCard';
+import { TopCast } from './TopCast/TopCast';
 import { MovieHeader } from './MovieHeader/MovieHeader';
+import { Facts } from './Facts/Facts';
 
 export class MovieDetails extends Component {
   state = {
@@ -41,18 +42,9 @@ export class MovieDetails extends Component {
     const overview =
       movie.overview || "We don't have a description of this movie.";
 
-    const actorCards = movie.credits
-      ? movie.credits.cast
-          .slice(0, 5)
-          .map(cast => (
-            <ActorCard
-              key={cast.id}
-              actorName={cast.name}
-              playedRoleName={cast.character}
-              imagePath={`https://image.tmdb.org/t/p/w185/${cast.profile_path}`}
-            />
-          ))
-      : null;
+    const cast = movie.credits ? movie.credits.cast : null;
+
+    const crew = movie.credits ? movie.credits.crew : null;
 
     return (
       <div>
@@ -65,26 +57,13 @@ export class MovieDetails extends Component {
           voteAverage={movie.vote_average}
           voteCount={movie.vote_count}
           overview={overview}
+          crew={crew}
         />
         <div className="bg-light">
           <div className="container bg-light">
             <div className="row">
-              <div className="col-9 my-3 pr-5">
-                <div className="row">
-                  <h4 className="ml-3">Top Cast</h4>
-                </div>
-                <div className="row d-flex align-items-stretch float-left">
-                  {actorCards}
-                </div>
-              </div>
-              <div
-                className="col-3 my-3 mt-5"
-                style={{ backgroundColor: '#5C6165' }}
-              >
-                <div className="ml-3 mt-3">
-                  <h5 className="text-light">Facts</h5>
-                </div>
-              </div>
+              <TopCast cast={cast} />
+              <Facts movie={movie} />
             </div>
           </div>
         </div>

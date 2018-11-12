@@ -15,6 +15,18 @@ export const MovieHeader = props => {
     crew
   } = props;
 
+  const crewInfo =
+    crew && crew.length > 0 ? (
+      crew.splice(0, 3).map(person => (
+        <div key={person.job + person.id}>
+          <h5 className="mb-0">{person.name}</h5>
+          <p>{person.job}</p>
+        </div>
+      ))
+    ) : (
+      <p>There is no crew added to this movie.</p>
+    );
+
   return (
     <Backdrop backdropPath={backdropImagePath}>
       <div className="container text-light">
@@ -45,20 +57,7 @@ export const MovieHeader = props => {
             </div>
             <div className="mt-5">
               <h4>Crew</h4>
-              <div className="d-flex justify-content-between">
-                <div>
-                  <h5 className="mb-0">Name</h5>
-                  <p>Job title</p>
-                </div>
-                <div>
-                  <h5 className="mb-0">Name2</h5>
-                  <p>Job title2</p>
-                </div>
-                <div>
-                  <h5 className="mb-0">Name3</h5>
-                  <p>Job title3</p>
-                </div>
-              </div>
+              <div className="d-flex justify-content-between">{crewInfo}</div>
             </div>
           </div>
         </div>
