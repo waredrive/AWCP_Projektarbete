@@ -19,6 +19,7 @@ export const RatingBar = props => {
     <div
       style={{ minWidth: `${sizeInPixels}px`, width: `${sizeInPixels}px` }}
       title={`Average vote: ${voteAverage}. Votes: ${voteCount}`}
+      className="d-inline-block"
     >
       <CircularProgressbar
         percentage={voteAverage * 10}

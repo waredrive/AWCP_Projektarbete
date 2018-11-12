@@ -58,6 +58,7 @@ export class MovieDetails extends Component {
           voteCount={movie.vote_count}
           overview={overview}
           crew={crew}
+          homePage={movie.homepage}
         />
         <div className="bg-light">
           <div className="container bg-light">

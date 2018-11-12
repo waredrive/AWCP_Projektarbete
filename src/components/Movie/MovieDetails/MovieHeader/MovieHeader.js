@@ -12,7 +12,8 @@ export const MovieHeader = props => {
     voteAverage,
     voteCount,
     overview,
-    crew
+    crew,
+    homePage
   } = props;
 
   const crewInfo =
@@ -26,6 +27,19 @@ export const MovieHeader = props => {
     ) : (
       <p>There is no crew added to this movie.</p>
     );
+
+  const homepage = homePage ? (
+    <a href={homePage}>
+      <button
+        type="button"
+        className="btn btn-outline-light btn-circle btn-lg d-inline-flex ml-4 justify-content-center"
+        onClick={() => {}}
+        title={homePage}
+      >
+        <i className="fa fa-home fa-lg" />
+      </button>
+    </a>
+  ) : null;
 
   return (
     <Backdrop backdropPath={backdropImagePath}>
@@ -45,11 +59,12 @@ export const MovieHeader = props => {
             <p className="font-italic h5 font-weight-light mt-4">{quote}</p>
             <div className="my-5 d-inline-block">
               <RatingBar
-                sizeInPixels={60}
+                sizeInPixels={55}
                 voteAverage={voteAverage}
                 voteCount={voteCount}
                 hexColor="#000"
               />
+              {homepage}
             </div>
             <div>
               <h4>Overview</h4>
