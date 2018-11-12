@@ -29,7 +29,7 @@ export const MovieHeader = props => {
     );
 
   const homepage = homePage ? (
-    <a href={homePage}>
+    <a href={homePage} style={{ textDecoration: 'none' }}>
       <button
         type="button"
         className="btn btn-outline-light btn-circle btn-lg d-inline-flex ml-4 justify-content-center"
