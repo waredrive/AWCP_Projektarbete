@@ -2,9 +2,16 @@ import React, { Component } from 'react';
 import './Facts.module.css';
 
 export class Facts extends Component {
+  formatEmptyFields = field => {
+    if (!field) {
+      return '-';
+    }
+    return field;
+  };
+
   convertRuntimeToHoursAndMinutes = runtime => {
     if (!runtime) {
-      return `-`;
+      return '-';
     }
     const hours = Math.floor(runtime / 60);
     const minutes = runtime % 60;
@@ -32,7 +39,11 @@ export class Facts extends Component {
         style={{ backgroundColor: '#5C6165' }}
       >
         <div className="ml-3 mt-3">
-          <h5 className="pb-2">Facts</h5>
+          <h5>Facts</h5>
+          <div>
+            <h6>Status</h6>
+            <p>{this.formatEmptyFields(movie.status)}</p>
+          </div>
           <div>
             <h6>Runtime</h6>
             <p>{this.convertRuntimeToHoursAndMinutes(movie.runtime)}</p>
