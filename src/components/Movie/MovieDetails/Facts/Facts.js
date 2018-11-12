@@ -45,6 +45,10 @@ export class Facts extends Component {
             <p>{this.formatEmptyFields(movie.status)}</p>
           </div>
           <div>
+            <h6>Release date</h6>
+            <p>{this.formatEmptyFields(movie.release_date)}</p>
+          </div>
+          <div>
             <h6>Runtime</h6>
             <p>{this.convertRuntimeToHoursAndMinutes(movie.runtime)}</p>
           </div>
@@ -55,6 +59,11 @@ export class Facts extends Component {
           <div>
             <h6>Revenue</h6>
             <p>{this.formatCurrency(movie.revenue)}</p>
+          </div>
+          <div>
+            {/* TODO: Fix genres */}
+            <h6>Genres</h6>
+            <p>PLACEHOLDER</p>
           </div>
         </div>
       </div>

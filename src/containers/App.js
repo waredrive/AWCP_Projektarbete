@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar/SearchBar';
 import SearchResults from './SearchResults/SearchResults';
 import { MovieDetails } from '../components/Movie/MovieDetails/MovieDetails';
@@ -11,6 +11,11 @@ class App extends Component {
   render() {
     return (
       <main>
+        <nav className="navbar navbar-dark bg-dark">
+          <Link className="navbar-brand" to="/">
+            <i className="fa fa-home fa-2x" />
+          </Link>
+        </nav>
         <div className="bg-light">
           <div className="container-fluid" style={{ minWidth: '480px' }}>
             <div className="row justify-content-center">

@@ -155,7 +155,7 @@ class SearchBar extends Component {
     }
 
     return (
-      <FormGroup className="input-group my-4">
+      <FormGroup className="input-group my-3">
         <InputGroup>
           <AsyncTypeahead
             maxHeight="700px"
