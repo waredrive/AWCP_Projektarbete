@@ -30,9 +30,6 @@ export const Recommendations = props => {
             slidesToShow={3}
             cellSpacing={15}
             wrapAround
-            // autoplay
-            pauseOnHover
-            autoplayInterval={5000}
             renderBottomCenterControls={() => null}
           >
             {recommendationCards}

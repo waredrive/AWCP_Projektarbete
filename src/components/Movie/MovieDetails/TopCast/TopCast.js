@@ -37,7 +37,7 @@ export const TopCast = props => {
         {cast && cast.length > 0 ? (
           <button
             type="button"
-            className="btn btn-secondary btn-block btn-lg ml-3"
+            className="btn btn-outline-secondary btn-block btn-lg ml-3"
             title="See full cast &amp; crew"
           >
             Full Cast &amp; Crew
