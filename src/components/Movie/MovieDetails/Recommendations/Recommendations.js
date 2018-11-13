@@ -31,7 +31,26 @@ export const Recommendations = props => {
             slidesToShow={3}
             cellSpacing={15}
             wrapAround
+            easing="easeQuadInOut"
             renderBottomCenterControls={() => null}
+            renderCenterRightControls={({ nextSlide }) => (
+              <button
+                type="button"
+                className="btn btn-light btn-circle btn-lg"
+                onClick={nextSlide}
+              >
+                <i className="fa fa-angle-right fa-lg" />
+              </button>
+            )}
+            renderCenterLeftControls={({ previousSlide }) => (
+              <button
+                type="button"
+                className="btn btn-light btn-circle btn-lg"
+                onClick={previousSlide}
+              >
+                <i className="fa fa-angle-left fa-lg" />
+              </button>
+            )}
           >
             {recommendationCards}
           </Carousel>
