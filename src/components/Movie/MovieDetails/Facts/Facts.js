@@ -1,28 +1,25 @@
 import React, { Component } from 'react';
+import ISO6391 from 'iso-639-1';
 import './Facts.module.css';
 
 export class Facts extends Component {
-  formatEmptyFields = field => {
+  formatEmptyFields = (field, functionToRunAfter) => {
     if (!field) {
       return '-';
     }
-    return field;
+    if (!functionToRunAfter) {
+      return field;
+    }
+    return functionToRunAfter(field);
   };
 
   convertRuntimeToHoursAndMinutes = runtime => {
-    if (!runtime) {
-      return '-';
-    }
     const hours = Math.floor(runtime / 60);
     const minutes = runtime % 60;
     return `${hours}h ${minutes}min`;
   };
 
   formatCurrency = amount => {
-    if (!amount) {
-      return '-';
-    }
-
     const formatter = new Intl.NumberFormat('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -33,12 +30,26 @@ export class Facts extends Component {
 
   render() {
     const { movie } = this.props;
+
+    const genres =
+      movie.genres && movie.genres.length > 0
+        ? movie.genres.map(genre => (
+            <button
+              type="button"
+              key={genre.id}
+              className="btn btn-light btn-sm mr-2 mt-2 disabled"
+            >
+              {genre.name.toUpperCase()}
+            </button>
+          ))
+        : null;
+
     return (
       <div
-        className="col-3 my-3 mt-5 text-light"
+        className="col-3 my-3 text-light"
         style={{ backgroundColor: '#5C6165' }}
       >
-        <div className="ml-3 mt-3">
+        <div className="ml-3 my-3">
           <h5>Facts</h5>
           <div>
             <h6>Status</h6>
@@ -50,20 +61,30 @@ export class Facts extends Component {
           </div>
           <div>
             <h6>Runtime</h6>
-            <p>{this.convertRuntimeToHoursAndMinutes(movie.runtime)}</p>
+            <p>
+              {this.formatEmptyFields(
+                movie.runtime,
+                this.convertRuntimeToHoursAndMinutes
+              )}
+            </p>
+          </div>
+          <div>
+            <h6>Original Language</h6>
+            <p>
+              {this.formatEmptyFields(movie.original_language, ISO6391.getName)}
+            </p>
           </div>
           <div>
             <h6>Budget</h6>
-            <p>{this.formatCurrency(movie.budget)}</p>
+            <p>{this.formatEmptyFields(movie.budget, this.formatCurrency)}</p>
           </div>
           <div>
             <h6>Revenue</h6>
-            <p>{this.formatCurrency(movie.revenue)}</p>
+            <p>{this.formatEmptyFields(movie.revenue, this.formatCurrency)}</p>
           </div>
           <div>
-            {/* TODO: Fix genres */}
             <h6>Genres</h6>
-            <p>PLACEHOLDER</p>
+            {this.formatEmptyFields(genres)}
           </div>
         </div>
       </div>

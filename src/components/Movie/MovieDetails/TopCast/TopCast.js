@@ -29,13 +29,15 @@ export const TopCast = props => {
         {actorCards}
       </div>
       <div className="row d-block pr-5">
-        <button
-          type="button"
-          className="btn btn-secondary btn-block btn-lg ml-3"
-          title="Full Cast &amp; Crew"
-        >
-          Full Cast &amp; Crew
-        </button>
+        {cast && cast.length > 0 ? (
+          <button
+            type="button"
+            className="btn btn-secondary btn-block btn-lg ml-3"
+            title="See full cast &amp; crew"
+          >
+            Full Cast &amp; Crew
+          </button>
+        ) : null}
       </div>
     </div>
   );
