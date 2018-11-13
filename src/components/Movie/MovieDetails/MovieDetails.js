@@ -74,7 +74,7 @@ export class MovieDetails extends Component {
                 <Recommendations recommendations={movie.recommendations} />
               </div>
               <div
-                className="col-3 my-3 text-light"
+                className="col-3 my-3 text-light rounded"
                 style={{ backgroundColor: '#5C6165' }}
               >
                 <Facts movie={movie} />

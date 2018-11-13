@@ -9,6 +9,7 @@ export const Recommendations = props => {
       ? recommendations.results.map(recommendation => (
           <RecommendationCard
             key={recommendation.id}
+            id={recommendation.id}
             backdropPath={recommendation.backdrop_path}
             title={recommendation.title}
           />

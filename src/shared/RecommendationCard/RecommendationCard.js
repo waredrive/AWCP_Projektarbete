@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const RecommendationCard = props => {
-  const { backdropPath, title } = props;
+  const { backdropPath, title, id } = props;
 
   return (
     <div className="card" title={title} style={{ height: '200px' }}>
