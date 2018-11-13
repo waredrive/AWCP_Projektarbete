@@ -1,5 +1,6 @@
 import React from 'react';
 import Carousel from 'nuka-carousel';
+import { RecommendationCard } from '../../../../shared/RecommendationCard/RecommendationCard';
 
 export const Recommendations = props => {
   const { recommendations } = props;
@@ -7,27 +8,11 @@ export const Recommendations = props => {
   const recommendationCards =
     recommendations && recommendations.results.length > 0 ? (
       recommendations.results.map(recommendation => (
-        <div className="card">
-          <img
-            className="card-img-top"
-            src={`https://image.tmdb.org/t/p/w185/${
-              recommendation.backdrop_path
-            }`}
-            alt={recommendation.original_title}
-          />
-          <div className="card-body">
-            <h6
-              className="card-subtitle"
-              style={{
-                textOverflow: 'ellipsis',
-                overflow: 'hidden',
-                whiteSpace: 'nowrap'
-              }}
-            >
-              {recommendation.original_title}
-            </h6>
-          </div>
-        </div>
+        <RecommendationCard
+          key={recommendation.id}
+          backdropPath={recommendation.backdrop_path}
+          title={recommendation.title}
+        />
       ))
     ) : (
       <p className="ml-3">There is no cast added to this movie.</p>
