@@ -4,6 +4,7 @@ import { TopCast } from './TopCast/TopCast';
 import { MovieHeader } from './MovieHeader/MovieHeader';
 import { Backdrop } from '../../../shared/Backdrop/Backdrop';
 import { Facts } from './Facts/Facts';
+import { Recommendations } from './Recommendations/Recommendations';
 
 export class MovieDetails extends Component {
   state = {
@@ -70,8 +71,7 @@ export class MovieDetails extends Component {
             <div className="row">
               <div className="col-9 my-3 pr-5">
                 <TopCast cast={cast} />
-                {/* TODO: Add recommendations carousel */}
-                <div>CAROUSEL</div>
+                <Recommendations recommendations={movie.recommendations} />
               </div>
               <div
                 className="col-3 my-3 text-light"
