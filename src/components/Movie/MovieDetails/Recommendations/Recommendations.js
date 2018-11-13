@@ -35,8 +35,8 @@ export const Recommendations = props => {
 
   return (
     <>
-      <div className="row">
-        <h4 className="ml-3 mt-3">Recommendations</h4>
+      <div className="row mt-5">
+        <h4 className="ml-3">Recommendations</h4>
       </div>
       <div className="row d-block pr-4 pl-3">
         <Carousel
