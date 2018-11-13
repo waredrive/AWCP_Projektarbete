@@ -4,19 +4,16 @@ import { RecommendationCard } from '../../../../shared/RecommendationCard/Recomm
 
 export const Recommendations = props => {
   const { recommendations } = props;
-  console.log(recommendations);
   const recommendationCards =
-    recommendations && recommendations.results.length > 0 ? (
-      recommendations.results.map(recommendation => (
-        <RecommendationCard
-          key={recommendation.id}
-          backdropPath={recommendation.backdrop_path}
-          title={recommendation.title}
-        />
-      ))
-    ) : (
-      <p className="ml-3">There is no cast added to this movie.</p>
-    );
+    recommendations && recommendations.results.length > 0
+      ? recommendations.results.map(recommendation => (
+          <RecommendationCard
+            key={recommendation.id}
+            backdropPath={recommendation.backdrop_path}
+            title={recommendation.title}
+          />
+        ))
+      : null;
 
   return (
     <>
@@ -24,17 +21,25 @@ export const Recommendations = props => {
         <h4 className="ml-3">Recommendations</h4>
       </div>
       <div className="row d-block pr-4 pl-3">
-        <Carousel
-          className="border rounded"
-          framePadding="20px"
-          heightMode="current"
-          dragging={false}
-          slidesToShow={3}
-          cellSpacing={15}
-          renderBottomCenterControls={() => null}
-        >
-          {recommendationCards}
-        </Carousel>
+        {recommendationCards ? (
+          <Carousel
+            className="border rounded"
+            framePadding="20px"
+            heightMode="max"
+            dragging={false}
+            slidesToShow={3}
+            cellSpacing={15}
+            wrapAround
+            // autoplay
+            pauseOnHover
+            autoplayInterval={5000}
+            renderBottomCenterControls={() => null}
+          >
+            {recommendationCards}
+          </Carousel>
+        ) : (
+          <p>There are no recommendations added to this movie.</p>
+        )}
       </div>
     </>
   );

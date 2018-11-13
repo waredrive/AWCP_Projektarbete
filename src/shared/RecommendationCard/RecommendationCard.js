@@ -4,7 +4,7 @@ export const RecommendationCard = props => {
   const { backdropPath, title } = props;
 
   return (
-    <div className="card" title={title}>
+    <div className="card" title={title} style={{ height: '200px' }}>
       <img
         className="card-img-top"
         src={`https://image.tmdb.org/t/p/w300/${backdropPath}`}
