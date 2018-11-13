@@ -1,6 +1,7 @@
 import React from 'react';
 import { RatingBar } from '../../../../shared/RatingBar/RatingBar';
 import { Backdrop } from '../../../../shared/Backdrop/Backdrop';
+import { ExternalPagesNavBar } from '../../../../shared/ExternalPagesNavBar/ExternalPagesNavBar';
 
 export const MovieHeader = props => {
   const {
@@ -13,7 +14,8 @@ export const MovieHeader = props => {
     voteCount,
     overview,
     crew,
-    homePage
+    homepage,
+    externalIds
   } = props;
 
   const crewInfo =
@@ -27,19 +29,6 @@ export const MovieHeader = props => {
     ) : (
       <p>There is no crew added to this movie.</p>
     );
-
-  const homepage = homePage ? (
-    <a href={homePage} style={{ textDecoration: 'none' }}>
-      <button
-        type="button"
-        className="btn btn-outline-light btn-circle btn-lg d-inline-flex ml-4 justify-content-center"
-        onClick={() => {}}
-        title={homePage}
-      >
-        <i className="fa fa-home fa-lg" />
-      </button>
-    </a>
-  ) : null;
 
   return (
     <Backdrop backdropPath={backdropImagePath}>
@@ -64,7 +53,10 @@ export const MovieHeader = props => {
                 voteCount={voteCount}
                 hexColor="#000"
               />
-              {homepage}
+              <ExternalPagesNavBar
+                homepage={homepage}
+                externalIds={externalIds}
+              />
             </div>
             <div>
               <h4>Overview</h4>

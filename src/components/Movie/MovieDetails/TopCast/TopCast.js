@@ -29,6 +29,7 @@ export const TopCast = props => {
         {actorCards}
       </div>
       <div className="row d-block pr-5">
+        {/* TODO: this must also check the crew. Will be possible when redux implemented. */}
         {cast && cast.length > 0 ? (
           <button
             type="button"
