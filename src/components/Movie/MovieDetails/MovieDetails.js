@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { fetchDetailsFromAPI } from '../../../shared/fetchFromAPI';
 import { TopCast } from './TopCast/TopCast';
 import { MovieHeader } from './MovieHeader/MovieHeader';
@@ -18,10 +19,11 @@ export class MovieDetails extends Component {
 
   componentDidUpdate(prevProps) {
     const { match } = this.props;
+    console.log(this.match);
     if (prevProps.match.params.id === match.params.id) {
       return;
     }
-    this.fetchFromApi(match.params.stationId);
+    this.fetchMovieFromAPI(match.params.id);
   }
 
   fetchMovieFromAPI = id => {
@@ -88,4 +90,4 @@ export class MovieDetails extends Component {
   }
 }
 
-export default MovieDetails;
+export default withRouter(MovieDetails);

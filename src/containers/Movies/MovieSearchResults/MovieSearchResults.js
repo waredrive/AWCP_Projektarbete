@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { fetchSearchesFromAPI } from '../../../shared/fetchFromAPI';
 import { MovieAndTvSummaryCard } from '../../../shared/MovieAndTvSummaryCard/MovieAndTvSummaryCard';
 import { PaginationNav } from '../../../shared/PaginationNav/PaginationNav';
@@ -11,6 +12,7 @@ export class MovieSearchResults extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props);
     this.fetchMoviesFromAPI();
   }
 
@@ -110,4 +112,4 @@ export class MovieSearchResults extends Component {
   }
 }
 
-export default MovieSearchResults;
+export default withRouter(MovieSearchResults);

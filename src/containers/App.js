@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Switch, Link, withRouter } from 'react-router-dom';
 import SearchBar from '../components/SearchBar/SearchBar';
 import SearchResults from './SearchResults/SearchResults';
 import { MovieDetails } from '../components/Movie/MovieDetails/MovieDetails';
@@ -28,23 +28,24 @@ class App extends Component {
             </div>
           </div>
         </div>
+        {/* TODO: create search/movie search/tv and search/person */}
         <Switch>
-          <Route path="/search/" exact component={SearchResults} />
+          <Route path="/search" exact component={SearchResults} />
           <Route path="/movie/:id" exact component={MovieDetails} />
           <Route path="/tv/:id" exact component={TvShowDetails} />
           <Route path="/person/:id" exact component={PersonDetails} />
-          <Route
+          {/* <Route
             path="/error"
             component={() => (
               <div>TempError</div>
-              // <ErrorMessage>An Error has occurred while fetching data from SL. Please try again.</ErrorMessage>
+              <ErrorMessage>An Error has occurred while fetching data from SL. Please try again.</ErrorMessage>
             )}
-          />
-          {/* <Route component={WelcomePage} /> */}
+          /> */}
+          <Route component={() => <div>THIS IS WELCOME PAGE</div>} />
         </Switch>
       </main>
     );
   }
 }
 
-export default App;
+export default withRouter(App);

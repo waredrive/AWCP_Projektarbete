@@ -1,10 +1,20 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 export const RecommendationCard = props => {
   const { backdropPath, title, id } = props;
 
+  console.log(props);
+
   return (
-    <div className="card" title={title} style={{ height: '200px' }}>
+    <div
+      className="card"
+      title={title}
+      style={{ height: '200px' }}
+      //   onClick={() => {
+      //     this.context.router.push('/');
+      //   }}
+    >
       <img
         className="card-img-top"
         src={`https://image.tmdb.org/t/p/w300/${backdropPath}`}
@@ -26,4 +36,4 @@ export const RecommendationCard = props => {
   );
 };
 
-export default RecommendationCard;
+export default withRouter(RecommendationCard);
