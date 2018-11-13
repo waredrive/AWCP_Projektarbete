@@ -2,6 +2,7 @@ import React from 'react';
 import { RatingBar } from '../../../../shared/RatingBar/RatingBar';
 import { Backdrop } from '../../../../shared/Backdrop/Backdrop';
 import { ExternalPagesNavBar } from '../../../../shared/ExternalPagesNavBar/ExternalPagesNavBar';
+import { PlayTrailerButton } from '../../../../shared/PlayTrailerButton/PlayTrailerButton';
 
 export const MovieHeader = props => {
   const {
@@ -15,7 +16,8 @@ export const MovieHeader = props => {
     overview,
     crew,
     homepage,
-    externalIds
+    externalIds,
+    videos
   } = props;
 
   const crewInfo =
@@ -29,6 +31,11 @@ export const MovieHeader = props => {
     ) : (
       <p>There is no crew added to this movie.</p>
     );
+
+  const trailer =
+    videos && videos.length > 0
+      ? videos.map(video => video).filter(vid => vid.type === 'Trailer')[0]
+      : null;
 
   return (
     <Backdrop backdropPath={backdropImagePath}>
@@ -57,6 +64,7 @@ export const MovieHeader = props => {
                 homepage={homepage}
                 externalIds={externalIds}
               />
+              {trailer ? <PlayTrailerButton video={trailer} /> : null}
             </div>
             <div>
               <h4>Overview</h4>

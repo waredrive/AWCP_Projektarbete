@@ -47,6 +47,8 @@ export class MovieDetails extends Component {
 
     const crew = movie.credits ? movie.credits.crew : null;
 
+    const videos = movie.videos ? movie.videos.results : null;
+
     return (
       <div>
         <MovieHeader
@@ -61,6 +63,7 @@ export class MovieDetails extends Component {
           crew={crew}
           homepage={movie.homepage}
           externalIds={movie.external_ids}
+          videos={videos}
         />
         <div className="bg-light">
           <div className="container bg-light">
