@@ -21,7 +21,7 @@ export const TopCast = props => {
     );
 
   return (
-    <div className="col-9 my-3 pr-5">
+    <>
       <div className="row">
         <h4 className="ml-3">Top Cast</h4>
       </div>
@@ -40,7 +40,7 @@ export const TopCast = props => {
           </button>
         ) : null}
       </div>
-    </div>
+    </>
   );
 };
 

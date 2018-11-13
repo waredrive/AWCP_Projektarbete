@@ -45,47 +45,42 @@ export class Facts extends Component {
         : null;
 
     return (
-      <div
-        className="col-3 my-3 text-light"
-        style={{ backgroundColor: '#5C6165' }}
-      >
-        <div className="ml-3 my-3">
-          <h5>Facts</h5>
-          <div>
-            <h6>Status</h6>
-            <p>{this.formatEmptyFields(movie.status)}</p>
-          </div>
-          <div>
-            <h6>Release date</h6>
-            <p>{this.formatEmptyFields(movie.release_date)}</p>
-          </div>
-          <div>
-            <h6>Runtime</h6>
-            <p>
-              {this.formatEmptyFields(
-                movie.runtime,
-                this.convertRuntimeToHoursAndMinutes
-              )}
-            </p>
-          </div>
-          <div>
-            <h6>Original Language</h6>
-            <p>
-              {this.formatEmptyFields(movie.original_language, ISO6391.getName)}
-            </p>
-          </div>
-          <div>
-            <h6>Budget</h6>
-            <p>{this.formatEmptyFields(movie.budget, this.formatCurrency)}</p>
-          </div>
-          <div>
-            <h6>Revenue</h6>
-            <p>{this.formatEmptyFields(movie.revenue, this.formatCurrency)}</p>
-          </div>
-          <div>
-            <h6>Genres</h6>
-            {this.formatEmptyFields(genres)}
-          </div>
+      <div className="ml-3 my-3">
+        <h5>Facts</h5>
+        <div>
+          <h6>Status</h6>
+          <p>{this.formatEmptyFields(movie.status)}</p>
+        </div>
+        <div>
+          <h6>Release date</h6>
+          <p>{this.formatEmptyFields(movie.release_date)}</p>
+        </div>
+        <div>
+          <h6>Runtime</h6>
+          <p>
+            {this.formatEmptyFields(
+              movie.runtime,
+              this.convertRuntimeToHoursAndMinutes
+            )}
+          </p>
+        </div>
+        <div>
+          <h6>Original Language</h6>
+          <p>
+            {this.formatEmptyFields(movie.original_language, ISO6391.getName)}
+          </p>
+        </div>
+        <div>
+          <h6>Budget</h6>
+          <p>{this.formatEmptyFields(movie.budget, this.formatCurrency)}</p>
+        </div>
+        <div>
+          <h6>Revenue</h6>
+          <p>{this.formatEmptyFields(movie.revenue, this.formatCurrency)}</p>
+        </div>
+        <div>
+          <h6>Genres</h6>
+          {this.formatEmptyFields(genres)}
         </div>
       </div>
     );

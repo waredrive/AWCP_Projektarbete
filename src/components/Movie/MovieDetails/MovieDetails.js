@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { fetchDetailsFromAPI } from '../../../shared/fetchFromAPI';
 import { TopCast } from './TopCast/TopCast';
 import { MovieHeader } from './MovieHeader/MovieHeader';
+import { Backdrop } from '../../../shared/Backdrop/Backdrop';
 import { Facts } from './Facts/Facts';
 
 export class MovieDetails extends Component {
@@ -64,11 +65,21 @@ export class MovieDetails extends Component {
         <div className="bg-light">
           <div className="container bg-light">
             <div className="row">
-              <TopCast cast={cast} />
-              <Facts movie={movie} />
+              <div className="col-9 my-3 pr-5">
+                <TopCast cast={cast} />
+                {/* TODO: Add recommendations carousel */}
+                <div>CAROUSEL</div>
+              </div>
+              <div
+                className="col-3 my-3 text-light"
+                style={{ backgroundColor: '#5C6165' }}
+              >
+                <Facts movie={movie} />
+              </div>
             </div>
           </div>
         </div>
+        <Backdrop backdropPath={movie.backdrop_path} />
       </div>
     );
   }
