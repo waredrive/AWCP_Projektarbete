@@ -1,8 +1,9 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 import ActorCard from '../../../../shared/ActorCard/ActorCard';
 
 const TopCast = props => {
-  const { cast } = props;
+  const { cast, crew } = props;
 
   const actorCards =
     cast && cast.length > 0
@@ -39,6 +40,11 @@ const TopCast = props => {
             type="button"
             className="btn btn-outline-secondary btn-block btn-lg ml-3"
             title="See full cast &amp; crew"
+            onClick={() => {
+              props.history.push({
+                pathname: `${props.location.pathname}/credits`
+              });
+            }}
           >
             Full Cast &amp; Crew
           </button>
@@ -48,4 +54,4 @@ const TopCast = props => {
   );
 };
 
-export default TopCast;
+export default withRouter(TopCast);

@@ -70,7 +70,7 @@ class MovieDetails extends Component {
           <div className="container bg-light">
             <div className="row">
               <div className="col-9 my-3 pr-5">
-                <TopCast cast={cast} />
+                <TopCast cast={cast} crew={crew} />
                 <Recommendations recommendations={movie.recommendations} />
               </div>
               <div

@@ -5,6 +5,7 @@ import SearchResults from './SearchResults/SearchResults';
 import MovieDetails from '../components/Movie/MovieDetails/MovieDetails';
 import PersonDetails from '../components/Person/PersonDetails/PersonDetails';
 import TvShowDetails from '../components/TvShow/TvShowDetails/TvShowDetails';
+import FullCastAndCrew from '../shared/FullCastAndCrew/FullCastAndCrew';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
@@ -32,7 +33,9 @@ class App extends Component {
         <Switch>
           <Route path="/search" exact component={SearchResults} />
           <Route path="/movie/:id" exact component={MovieDetails} />
+          <Route path="/movie/:id/credits" exact component={FullCastAndCrew} />
           <Route path="/tv/:id" exact component={TvShowDetails} />
+          <Route path="/tv/:id/credits" exact component={FullCastAndCrew} />
           <Route path="/person/:id" exact component={PersonDetails} />
           {/* <Route
             path="/error"

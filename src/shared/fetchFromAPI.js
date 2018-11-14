@@ -17,3 +17,12 @@ export const fetchDetailsFromAPI = (type, id) =>
       }&language=en-US&append_to_response=credits,videos,external_ids,recommendations`
     )
     .then(response => response.data);
+
+export const fetchCreditsFromAPI = params =>
+  axios
+    .get(
+      `https://api.themoviedb.org/3${params}?api_key=${
+        process.env.REACT_APP_TMDB_API_KEY
+      }&language=en-US`
+    )
+    .then(response => response.data);

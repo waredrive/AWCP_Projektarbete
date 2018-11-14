@@ -17,7 +17,11 @@ const RatingBar = props => {
 
   return (
     <div
-      style={{ minWidth: `${sizeInPixels}px`, width: `${sizeInPixels}px` }}
+      style={{
+        minWidth: `${sizeInPixels}px`,
+        width: `${sizeInPixels}px`,
+        cursor: 'default'
+      }}
       title={`Average vote: ${voteAverage}. Votes: ${voteCount}`}
       className="d-inline-block"
     >
