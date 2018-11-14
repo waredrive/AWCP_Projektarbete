@@ -80,6 +80,8 @@ class MovieSearchResults extends Component {
 
         searchPage.push(
           <MovieAndTvSummaryCard
+            id={result.id}
+            type="movie"
             key={result.id}
             title={result.title}
             overviewText={overviewText}

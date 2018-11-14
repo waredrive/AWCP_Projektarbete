@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const PersonSummaryCard = props => {
-  const { knownFor, profilePath, name, onShowDetailsClick } = props;
+  const { knownFor, profilePath, name, onShowDetailsClick, id } = props;
 
   const known =
     knownFor.length > 1 ? (
@@ -16,19 +17,21 @@ const PersonSummaryCard = props => {
     ) : null;
 
   return (
-    <div className="card my-3 container">
+    <div className="card my-3">
       <div className="card-body">
-        <img
-          className="float-left border rounded mr-3 mb-3"
-          src={profilePath}
-          title={name}
-          alt={`Poster of ${name}`}
-        />
+        <Link to={`/person/${id}`}>
+          <img
+            className="float-left border rounded mr-3 mb-3"
+            src={profilePath}
+            title={name}
+            alt={`Poster of ${name}`}
+          />
+        </Link>
         <div className="d-flex align-items-start">
           <div className="d-inline-block">
-            <h5 className="card-title mb-0 pb-0" title={name}>
-              {name}
-            </h5>
+            <Link to={`/person/${id}`}>
+              <h5 className="card-title mb-0 pb-0">{name}</h5>
+            </Link>
           </div>
         </div>
         <div className="card-text">{known}</div>

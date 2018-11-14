@@ -24,6 +24,7 @@ class FullCastAndCrew extends Component {
       cast.length > 0
         ? cast.map(person => (
             <CastAndCrewCard
+              id={person.id}
               key={person.id + person.character}
               actorName={person.name}
               playedRoleName={person.character}
@@ -41,6 +42,7 @@ class FullCastAndCrew extends Component {
       crew.length > 0
         ? crew.map(person => (
             <CastAndCrewCard
+              id={person.id}
               key={person.id + person.job}
               actorName={person.name}
               playedRoleName={person.job}

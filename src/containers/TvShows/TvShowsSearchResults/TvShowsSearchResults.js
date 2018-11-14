@@ -79,6 +79,8 @@ class TvShowsSearchResults extends Component {
 
         searchPage.push(
           <MovieAndTvSummaryCard
+            id={result.id}
+            type="tv"
             key={result.id}
             title={result.name}
             overviewText={overviewText}

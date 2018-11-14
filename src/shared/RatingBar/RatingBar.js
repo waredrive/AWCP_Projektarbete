@@ -27,7 +27,7 @@ const RatingBar = props => {
     >
       <CircularProgressbar
         percentage={voteAverage * 10}
-        text={voteAvr}
+        text={String(voteAvr)}
         background
         backgroundPadding={6}
         styles={{

@@ -13,7 +13,6 @@ class PeopleSearchResults extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     this.fetchPeopleFromAPI();
   }
 
@@ -88,6 +87,7 @@ class PeopleSearchResults extends Component {
 
         searchPage.push(
           <PersonSummaryCard
+            id={result.id}
             key={result.id}
             name={result.name}
             knownFor={knownFor}

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import RatingBar from '../RatingBar/RatingBar';
 
 const MovieAndTvSummaryCard = props => {
@@ -9,18 +10,22 @@ const MovieAndTvSummaryCard = props => {
     voteAverage,
     voteCount,
     releaseDate,
-    onShowDetailsClick
+    onShowDetailsClick,
+    id,
+    type
   } = props;
 
   return (
     <div className="card my-3">
       <div className="card-body">
-        <img
-          className="float-left border rounded mr-3 mb-3"
-          src={posterPath}
-          title={title}
-          alt={`Poster of ${title}`}
-        />
+        <Link to={`/${type}/${id}`}>
+          <img
+            className="float-left border rounded mr-3 mb-3"
+            src={posterPath}
+            title={title}
+            alt={`Poster of ${title}`}
+          />
+        </Link>
         <div className="d-flex align-items-start">
           <div className="d-inline-block mr-3 mb-2">
             <RatingBar
@@ -31,9 +36,9 @@ const MovieAndTvSummaryCard = props => {
             />
           </div>
           <div className="d-inline-block">
-            <h5 className="card-title mb-0 pb-0" title={title}>
-              {title}
-            </h5>
+            <Link to={`/${type}/${id}`}>
+              <h5 className="card-title mb-0 pb-0">{title}</h5>
+            </Link>
             <p className="font-italic">{releaseDate}</p>
           </div>
         </div>

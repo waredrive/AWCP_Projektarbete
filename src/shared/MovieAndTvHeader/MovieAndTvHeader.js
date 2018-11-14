@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import RatingBar from '../RatingBar/RatingBar';
 import Backdrop from '../Backdrop/Backdrop';
 import ExternalPagesNavBar from '../ExternalPagesNavBar/ExternalPagesNavBar';
@@ -25,7 +26,9 @@ const MovieAndTvHeader = props => {
     crew && crew.length > 0
       ? crew.splice(0, 3).map(person => (
           <div key={person.job + person.id}>
-            <h5 className="mb-0">{person.name}</h5>
+            <Link to={`/person/${person.id}`} className="light">
+              <h5 className="mb-0">{person.name}</h5>
+            </Link>
             <p>{person.job}</p>
           </div>
         ))
@@ -35,7 +38,9 @@ const MovieAndTvHeader = props => {
     creator && creator.length > 0
       ? creator.splice(0, 3).map(person => (
           <div key={person.id}>
-            <h5 className="mb-0">{person.name}</h5>
+            <Link to={`/person/${person.id}`} className="light">
+              <h5 className="mb-0">{person.name}</h5>
+            </Link>
             <p>Creator</p>
           </div>
         ))

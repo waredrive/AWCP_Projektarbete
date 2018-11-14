@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import ActorCard from '../ActorCard/ActorCard';
+import ActorCard from './ActorCard/ActorCard';
 import { getImageUrl } from '../helperMethods';
 
 const MovieAndTvTopCast = props => {
@@ -12,6 +12,7 @@ const MovieAndTvTopCast = props => {
           .slice(0, 5)
           .map(person => (
             <ActorCard
+              id={person.id}
               key={person.id}
               actorName={person.name}
               playedRoleName={person.character}
