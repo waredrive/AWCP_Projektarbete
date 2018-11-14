@@ -13,7 +13,6 @@ class MovieSearchResults extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     this.fetchMoviesFromAPI();
   }
 

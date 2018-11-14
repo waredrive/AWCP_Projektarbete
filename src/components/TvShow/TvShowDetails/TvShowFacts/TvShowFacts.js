@@ -29,13 +29,13 @@ const TvShowFacts = props => {
             network.logo_path ? (
               <img
                 key={network.id}
-                className="mb-3 mt-1"
+                className="d-block mt-1"
                 alt={network.name}
                 src={`https://image.tmdb.org/t/p/w92${network.logo_path}`}
                 title={network.name}
               />
             ) : (
-              <p>{network.name}</p>
+              <p key={network.id}>{network.name}</p>
             )
         )
       : null;
@@ -56,7 +56,7 @@ const TvShowFacts = props => {
       </div>
       <div>
         <h6>Network</h6>
-        {formatEmptyFields(networks)}
+        <div className="mb-3 mt-1">{formatEmptyFields(networks)}</div>
       </div>
       <div>
         <h6>Type</h6>
