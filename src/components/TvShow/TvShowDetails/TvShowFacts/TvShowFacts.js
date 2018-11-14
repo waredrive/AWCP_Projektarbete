@@ -24,15 +24,20 @@ const TvShowFacts = props => {
 
   const networks =
     tvShow.networks && tvShow.networks.length > 0
-      ? tvShow.networks.map(network => (
-          <img
-            key={network.id}
-            className="mb-3 mt-1"
-            alt={network.name}
-            src={`https://image.tmdb.org/t/p/w92${network.logo_path}`}
-            title={network.name}
-          />
-        ))
+      ? tvShow.networks.map(
+          network =>
+            network.logo_path ? (
+              <img
+                key={network.id}
+                className="mb-3 mt-1"
+                alt={network.name}
+                src={`https://image.tmdb.org/t/p/w92${network.logo_path}`}
+                title={network.name}
+              />
+            ) : (
+              <p>{network.name}</p>
+            )
+        )
       : null;
 
   const runtime =
@@ -54,6 +59,14 @@ const TvShowFacts = props => {
         {formatEmptyFields(networks)}
       </div>
       <div>
+        <h6>Type</h6>
+        <p>{formatEmptyFields(tvShow.type)}</p>
+      </div>
+      <div>
+        <h6>Original Language</h6>
+        <p>{formatEmptyFields(tvShow.original_language, ISO6391.getName)}</p>
+      </div>
+      <div>
         <h6>First Aired</h6>
         <p>{formatEmptyFields(tvShow.first_air_date)}</p>
       </div>
@@ -72,14 +85,6 @@ const TvShowFacts = props => {
       <div>
         <h6>Number Of Episodes</h6>
         <p>{formatEmptyFields(tvShow.number_of_episodes)}</p>
-      </div>
-      <div>
-        <h6>Original Language</h6>
-        <p>{formatEmptyFields(tvShow.original_language, ISO6391.getName)}</p>
-      </div>
-      <div>
-        <h6>Type</h6>
-        <p>{formatEmptyFields(tvShow.type)}</p>
       </div>
       <div>
         <h6>Genres</h6>

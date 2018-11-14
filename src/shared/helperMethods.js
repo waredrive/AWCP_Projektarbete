@@ -18,9 +18,12 @@ export const convertRuntimeToHoursAndMinutes = runtime => {
   const hours = Math.floor(runtime / 60);
   const minutes = runtime % 60;
   if (hours === 0) {
-    return `${minutes}min`;
+    return `${minutes}m`;
   }
-  return `${hours}h ${minutes}min`;
+  if (minutes === 0) {
+    return `${hours}h`;
+  }
+  return `${hours}h ${minutes}m`;
 };
 
 export const formatCurrency = amount => {
