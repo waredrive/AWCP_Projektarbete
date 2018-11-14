@@ -25,7 +25,7 @@ const MovieAndTvRecommendations = props => {
 
   return (
     <>
-      <div className="row mt-5">
+      <div className="row mt-5 pt-5">
         <h4 className="ml-3">Recommendations</h4>
       </div>
       <div className="row d-block pr-4 pl-3">
@@ -63,7 +63,7 @@ const MovieAndTvRecommendations = props => {
             {recommendationCards}
           </Carousel>
         ) : (
-          <p>There are no recommendations added to this movie.</p>
+          <p>There are no recommendations.</p>
         )}
       </div>
     </>
