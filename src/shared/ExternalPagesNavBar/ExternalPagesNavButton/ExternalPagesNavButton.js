@@ -5,12 +5,7 @@ export const ExternalPagesNavButton = props => {
   const { title, icon, href } = props;
 
   return (
-    <a
-      href={href}
-      style={{ textDecoration: 'none' }}
-      target="_blank"
-      rel="noopener noreferrer"
-    >
+    <a href={href} target="_blank" rel="noopener noreferrer">
       <button
         type="button"
         className="btn btn-outline-light btn-circle btn-lg d-inline-flex ml-4 justify-content-center"

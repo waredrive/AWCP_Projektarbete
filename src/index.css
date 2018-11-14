@@ -5,3 +5,9 @@ html {
 .container {
   min-width: 1150px;
 }
+
+a,
+a:hover {
+  text-decoration: none !important;
+  color: black;
+}

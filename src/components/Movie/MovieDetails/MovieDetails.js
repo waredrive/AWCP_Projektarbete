@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
 import { fetchDetailsFromAPI } from '../../../shared/fetchFromAPI';
 import { TopCast } from './TopCast/TopCast';
 import { MovieHeader } from './MovieHeader/MovieHeader';
@@ -90,4 +89,4 @@ export class MovieDetails extends Component {
   }
 }
 
-export default withRouter(MovieDetails);
+export default MovieDetails;
