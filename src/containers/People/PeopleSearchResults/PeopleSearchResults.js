@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { fetchSearchesFromAPI } from '../../../shared/fetchFromAPI';
 import PersonSummaryCard from '../../../components/Person/PersonSummaryCard/PersonSummaryCard';
 import PaginationNav from '../../../shared/PaginationNav/PaginationNav';
-import getImageUrl from '../../../shared/getImageUrl';
+import { getImageUrl } from '../../../shared/helperMethods';
 
 class PeopleSearchResults extends Component {
   state = {

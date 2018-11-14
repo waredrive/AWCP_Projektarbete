@@ -3,9 +3,9 @@ import { fetchDetailsFromAPI } from '../../../shared/fetchFromAPI';
 import MovieAndTvTopCast from '../../../shared/MovieAndTvTopCast/MovieAndTvTopCast';
 import MovieAndTvHeader from '../../../shared/MovieAndTvHeader/MovieAndTvHeader';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
-import Facts from './Facts/Facts';
+import MovieFacts from './MovieFacts/MovieFacts';
 import MovieAndTvRecommendations from '../../../shared/MovieAndTvRecommendations/MovieAndTvRecommendations';
-import getImageUrl from '../../../shared/getImageUrl';
+import { getImageUrl } from '../../../shared/helperMethods';
 
 class MovieDetails extends Component {
   state = {
@@ -82,7 +82,7 @@ class MovieDetails extends Component {
                 className="col-3 my-3 text-light rounded"
                 style={{ backgroundColor: '#5C6165' }}
               >
-                <Facts movie={movie} />
+                <MovieFacts movie={movie} />
               </div>
             </div>
           </div>

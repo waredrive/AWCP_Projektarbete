@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import ActorCard from '../ActorCard/ActorCard';
-import getImageUrl from '../getImageUrl';
+import { getImageUrl } from '../helperMethods';
 
 const MovieAndTvTopCast = props => {
   const { cast } = props;

@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from 'nuka-carousel';
 import RecommendationCard from './RecommendationCard/RecommendationCard';
-import getImageUrl from '../getImageUrl';
+import { getImageUrl } from '../helperMethods';
 
 const MovieAndTvRecommendations = props => {
   const { recommendations, type } = props;

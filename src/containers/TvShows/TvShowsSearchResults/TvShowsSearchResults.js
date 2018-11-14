@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { fetchSearchesFromAPI } from '../../../shared/fetchFromAPI';
 import MovieAndTvSummaryCard from '../../../shared/MovieAndTvSummaryCard/MovieAndTvSummaryCard';
 import PaginationNav from '../../../shared/PaginationNav/PaginationNav';
-import getImageUrl from '../../../shared/getImageUrl';
+import { getImageUrl } from '../../../shared/helperMethods';
 
 class TvShowsSearchResults extends Component {
   state = {

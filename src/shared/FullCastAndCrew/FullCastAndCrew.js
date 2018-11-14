@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { fetchCreditsFromAPI } from '../fetchFromAPI';
 import CastAndCrewCard from './CastAndCrewCard/CastAndCrewCard';
-import getImageUrl from '../getImageUrl';
+import { getImageUrl } from '../helperMethods';
 
 class FullCastAndCrew extends Component {
   state = {
