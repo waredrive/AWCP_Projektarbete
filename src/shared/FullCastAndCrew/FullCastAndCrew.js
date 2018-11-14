@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { fetchCreditsFromAPI } from '../fetchFromAPI';
 import CastAndCrewCard from './CastAndCrewCard/CastAndCrewCard';
+import getImageUrl from '../getImageUrl';
 
 class FullCastAndCrew extends Component {
   state = {
@@ -23,17 +24,50 @@ class FullCastAndCrew extends Component {
       cast.length > 0
         ? cast.map(person => (
             <CastAndCrewCard
-              key={person.id}
+              key={person.id + person.character}
               actorName={person.name}
               playedRoleName={person.character}
-              imagePath={`https://image.tmdb.org/t/p/w185/${
-                person.profile_path
-              }`}
+              imagePath={getImageUrl(
+                'https://image.tmdb.org/t/p/w92/',
+                person.profile_path,
+                94,
+                140
+              )}
             />
           ))
         : null;
 
-    return <div className="row d-flex mb-3">{allCast}</div>;
+    const allCrew =
+      crew.length > 0
+        ? crew.map(person => (
+            <CastAndCrewCard
+              key={person.id + person.job}
+              actorName={person.name}
+              playedRoleName={person.job}
+              imagePath={getImageUrl(
+                'https://image.tmdb.org/t/p/w92/',
+                person.profile_path,
+                94,
+                140
+              )}
+            />
+          ))
+        : null;
+
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col-6">
+            <h4 className="text-light ml-3 mt-3">Cast</h4>
+            {allCast}
+          </div>
+          <div className="col-6">
+            <h4 className="text-light ml-3 mt-3">Crew</h4>
+            {allCrew}
+          </div>
+        </div>
+      </div>
+    );
   }
 }
 

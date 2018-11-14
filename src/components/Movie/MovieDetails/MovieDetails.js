@@ -5,6 +5,7 @@ import MovieHeader from './MovieHeader/MovieHeader';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
 import Facts from './Facts/Facts';
 import Recommendations from './Recommendations/Recommendations';
+import getImageUrl from '../../../shared/getImageUrl';
 
 class MovieDetails extends Component {
   state = {
@@ -36,9 +37,6 @@ class MovieDetails extends Component {
     const yearOfProduction = movie.release_date
       ? movie.release_date.slice(0, 4)
       : null;
-    const posterImagePath = movie.poster_path
-      ? `https://image.tmdb.org/t/p/w300/${movie.poster_path}`
-      : 'https://imgplaceholder.com/185x278/393939/8A8A8A/fa-image';
 
     const quote = movie.tagline ? `"${movie.tagline}"` : null;
     const overview =
@@ -54,7 +52,12 @@ class MovieDetails extends Component {
       <div>
         <MovieHeader
           backdropImagePath={movie.backdrop_path}
-          posterImagePath={posterImagePath}
+          posterImagePath={getImageUrl(
+            'https://image.tmdb.org/t/p/w300',
+            movie.poster_path,
+            300,
+            445
+          )}
           title={movie.title}
           yearOfProduction={yearOfProduction}
           quote={quote}

@@ -1,6 +1,7 @@
 import React from 'react';
 import Carousel from 'nuka-carousel';
 import RecommendationCard from '../../../../shared/RecommendationCard/RecommendationCard';
+import getImageUrl from '../../../../shared/getImageUrl';
 
 const Recommendations = props => {
   const { recommendations } = props;
@@ -10,7 +11,12 @@ const Recommendations = props => {
           <RecommendationCard
             key={recommendation.id}
             id={recommendation.id}
-            backdropPath={recommendation.backdrop_path}
+            backdropPath={getImageUrl(
+              'https://image.tmdb.org/t/p/w300',
+              recommendation.backdrop_path,
+              237,
+              133
+            )}
             title={recommendation.title}
           />
         ))
@@ -31,6 +37,7 @@ const Recommendations = props => {
             slidesToShow={3}
             cellSpacing={15}
             wrapAround
+            cellAlign="center"
             easing="easeQuadInOut"
             renderBottomCenterControls={() => null}
             renderCenterRightControls={({ nextSlide }) => (

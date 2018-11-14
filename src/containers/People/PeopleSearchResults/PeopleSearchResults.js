@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import { fetchSearchesFromAPI } from '../../../shared/fetchFromAPI';
 import PersonSummaryCard from '../../../components/Person/PersonSummaryCard/PersonSummaryCard';
 import PaginationNav from '../../../shared/PaginationNav/PaginationNav';
+import getImageUrl from '../../../shared/getImageUrl';
 
 class PeopleSearchResults extends Component {
   state = {
@@ -85,16 +86,17 @@ class PeopleSearchResults extends Component {
             )
           : [];
 
-        const profilePath = result.profile_path
-          ? `https://image.tmdb.org/t/p/w154/${result.profile_path}`
-          : 'https://imgplaceholder.com/154x231/393939/8A8A8A/fa-image';
-
         searchPage.push(
           <PersonSummaryCard
             key={result.id}
             name={result.name}
             knownFor={knownFor}
-            profilePath={profilePath}
+            profilePath={getImageUrl(
+              'https://image.tmdb.org/t/p/w154',
+              result.profile_path,
+              154,
+              231
+            )}
             onShowDetailsClick={() => this.onShowDetailsClickHandler(result.id)}
           />
         );

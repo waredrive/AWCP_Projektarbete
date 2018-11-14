@@ -1,9 +1,10 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import ActorCard from '../../../../shared/ActorCard/ActorCard';
+import getImageUrl from '../../../../shared/getImageUrl';
 
 const TopCast = props => {
-  const { cast, crew } = props;
+  const { cast } = props;
 
   const actorCards =
     cast && cast.length > 0
@@ -14,9 +15,12 @@ const TopCast = props => {
               key={person.id}
               actorName={person.name}
               playedRoleName={person.character}
-              imagePath={`https://image.tmdb.org/t/p/w185/${
-                person.profile_path
-              }`}
+              imagePath={getImageUrl(
+                'https://image.tmdb.org/t/p/w185/',
+                person.profile_path,
+                130,
+                185
+              )}
             />
           ))
       : null;
