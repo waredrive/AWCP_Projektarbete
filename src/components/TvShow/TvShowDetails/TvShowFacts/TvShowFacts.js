@@ -1,18 +1,17 @@
 import React from 'react';
 import ISO6391 from 'iso-639-1';
-import './MovieFacts.module.css';
+import './TvShowFacts.module.css';
 import {
   formatEmptyFields,
-  convertRuntimeToHoursAndMinutes,
-  formatCurrency
+  convertRuntimeToHoursAndMinutes
 } from '../../../../shared/helperMethods';
 
 const TvShowFacts = props => {
-  const { movie } = props;
+  const { tvShow } = props;
 
   const genres =
-    movie.genres && movie.genres.length > 0
-      ? movie.genres.map(genre => (
+    tvShow.genres && tvShow.genres.length > 0
+      ? tvShow.genres.map(genre => (
           <button
             type="button"
             key={genre.id}
@@ -23,34 +22,64 @@ const TvShowFacts = props => {
         ))
       : null;
 
+  const networks =
+    tvShow.networks && tvShow.networks.length > 0
+      ? tvShow.networks.map(network => (
+          <img
+            key={network.id}
+            className="mb-3 mt-1"
+            alt={network.name}
+            src={`https://image.tmdb.org/t/p/w92${network.logo_path}`}
+            title={network.name}
+          />
+        ))
+      : null;
+
+  const runtime =
+    tvShow.episode_run_time && tvShow.episode_run_time.length > 0
+      ? tvShow.episode_run_time
+          .map(rt => convertRuntimeToHoursAndMinutes(rt))
+          .join(', ')
+      : null;
+
   return (
     <div className="ml-3 my-3">
       <h5>Facts</h5>
       <div>
         <h6>Status</h6>
-        <p>{formatEmptyFields(movie.status)}</p>
+        <p>{formatEmptyFields(tvShow.status)}</p>
       </div>
       <div>
-        <h6>Release date</h6>
-        <p>{formatEmptyFields(movie.release_date)}</p>
+        <h6>Network</h6>
+        {formatEmptyFields(networks)}
+      </div>
+      <div>
+        <h6>First Aired</h6>
+        <p>{formatEmptyFields(tvShow.first_air_date)}</p>
+      </div>
+      <div>
+        <h6>Last Aired</h6>
+        <p>{formatEmptyFields(tvShow.last_air_date)}</p>
       </div>
       <div>
         <h6>Runtime</h6>
-        <p>
-          {formatEmptyFields(movie.runtime, convertRuntimeToHoursAndMinutes)}
-        </p>
+        <p>{formatEmptyFields(runtime)}</p>
+      </div>
+      <div>
+        <h6>Number Of Seasons</h6>
+        <p>{formatEmptyFields(tvShow.number_of_seasons)}</p>
+      </div>
+      <div>
+        <h6>Number Of Episodes</h6>
+        <p>{formatEmptyFields(tvShow.number_of_episodes)}</p>
       </div>
       <div>
         <h6>Original Language</h6>
-        <p>{formatEmptyFields(movie.original_language, ISO6391.getName)}</p>
+        <p>{formatEmptyFields(tvShow.original_language, ISO6391.getName)}</p>
       </div>
       <div>
-        <h6>Budget</h6>
-        <p>{formatEmptyFields(movie.budget, formatCurrency)}</p>
-      </div>
-      <div>
-        <h6>Revenue</h6>
-        <p>{formatEmptyFields(movie.revenue, formatCurrency)}</p>
+        <h6>Type</h6>
+        <p>{formatEmptyFields(tvShow.type)}</p>
       </div>
       <div>
         <h6>Genres</h6>

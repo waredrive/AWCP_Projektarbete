@@ -5,8 +5,7 @@ import { getImageUrl } from '../../../shared/helperMethods';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
 import MovieAndTvRecommendations from '../../../shared/MovieAndTvRecommendations/MovieAndTvRecommendations';
 import MovieAndTvTopCast from '../../../shared/MovieAndTvTopCast/MovieAndTvTopCast';
-
-// import Facts from './Facts/Facts';
+import TvShowFacts from './TvShowFacts/TvShowFacts';
 
 class TvShowDetails extends Component {
   state = {
@@ -28,7 +27,6 @@ class TvShowDetails extends Component {
 
   fetchTvShowsFromAPI = id => {
     fetchDetailsFromAPI('tv', id).then(response => {
-      console.log(response);
       this.setState({ tvShow: response });
     });
   };
@@ -85,7 +83,7 @@ class TvShowDetails extends Component {
                 className="col-3 my-3 text-light rounded"
                 style={{ backgroundColor: '#5C6165' }}
               >
-                {/* <Facts movie={movie} /> */}
+                <TvShowFacts tvShow={tvShow} />
               </div>
             </div>
           </div>
