@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { fetchSearchesFromAPI } from '../../../shared/fetchFromAPI';
 import MovieAndTvSummaryCard from '../../../shared/MovieAndTvSummaryCard/MovieAndTvSummaryCard';
 import PaginationNav from '../../../shared/PaginationNav/PaginationNav';
@@ -113,4 +114,4 @@ class TvShowsSearchResults extends Component {
   }
 }
 
-export default TvShowsSearchResults;
+export default withRouter(TvShowsSearchResults);
