@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 
 const RecommendationCard = props => {
   const { backdropPath, title, id } = props;
-
   return (
     <Link to={`/movie/${id}`}>
       <div className="card" title={title} style={{ height: '200px' }}>

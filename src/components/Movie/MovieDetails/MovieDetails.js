@@ -18,7 +18,6 @@ class MovieDetails extends Component {
 
   componentDidUpdate(prevProps) {
     const { match } = this.props;
-    console.log(this.match);
     if (prevProps.match.params.id === match.params.id) {
       return;
     }
