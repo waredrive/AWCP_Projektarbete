@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, Link } from 'react-router-dom';
+import { Route, Redirect, Switch, Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar/SearchBar';
 import SearchResults from './SearchResults/SearchResults';
 import MovieDetails from '../components/Movie/MovieDetails/MovieDetails';
@@ -31,6 +31,11 @@ class App extends Component {
         </div>
         {/* TODO: create search/movie search/tv and search/person */}
         <Switch>
+          <Route
+            path="/"
+            exact
+            component={() => <div>THIS IS WELCOME PAGE</div>}
+          />
           <Route path="/search" exact component={SearchResults} />
           <Route path="/movie/:id" exact component={MovieDetails} />
           <Route path="/movie/:id/credits" exact component={FullCastAndCrew} />
@@ -44,7 +49,7 @@ class App extends Component {
               <ErrorMessage>An Error has occurred while fetching data from SL. Please try again.</ErrorMessage>
             )}
           /> */}
-          <Route component={() => <div>THIS IS WELCOME PAGE</div>} />
+          <Redirect to="/" />
         </Switch>
       </main>
     );
