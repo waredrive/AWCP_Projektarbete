@@ -1,10 +1,10 @@
 import React from 'react';
-import RatingBar from '../../../../shared/RatingBar/RatingBar';
-import Backdrop from '../../../../shared/Backdrop/Backdrop';
-import ExternalPagesNavBar from '../../../../shared/ExternalPagesNavBar/ExternalPagesNavBar';
-import PlayTrailerButton from '../../../../shared/PlayTrailerButton/PlayTrailerButton';
+import RatingBar from '../RatingBar/RatingBar';
+import Backdrop from '../Backdrop/Backdrop';
+import ExternalPagesNavBar from '../ExternalPagesNavBar/ExternalPagesNavBar';
+import PlayTrailerButton from '../PlayTrailerButton/PlayTrailerButton';
 
-const MovieHeader = props => {
+const MovieAndTvHeader = props => {
   const {
     backdropImagePath,
     posterImagePath,
@@ -15,22 +15,31 @@ const MovieHeader = props => {
     voteCount,
     overview,
     crew,
+    creator,
     homepage,
     externalIds,
     videos
   } = props;
 
   const crewInfo =
-    crew && crew.length > 0 ? (
-      crew.splice(0, 3).map(person => (
-        <div key={person.job + person.id}>
-          <h5 className="mb-0">{person.name}</h5>
-          <p>{person.job}</p>
-        </div>
-      ))
-    ) : (
-      <p>There is no crew added to this movie.</p>
-    );
+    crew && crew.length > 0
+      ? crew.splice(0, 3).map(person => (
+          <div key={person.job + person.id}>
+            <h5 className="mb-0">{person.name}</h5>
+            <p>{person.job}</p>
+          </div>
+        ))
+      : null;
+
+  const creatorInfo =
+    creator && creator.length > 0
+      ? creator.splice(0, 3).map(person => (
+          <div key={person.id}>
+            <h5 className="mb-0">{person.name}</h5>
+            <p>Creator</p>
+          </div>
+        ))
+      : null;
 
   const trailer =
     videos && videos.length > 0
@@ -72,7 +81,10 @@ const MovieHeader = props => {
             </div>
             <div className="mt-5">
               <h4>Crew</h4>
-              <div className="d-flex justify-content-between">{crewInfo}</div>
+              <div className="d-flex justify-content-between">
+                {creatorInfo ||
+                  crewInfo || <p>There is no crew added to this movie.</p>}
+              </div>
             </div>
           </div>
         </div>
@@ -81,4 +93,4 @@ const MovieHeader = props => {
   );
 };
 
-export default MovieHeader;
+export default MovieAndTvHeader;

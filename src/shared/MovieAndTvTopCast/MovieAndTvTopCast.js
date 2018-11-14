@@ -1,9 +1,9 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import ActorCard from '../../../../shared/ActorCard/ActorCard';
-import getImageUrl from '../../../../shared/getImageUrl';
+import ActorCard from '../ActorCard/ActorCard';
+import getImageUrl from '../getImageUrl';
 
-const TopCast = props => {
+const MovieAndTvTopCast = props => {
   const { cast } = props;
 
   const actorCards =
@@ -58,4 +58,4 @@ const TopCast = props => {
   );
 };
 
-export default withRouter(TopCast);
+export default withRouter(MovieAndTvTopCast);

@@ -1,14 +1,15 @@
 import React from 'react';
 import Carousel from 'nuka-carousel';
-import RecommendationCard from '../../../../shared/RecommendationCard/RecommendationCard';
-import getImageUrl from '../../../../shared/getImageUrl';
+import RecommendationCard from './RecommendationCard/RecommendationCard';
+import getImageUrl from '../getImageUrl';
 
-const Recommendations = props => {
-  const { recommendations } = props;
+const MovieAndTvRecommendations = props => {
+  const { recommendations, type } = props;
   const recommendationCards =
     recommendations && recommendations.results.length > 0
       ? recommendations.results.map(recommendation => (
           <RecommendationCard
+            type={type}
             key={recommendation.id}
             id={recommendation.id}
             backdropPath={getImageUrl(
@@ -17,7 +18,7 @@ const Recommendations = props => {
               237,
               133
             )}
-            title={recommendation.title}
+            title={recommendation.title || recommendation.name}
           />
         ))
       : null;
@@ -69,4 +70,4 @@ const Recommendations = props => {
   );
 };
 
-export default Recommendations;
+export default MovieAndTvRecommendations;

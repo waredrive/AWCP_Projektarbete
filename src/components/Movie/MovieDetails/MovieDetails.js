@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { fetchDetailsFromAPI } from '../../../shared/fetchFromAPI';
-import TopCast from './TopCast/TopCast';
-import MovieHeader from './MovieHeader/MovieHeader';
+import MovieAndTvTopCast from '../../../shared/MovieAndTvTopCast/MovieAndTvTopCast';
+import MovieAndTvHeader from '../../../shared/MovieAndTvHeader/MovieAndTvHeader';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
 import Facts from './Facts/Facts';
-import Recommendations from './Recommendations/Recommendations';
+import MovieAndTvRecommendations from '../../../shared/MovieAndTvRecommendations/MovieAndTvRecommendations';
 import getImageUrl from '../../../shared/getImageUrl';
 
 class MovieDetails extends Component {
@@ -27,7 +27,6 @@ class MovieDetails extends Component {
 
   fetchMovieFromAPI = id => {
     fetchDetailsFromAPI('movie', id).then(response => {
-      console.log(response);
       this.setState({ movie: response });
     });
   };
@@ -50,7 +49,7 @@ class MovieDetails extends Component {
 
     return (
       <div>
-        <MovieHeader
+        <MovieAndTvHeader
           backdropImagePath={movie.backdrop_path}
           posterImagePath={getImageUrl(
             'https://image.tmdb.org/t/p/w300',
@@ -73,8 +72,11 @@ class MovieDetails extends Component {
           <div className="container bg-light">
             <div className="row">
               <div className="col-9 my-3 pr-5">
-                <TopCast cast={cast} crew={crew} />
-                <Recommendations recommendations={movie.recommendations} />
+                <MovieAndTvTopCast cast={cast} crew={crew} />
+                <MovieAndTvRecommendations
+                  recommendations={movie.recommendations}
+                  type="movie"
+                />
               </div>
               <div
                 className="col-3 my-3 text-light rounded"
