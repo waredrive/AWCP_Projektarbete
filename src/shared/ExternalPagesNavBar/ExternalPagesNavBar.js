@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { ExternalPagesNavButton } from './ExternalPagesNavButton/ExternalPagesNavButton';
+import ExternalPagesNavButton from './ExternalPagesNavButton/ExternalPagesNavButton';
 
-export class ExternalPagesNavBar extends Component {
+class ExternalPagesNavBar extends Component {
   createButtons = (externalPages, homepage) => {
     const navButtons = [];
 

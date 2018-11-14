@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { fetchDetailsFromAPI } from '../../../shared/fetchFromAPI';
 
-export class TvShowDetails extends Component {
+class TvShowDetails extends Component {
   state = {};
 
   render() {

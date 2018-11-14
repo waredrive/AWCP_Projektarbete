@@ -1,8 +1,8 @@
 import React from 'react';
 import Carousel from 'nuka-carousel';
-import { RecommendationCard } from '../../../../shared/RecommendationCard/RecommendationCard';
+import RecommendationCard from '../../../../shared/RecommendationCard/RecommendationCard';
 
-export const Recommendations = props => {
+const Recommendations = props => {
   const { recommendations } = props;
   const recommendationCards =
     recommendations && recommendations.results.length > 0

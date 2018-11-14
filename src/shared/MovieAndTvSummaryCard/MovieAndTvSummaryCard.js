@@ -1,7 +1,7 @@
 import React from 'react';
-import { RatingBar } from '../RatingBar/RatingBar';
+import RatingBar from '../RatingBar/RatingBar';
 
-export const MovieAndTvSummaryCard = props => {
+const MovieAndTvSummaryCard = props => {
   const {
     overviewText,
     posterPath,

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const RecommendationCard = props => {
+const RecommendationCard = props => {
   const { backdropPath, title, id } = props;
 
   return (

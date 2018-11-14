@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { fetchSearchesFromAPI } from '../../../shared/fetchFromAPI';
-import { MovieAndTvSummaryCard } from '../../../shared/MovieAndTvSummaryCard/MovieAndTvSummaryCard';
-import { PaginationNav } from '../../../shared/PaginationNav/PaginationNav';
+import MovieAndTvSummaryCard from '../../../shared/MovieAndTvSummaryCard/MovieAndTvSummaryCard';
+import PaginationNav from '../../../shared/PaginationNav/PaginationNav';
 
-export class MovieSearchResults extends Component {
+class MovieSearchResults extends Component {
   state = {
     fetchedMovies: [],
     activePage: 1,

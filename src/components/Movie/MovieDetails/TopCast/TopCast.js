@@ -1,7 +1,7 @@
 import React from 'react';
-import { ActorCard } from '../../../../shared/ActorCard/ActorCard';
+import ActorCard from '../../../../shared/ActorCard/ActorCard';
 
-export const TopCast = props => {
+const TopCast = props => {
   const { cast } = props;
 
   const actorCards =

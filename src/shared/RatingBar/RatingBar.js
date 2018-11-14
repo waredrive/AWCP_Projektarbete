@@ -2,7 +2,7 @@ import React from 'react';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-export const RatingBar = props => {
+const RatingBar = props => {
   const { sizeInPixels, hexColor, voteAverage, voteCount } = props;
   const voteAvr = voteCount === 0 ? 'NR' : voteAverage;
   let strokeColor;

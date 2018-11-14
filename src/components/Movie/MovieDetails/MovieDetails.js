@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { fetchDetailsFromAPI } from '../../../shared/fetchFromAPI';
-import { TopCast } from './TopCast/TopCast';
-import { MovieHeader } from './MovieHeader/MovieHeader';
-import { Backdrop } from '../../../shared/Backdrop/Backdrop';
-import { Facts } from './Facts/Facts';
-import { Recommendations } from './Recommendations/Recommendations';
+import TopCast from './TopCast/TopCast';
+import MovieHeader from './MovieHeader/MovieHeader';
+import Backdrop from '../../../shared/Backdrop/Backdrop';
+import Facts from './Facts/Facts';
+import Recommendations from './Recommendations/Recommendations';
 
-export class MovieDetails extends Component {
+class MovieDetails extends Component {
   state = {
     movie: {}
   };

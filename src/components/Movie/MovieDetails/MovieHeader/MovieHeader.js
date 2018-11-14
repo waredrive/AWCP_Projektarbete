@@ -1,10 +1,10 @@
 import React from 'react';
-import { RatingBar } from '../../../../shared/RatingBar/RatingBar';
-import { Backdrop } from '../../../../shared/Backdrop/Backdrop';
-import { ExternalPagesNavBar } from '../../../../shared/ExternalPagesNavBar/ExternalPagesNavBar';
-import { PlayTrailerButton } from '../../../../shared/PlayTrailerButton/PlayTrailerButton';
+import RatingBar from '../../../../shared/RatingBar/RatingBar';
+import Backdrop from '../../../../shared/Backdrop/Backdrop';
+import ExternalPagesNavBar from '../../../../shared/ExternalPagesNavBar/ExternalPagesNavBar';
+import PlayTrailerButton from '../../../../shared/PlayTrailerButton/PlayTrailerButton';
 
-export const MovieHeader = props => {
+const MovieHeader = props => {
   const {
     backdropImagePath,
     posterImagePath,

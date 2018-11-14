@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 import { fetchSearchesFromAPI } from '../../../shared/fetchFromAPI';
-import { PersonSummaryCard } from '../../../components/Person/PersonSummaryCard/PersonSummaryCard';
-import { PaginationNav } from '../../../shared/PaginationNav/PaginationNav';
+import PersonSummaryCard from '../../../components/Person/PersonSummaryCard/PersonSummaryCard';
+import PaginationNav from '../../../shared/PaginationNav/PaginationNav';
 
-export class PeopleSearchResults extends Component {
+class PeopleSearchResults extends Component {
   state = {
     fetchedPeople: [],
     activePage: 1,
@@ -11,6 +12,7 @@ export class PeopleSearchResults extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props);
     this.fetchPeopleFromAPI();
   }
 
@@ -116,4 +118,4 @@ export class PeopleSearchResults extends Component {
   }
 }
 
-export default PeopleSearchResults;
+export default withRouter(PeopleSearchResults);

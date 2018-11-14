@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const ActorCard = props => {
+const ActorCard = props => {
   const { actorName, playedRoleName, imagePath } = props;
 
   return (

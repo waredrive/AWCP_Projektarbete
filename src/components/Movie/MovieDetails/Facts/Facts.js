@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ISO6391 from 'iso-639-1';
 import './Facts.module.css';
 
-export class Facts extends Component {
+class Facts extends Component {
   formatEmptyFields = (field, functionToRunAfter) => {
     if (!field) {
       return '-';

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Switch, Link, withRouter } from 'react-router-dom';
+import { Route, Switch, Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar/SearchBar';
 import SearchResults from './SearchResults/SearchResults';
-import { MovieDetails } from '../components/Movie/MovieDetails/MovieDetails';
-import { PersonDetails } from '../components/Person/PersonDetails/PersonDetails';
-import { TvShowDetails } from '../components/TvShow/TvShowDetails/TvShowDetails';
+import MovieDetails from '../components/Movie/MovieDetails/MovieDetails';
+import PersonDetails from '../components/Person/PersonDetails/PersonDetails';
+import TvShowDetails from '../components/TvShow/TvShowDetails/TvShowDetails';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
@@ -48,4 +48,4 @@ class App extends Component {
   }
 }
 
-export default withRouter(App);
+export default App;

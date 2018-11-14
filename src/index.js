@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { HashRouter } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-bootstrap-typeahead/css/Typeahead.min.css';
+import ScrollToTop from './hoc/ScrollToTop/ScrollToTop';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import '../node_modules/react-modal-video/scss/modal-video.scss';
 import './index.css';
@@ -13,7 +14,9 @@ const rootElement = document.getElementById('root');
 
 const app = (
   <HashRouter>
-    <App />
+    <ScrollToTop>
+      <App />
+    </ScrollToTop>
   </HashRouter>
 );
 

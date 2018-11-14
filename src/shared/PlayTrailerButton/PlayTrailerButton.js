@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ModalVideo from 'react-modal-video';
 
-export class PlayTrailerButton extends Component {
+class PlayTrailerButton extends Component {
   state = {
     isOpen: false
   };

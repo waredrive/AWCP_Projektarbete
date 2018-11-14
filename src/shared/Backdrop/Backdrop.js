@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-export const Backdrop = props => {
+const Backdrop = props => {
   const { children, backdropPath } = props;
   const background = backdropPath
     ? `url(https://image.tmdb.org/t/p/original/${backdropPath}) no-repeat center`

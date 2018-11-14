@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
-import { MovieSearchResults } from '../Movies/MovieSearchResults/MovieSearchResults';
-import { TvShowsSearchResults } from '../TvShows/TvShowsSearchResults/TvShowsSearchResults';
-import { PeopleSearchResults } from '../People/PeopleSearchResults/PeopleSearchResults';
+import MovieSearchResults from '../Movies/MovieSearchResults/MovieSearchResults';
+import TvShowsSearchResults from '../TvShows/TvShowsSearchResults/TvShowsSearchResults';
+import PeopleSearchResults from '../People/PeopleSearchResults/PeopleSearchResults';
 
 class SearchResults extends Component {
   state = {
@@ -72,22 +72,13 @@ class SearchResults extends Component {
             </Nav>
             <TabContent activeTab={activeTab}>
               <TabPane tabId="Movies">
-                <MovieSearchResults
-                  searchQuery={this.fetchQueryString()}
-                  {...this.props}
-                />
+                <MovieSearchResults searchQuery={this.fetchQueryString()} />
               </TabPane>
               <TabPane tabId="Tv">
-                <TvShowsSearchResults
-                  searchQuery={this.fetchQueryString()}
-                  {...this.props}
-                />
+                <TvShowsSearchResults searchQuery={this.fetchQueryString()} />
               </TabPane>
               <TabPane tabId="People">
-                <PeopleSearchResults
-                  searchQuery={this.fetchQueryString()}
-                  {...this.props}
-                />
+                <PeopleSearchResults searchQuery={this.fetchQueryString()} />
               </TabPane>
             </TabContent>
           </div>

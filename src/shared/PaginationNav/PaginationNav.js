@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
-export class PaginationNav extends Component {
+class PaginationNav extends Component {
   changePage = page => {
     const { onPageChanged, currentPage, totalPages } = this.props;
     if (page === currentPage || page > totalPages || page < 1) {

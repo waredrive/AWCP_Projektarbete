@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { fetchSearchesFromAPI } from '../../../shared/fetchFromAPI';
-import { MovieAndTvSummaryCard } from '../../../shared/MovieAndTvSummaryCard/MovieAndTvSummaryCard';
-import { PaginationNav } from '../../../shared/PaginationNav/PaginationNav';
+import MovieAndTvSummaryCard from '../../../shared/MovieAndTvSummaryCard/MovieAndTvSummaryCard';
+import PaginationNav from '../../../shared/PaginationNav/PaginationNav';
 
-export class TvShowsSearchResults extends Component {
+class TvShowsSearchResults extends Component {
   state = {
     fetchedShows: [],
     activePage: 1,

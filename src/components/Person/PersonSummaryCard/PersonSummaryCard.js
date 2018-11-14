@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const PersonSummaryCard = props => {
+const PersonSummaryCard = props => {
   const { knownFor, profilePath, name, onShowDetailsClick } = props;
 
   const known =

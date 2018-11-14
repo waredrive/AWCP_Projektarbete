@@ -1,7 +1,7 @@
 import React from 'react';
 import './ExternalPagesNavButton.css';
 
-export const ExternalPagesNavButton = props => {
+const ExternalPagesNavButton = props => {
   const { title, icon, href } = props;
 
   return (
