@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import ISO6391 from 'iso-639-1';
 import './MovieFacts.module.css';
 import {
