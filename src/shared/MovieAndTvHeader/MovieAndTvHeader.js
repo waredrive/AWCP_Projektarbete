@@ -57,7 +57,7 @@ const MovieAndTvHeader = props => {
         <div className="row">
           <div className="col-4 mt-4 d-flex">
             <img
-              className="rounded align-self-start"
+              className="rounded align-self-center"
               src={posterImagePath}
               title={title}
               alt={`Poster of ${title}`}
