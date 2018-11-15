@@ -84,7 +84,7 @@ const MovieAndTvHeader = props => {
             </div>
             <div>
               <h4>Overview</h4>
-              <p>{overview}</p>
+              <p className="text-justify">{overview}</p>
             </div>
             <div className="mt-5">
               <h4>Crew</h4>

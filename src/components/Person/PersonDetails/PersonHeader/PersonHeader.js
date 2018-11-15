@@ -28,7 +28,9 @@ const PersonHeader = props => {
             </div>
             <div>
               <h4>Biography</h4>
-              <p>{biography}</p>
+              <p className="text-justify">
+                {biography || `There is no biography for ${name}`}
+              </p>
             </div>
           </div>
         </div>

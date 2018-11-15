@@ -42,7 +42,7 @@ const MovieAndTvSummaryCard = props => {
             <p className="font-italic">{releaseDate}</p>
           </div>
         </div>
-        <p className="card-text">{overviewText}</p>
+        <p className="card-text text-justify">{overviewText}</p>
         <button
           type="button"
           className="btn btn-outline-secondary btn-block btn-lg mt-2"

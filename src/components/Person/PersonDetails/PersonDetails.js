@@ -3,9 +3,7 @@ import { fetchDetailsFromAPI } from '../../../shared/fetchFromAPI';
 import PersonHeader from './PersonHeader/PersonHeader';
 import { getImageUrl } from '../../../shared/helperMethods';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
-import MovieAndTvRecommendations from '../../../shared/MovieAndTvRecommendations/MovieAndTvRecommendations';
-import MovieAndTvTopCast from '../../../shared/MovieAndTvTopCast/MovieAndTvTopCast';
-// import TvShowFacts from './TvShowFacts/TvShowFacts';
+import PersonFacts from './PersonFacts/PersonFacts';
 
 class PersonDetails extends Component {
   state = {
@@ -44,25 +42,25 @@ class PersonDetails extends Component {
           homepage={person.homepage}
           externalIds={person.external_ids}
         />
-        {/* <div className="bg-light">
+        <div className="bg-light">
           <div className="container bg-light">
             <div className="row">
               <div className="col-9 my-3 pr-5">
-                <MovieAndTvTopCast cast={cast} crew={crew} />
+                {/* <MovieAndTvTopCast cast={cast} crew={crew} />
                 <MovieAndTvRecommendations
                   type="tv"
                   recommendations={tvShow.recommendations}
-                />
+                /> */}
               </div>
               <div
                 className="col-3 my-3 text-light rounded"
                 style={{ backgroundColor: '#5C6165' }}
               >
-                <TvShowFacts tvShow={tvShow} />
+                <PersonFacts person={person} />
               </div>
             </div>
           </div>
-        </div> */}
+        </div>
         <Backdrop />
       </div>
     );
