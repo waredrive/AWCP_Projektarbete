@@ -52,10 +52,8 @@ class TvShowDetails extends Component {
         <MovieAndTvHeader
           backdropImagePath={tvShow.backdrop_path}
           posterImagePath={getImageUrl(
-            'https://image.tmdb.org/t/p/w300',
             tvShow.poster_path,
-            300,
-            445
+            300
           )}
           title={tvShow.name}
           yearOfProduction={yearOfProduction}

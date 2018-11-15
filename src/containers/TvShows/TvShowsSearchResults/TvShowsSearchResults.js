@@ -84,12 +84,7 @@ class TvShowsSearchResults extends Component {
             key={result.id}
             title={result.name}
             overviewText={overviewText}
-            posterPath={getImageUrl(
-              'https://image.tmdb.org/t/p/w185',
-              result.poster_path,
-              185,
-              278
-            )}
+            posterPath={getImageUrl(result.poster_path, 185)}
             voteAverage={result.vote_average}
             voteCount={result.vote_count}
             releaseDate={result.first_air_date}

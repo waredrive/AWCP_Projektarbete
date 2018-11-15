@@ -16,12 +16,7 @@ const MovieAndTvTopCast = props => {
               key={person.id}
               actorName={person.name}
               playedRoleName={person.character}
-              imagePath={getImageUrl(
-                'https://image.tmdb.org/t/p/w185/',
-                person.profile_path,
-                130,
-                185
-              )}
+              imagePath={getImageUrl(person.profile_path, 185)}
             />
           ))
       : null;

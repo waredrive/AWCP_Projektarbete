@@ -91,12 +91,7 @@ class PeopleSearchResults extends Component {
             key={result.id}
             name={result.name}
             knownFor={knownFor}
-            profilePath={getImageUrl(
-              'https://image.tmdb.org/t/p/w154',
-              result.profile_path,
-              154,
-              231
-            )}
+            profilePath={getImageUrl(result.profile_path, 154)}
             onShowDetailsClick={() => this.onShowDetailsClickHandler(result.id)}
           />
         );

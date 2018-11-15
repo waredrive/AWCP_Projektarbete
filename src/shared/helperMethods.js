@@ -1,9 +1,13 @@
-export const getImageUrl = (url, param, width, height) => {
+/* eslint-disable */
+export const getImageUrl = (param, width, height) => {
+  const localImgNamePath = height ? `${width}x${height}` : width;
+
   if (param) {
-    return url + param;
+    return `https://image.tmdb.org/t/p/w${width}${param}`;
   }
-  return `https://imgplaceholder.com/${width}x${height}/393939/8A8A8A/fa-image`;
+  return require(`../assets/images/placeholders/${localImgNamePath}.png`);
 };
+
 export const formatEmptyFields = (field, functionToRunAfter) => {
   if (!field) {
     return '-';

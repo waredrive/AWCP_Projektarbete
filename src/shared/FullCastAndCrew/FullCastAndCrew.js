@@ -28,12 +28,7 @@ class FullCastAndCrew extends Component {
               key={person.id + person.character}
               actorName={person.name}
               playedRoleName={person.character}
-              imagePath={getImageUrl(
-                'https://image.tmdb.org/t/p/w92/',
-                person.profile_path,
-                94,
-                140
-              )}
+              imagePath={getImageUrl(person.profile_path, 92)}
             />
           ))
         : null;
@@ -46,12 +41,7 @@ class FullCastAndCrew extends Component {
               key={person.id + person.job}
               actorName={person.name}
               playedRoleName={person.job}
-              imagePath={getImageUrl(
-                'https://image.tmdb.org/t/p/w92/',
-                person.profile_path,
-                94,
-                140
-              )}
+              imagePath={getImageUrl(person.profile_path, 92)}
             />
           ))
         : null;

@@ -12,12 +12,7 @@ const MovieAndTvRecommendations = props => {
             type={type}
             key={recommendation.id}
             id={recommendation.id}
-            backdropPath={getImageUrl(
-              'https://image.tmdb.org/t/p/w300',
-              recommendation.backdrop_path,
-              237,
-              133
-            )}
+            backdropPath={getImageUrl(recommendation.backdrop_path, 300, 196)}
             title={recommendation.title || recommendation.name}
           />
         ))
