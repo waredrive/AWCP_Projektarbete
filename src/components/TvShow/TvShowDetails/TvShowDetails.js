@@ -51,7 +51,7 @@ class TvShowDetails extends Component {
       <div>
         <MovieAndTvHeader
           backdropImagePath={tvShow.backdrop_path}
-          posterImagePath={getImageUrl(tvShow.poster_path, 'h300')}
+          posterImagePath={getImageUrl(tvShow.poster_path, 'w300')}
           title={tvShow.name}
           yearOfProduction={yearOfProduction}
           quote={quote}

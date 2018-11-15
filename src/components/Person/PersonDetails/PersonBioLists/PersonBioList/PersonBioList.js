@@ -4,6 +4,7 @@ import PersonBioListItem from './PersonBioListItem/PersonBioListItem';
 const PersonBioList = props => {
   const getYearFromDateString = date => new Date(date).getFullYear();
 
+  // TODO: must take in account "first_air_date"
   const SortArrByDateDesc = arr =>
     arr.length > 0
       ? arr.sort(
@@ -27,7 +28,10 @@ const PersonBioList = props => {
           ) || null
         }
         nameOfProduction={bioItem.title || bioItem.name}
-        job={` as ${bioItem.character}`}
+        job={bioItem.character ? ` as ${bioItem.character}` : ''}
+        type={bioItem.title ? 'movie' : 'tv'}
+        id={bioItem.id}
+        key={bioItem.id + bioItem.character}
       />
     ));
 
@@ -39,7 +43,10 @@ const PersonBioList = props => {
           ) || null
         }
         nameOfProduction={bioItem.title || bioItem.name}
-        job={` - ${bioItem.job}`}
+        job={bioItem.job ? ` - ${bioItem.job}` : ''}
+        type={bioItem.title ? 'movie' : 'tv'}
+        id={bioItem.id}
+        key={bioItem.id + bioItem.job}
       />
     ));
   }

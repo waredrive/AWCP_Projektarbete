@@ -23,3 +23,17 @@ a.light {
 a.light:hover {
   color: #d6d6d6;
 }
+
+a.active.nav-link {
+  background-color: #5c6165 !important;
+}
+
+.page-item.active > .page-link {
+  background-color: #5c6165 !important;
+  color: white !important;
+  border-color: transparent !important;
+}
+
+.page-item > .page-link {
+  color: black !important;
+}
