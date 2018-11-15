@@ -6,13 +6,15 @@ const PersonBioListItem = props => {
 
   return (
     <li className="list-group-item my-1">
-      <span className="d-inline-block" style={{ width: '4rem' }}>
-        {year}
-      </span>
-      <Link to={`/${type}/${id}`}>
-        <span className="font-weight-bold">{nameOfProduction}</span>
-      </Link>
-      <span className="font-italic">{job}</span>
+      <div className="row">
+        <div className="d-inline-block col-1">{year}</div>
+        <div className="d-inline-block col-11">
+          <Link to={`/${type}/${id}`}>
+            <span className="font-weight-bold">{nameOfProduction}</span>
+          </Link>
+          <span className="font-italic">{job}</span>
+        </div>
+      </div>
     </li>
   );
 };
