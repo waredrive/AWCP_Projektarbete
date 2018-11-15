@@ -11,7 +11,7 @@ const PersonHeader = props => {
         <div className="row">
           <div className="col-4 mt-4 d-flex ">
             <img
-              className="rounded align-self-start"
+              className="rounded align-self-center"
               style={{ width: '90%' }}
               src={imagePath}
               title={name}
@@ -19,15 +19,13 @@ const PersonHeader = props => {
             />
           </div>
           <div className="col-8 my-3">
-            <h1 className="mb-1">{name}</h1>
-            <div className="my-5 d-inline-block">
-              <ExternalPagesNavBar
-                homepage={homepage}
-                externalIds={externalIds}
-              />
-            </div>
+            <h1 className="mb-4">{name}</h1>
+            <ExternalPagesNavBar
+              homepage={homepage}
+              externalIds={externalIds}
+            />
             <div>
-              <h4>Biography</h4>
+              <h4 className="mt-4">Biography</h4>
               <p className="text-justify">
                 {biography || `There is no biography for ${name}`}
               </p>
