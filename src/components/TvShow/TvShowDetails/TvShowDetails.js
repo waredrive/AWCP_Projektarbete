@@ -34,7 +34,7 @@ class TvShowDetails extends Component {
   render() {
     const { tvShow } = this.state;
     const yearOfProduction = tvShow.first_air_date
-      ? tvShow.first_air_date.slice(0, 4)
+      ? new Date(tvShow.first_air_date).getFullYear()
       : null;
 
     const quote = tvShow.tagline ? `"${tvShow.tagline}"` : null;

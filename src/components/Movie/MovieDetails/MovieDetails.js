@@ -33,8 +33,9 @@ class MovieDetails extends Component {
 
   render() {
     const { movie } = this.state;
+
     const yearOfProduction = movie.release_date
-      ? movie.release_date.slice(0, 4)
+      ? new Date(movie.release_date).getFullYear()
       : null;
 
     const quote = movie.tagline ? `"${movie.tagline}"` : null;
