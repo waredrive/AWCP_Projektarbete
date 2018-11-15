@@ -4,6 +4,7 @@ import PersonHeader from './PersonHeader/PersonHeader';
 import { getImageUrl } from '../../../shared/helperMethods';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
 import PersonFacts from './PersonFacts/PersonFacts';
+import PersonBioLists from './PersonBioLists/PersonBioLists';
 
 class PersonDetails extends Component {
   state = {
@@ -46,11 +47,10 @@ class PersonDetails extends Component {
           <div className="container bg-light">
             <div className="row">
               <div className="col-9 my-3 pr-5">
-                {/* <MovieAndTvTopCast cast={cast} crew={crew} />
-                <MovieAndTvRecommendations
-                  type="tv"
-                  recommendations={tvShow.recommendations}
-                /> */}
+                <PersonBioLists
+                  movieCredits={person.movie_credits}
+                  tvCredits={person.tv_credits}
+                />
               </div>
               <div
                 className="col-3 my-3 text-light rounded"

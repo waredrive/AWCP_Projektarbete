@@ -38,7 +38,7 @@ const TvShowFacts = props => {
   ) : null;
 
   return (
-    <div className="ml-3 my-3 pr-3">
+    <div className="ml-3 py-4 pr-3 position-sticky sticky-top">
       <h5>Personal Info</h5>
       <div>
         <h6>Known For</h6>
