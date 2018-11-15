@@ -1,9 +1,12 @@
 /* eslint-disable */
-export const getImageUrl = (param, width, height) => {
-  const localImgNamePath = height ? `${width}x${height}` : width;
+export const getImageUrl = (pathParam, firstSizeParam, secondSizeParam) => {
+  const localImgNamePath =
+    firstSizeParam && secondSizeParam
+      ? firstSizeParam + secondSizeParam
+      : firstSizeParam;
 
-  if (param) {
-    return `https://image.tmdb.org/t/p/w${width}${param}`;
+  if (pathParam) {
+    return `https://image.tmdb.org/t/p/${firstSizeParam}${pathParam}`;
   }
   return require(`../assets/images/placeholders/${localImgNamePath}.png`);
 };

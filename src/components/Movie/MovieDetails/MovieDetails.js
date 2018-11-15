@@ -51,10 +51,7 @@ class MovieDetails extends Component {
       <div>
         <MovieAndTvHeader
           backdropImagePath={movie.backdrop_path}
-          posterImagePath={getImageUrl(
-            movie.poster_path,
-            300
-          )}
+          posterImagePath={getImageUrl(movie.poster_path, 'w300')}
           title={movie.title}
           yearOfProduction={yearOfProduction}
           quote={quote}

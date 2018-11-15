@@ -28,7 +28,7 @@ class FullCastAndCrew extends Component {
               key={person.id + person.character}
               actorName={person.name}
               playedRoleName={person.character}
-              imagePath={getImageUrl(person.profile_path, 92)}
+              imagePath={getImageUrl(person.profile_path, 'w92')}
             />
           ))
         : null;
@@ -41,7 +41,7 @@ class FullCastAndCrew extends Component {
               key={person.id + person.job}
               actorName={person.name}
               playedRoleName={person.job}
-              imagePath={getImageUrl(person.profile_path, 92)}
+              imagePath={getImageUrl(person.profile_path, 'w92')}
             />
           ))
         : null;

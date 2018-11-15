@@ -68,12 +68,14 @@ const MovieAndTvHeader = props => {
             <p className="font-weight-light h4">({yearOfProduction})</p>
             <p className="font-italic h5 font-weight-light mt-4">{quote}</p>
             <div className="my-5 d-inline-block">
-              <RatingBar
-                sizeInPixels={55}
-                voteAverage={voteAverage}
-                voteCount={voteCount}
-                hexColor="#000"
-              />
+              <div className=" d-inline-block mr-4">
+                <RatingBar
+                  sizeInPixels={55}
+                  voteAverage={voteAverage}
+                  voteCount={voteCount}
+                  hexColor="#000"
+                />
+              </div>
               <ExternalPagesNavBar
                 homepage={homepage}
                 externalIds={externalIds}

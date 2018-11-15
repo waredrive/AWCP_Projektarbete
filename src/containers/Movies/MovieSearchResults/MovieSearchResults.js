@@ -84,7 +84,7 @@ class MovieSearchResults extends Component {
             key={result.id}
             title={result.title}
             overviewText={overviewText}
-            posterPath={getImageUrl(result.poster_path, 185)}
+            posterPath={getImageUrl(result.poster_path, 'w185')}
             voteAverage={result.vote_average}
             voteCount={result.vote_count}
             releaseDate={result.release_date}

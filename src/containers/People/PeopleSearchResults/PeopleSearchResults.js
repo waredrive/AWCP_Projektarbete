@@ -91,7 +91,7 @@ class PeopleSearchResults extends Component {
             key={result.id}
             name={result.name}
             knownFor={knownFor}
-            profilePath={getImageUrl(result.profile_path, 154)}
+            profilePath={getImageUrl(result.profile_path, 'w154')}
             onShowDetailsClick={() => this.onShowDetailsClickHandler(result.id)}
           />
         );

@@ -24,7 +24,7 @@ class PlayTrailerButton extends Component {
         />
         <button
           type="button"
-          className="btn btn-outline-light btn-circle btn-lg d-inline-flex ml-4 justify-content-center"
+          className="btn btn-outline-light btn-circle btn-lg d-inline-flex mr-4 justify-content-center"
           title="Watch Trailer"
           onClick={this.openModal}
         >
