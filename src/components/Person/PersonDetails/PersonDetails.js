@@ -5,6 +5,7 @@ import { getImageUrl } from '../../../shared/helperMethods';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
 import PersonFacts from './PersonFacts/PersonFacts';
 import PersonBioLists from './PersonBioLists/PersonBioLists';
+import PersonTopMoviesAndTvs from './PersonTopMoviesAndTvs/PersonTopMoviesAndTvs';
 
 class PersonDetails extends Component {
   state = {
@@ -47,6 +48,15 @@ class PersonDetails extends Component {
           <div className="container bg-light">
             <div className="row">
               <div className="col-9 my-3 pr-5">
+                <div className="row">
+                  <PersonTopMoviesAndTvs
+                    credits={
+                      person.combined_credits
+                        ? person.combined_credits.cast
+                        : null
+                    }
+                  />
+                </div>
                 <PersonBioLists
                   movieCredits={person.movie_credits}
                   tvCredits={person.tv_credits}

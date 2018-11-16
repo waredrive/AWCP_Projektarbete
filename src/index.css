@@ -25,11 +25,11 @@ a.light:hover {
 }
 
 a.active.nav-link {
-  background-color: #c0c3c6 !important;
+  background-color: #5a6268 !important;
 }
 
 .page-item.active > .page-link {
-  background-color: #c0c3c6 !important;
+  background-color: #5a6268 !important;
   color: white !important;
   border-color: transparent !important;
 }

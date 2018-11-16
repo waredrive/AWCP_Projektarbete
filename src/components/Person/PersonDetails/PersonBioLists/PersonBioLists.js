@@ -22,44 +22,44 @@ class PersonBioLists extends Component {
     const { activeTab } = this.state;
 
     return (
-      <div className="ml-3">
-        <div className="row d-block pr-5">
-          <Nav pills className="bg-light rounded justify-content-end">
-            <NavItem>
-              <NavLink
-                className={classnames({
-                  active: activeTab === 'Movies'
-                })}
-                href="#"
-                onClick={() => {
-                  this.toggleTabs('Movies');
-                }}
-              >
-                Movies
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink
-                href="#"
-                className={classnames({ active: activeTab === 'Tv' })}
-                onClick={() => {
-                  this.toggleTabs('Tv');
-                }}
-              >
-                Tv Shows
-              </NavLink>
-            </NavItem>
-          </Nav>
-          <TabContent activeTab={activeTab}>
-            <TabPane tabId="Movies">
-              <PersonBioList bioList={movieCredits} />
-            </TabPane>
-            <TabPane tabId="Tv">
-              <PersonBioList bioList={tvCredits} />
-            </TabPane>
-          </TabContent>
-        </div>
+      // <div className="ml-1">
+      <div className="row d-block pr-4">
+        <Nav pills className="bg-light rounded justify-content-end">
+          <NavItem>
+            <NavLink
+              className={classnames({
+                active: activeTab === 'Movies'
+              })}
+              href="#"
+              onClick={() => {
+                this.toggleTabs('Movies');
+              }}
+            >
+              Movies
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink
+              href="#"
+              className={classnames({ active: activeTab === 'Tv' })}
+              onClick={() => {
+                this.toggleTabs('Tv');
+              }}
+            >
+              Tv Shows
+            </NavLink>
+          </NavItem>
+        </Nav>
+        <TabContent activeTab={activeTab}>
+          <TabPane tabId="Movies">
+            <PersonBioList bioList={movieCredits} />
+          </TabPane>
+          <TabPane tabId="Tv">
+            <PersonBioList bioList={tvCredits} />
+          </TabPane>
+        </TabContent>
       </div>
+      // </div>
     );
   }
 }

@@ -4,14 +4,14 @@ import PersonBioListItem from './PersonBioListItem/PersonBioListItem';
 const PersonBioList = props => {
   const getYearFromDateString = date => new Date(date).getFullYear();
 
-  // TODO: must take in account "first_air_date"
-  const SortArrByDateDesc = arr =>
+  const getSortedArrByDateDesc = arr =>
     arr.length > 0
-      ? arr.sort(
+      ? [...arr].sort(
           (a, b) =>
-            !a.release_date
+            !a.release_date || a.first_air_date
               ? -1
-              : new Date(b.release_date) - new Date(a.release_date)
+              : new Date(b.release_date || b.first_air_date) -
+                new Date(a.release_date || a.first_air_date)
         )
       : [];
 
@@ -20,7 +20,7 @@ const PersonBioList = props => {
   let crew = null;
 
   if (bioList) {
-    cast = SortArrByDateDesc(bioList.cast).map(bioItem => (
+    cast = getSortedArrByDateDesc(bioList.cast).map(bioItem => (
       <PersonBioListItem
         year={
           getYearFromDateString(
@@ -35,7 +35,7 @@ const PersonBioList = props => {
       />
     ));
 
-    crew = SortArrByDateDesc(bioList.crew).map(bioItem => (
+    crew = getSortedArrByDateDesc(bioList.crew).map(bioItem => (
       <PersonBioListItem
         year={
           getYearFromDateString(
