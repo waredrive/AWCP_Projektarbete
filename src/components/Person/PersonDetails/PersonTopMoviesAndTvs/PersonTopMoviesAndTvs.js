@@ -8,12 +8,12 @@ const PersonTopMoviesAndTvs = props => {
   const movieAndTvCards =
     credits && credits.length > 0
       ? [...credits]
+          .filter((e, i, self) => self.findIndex(x => x.id === e.id) === i)
           .sort(
             (a, b) =>
               b.popularity * b.vote_average * b.vote_count -
               a.popularity * a.vote_average * a.vote_count
           )
-          .filter((e, i, self) => self.findIndex(x => x.id === e.id) === i)
           .slice(0, 8)
           .map(item => (
             <MovieAndTvCard

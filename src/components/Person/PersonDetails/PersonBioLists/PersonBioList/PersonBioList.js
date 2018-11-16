@@ -50,16 +50,15 @@ const PersonBioList = props => {
       />
     ));
   }
-  console.log(bioList);
-
   return (
+    // TODO: fix so the headlines dissapears if no results or add text
     <div>
       <div>
-        <h5 className="mt-3 text-center">As Cast Member</h5>
+        <h5 className="mt-3 ml-1">As Cast Member</h5>
         <ul className="list-group">{cast}</ul>
       </div>
       <div>
-        <h5 className="mt-3 text-center">As Crew Member</h5>
+        <h5 className="mt-3 ml-1">As Crew Member</h5>
         <ul className="list-group">{crew}</ul>
       </div>
     </div>

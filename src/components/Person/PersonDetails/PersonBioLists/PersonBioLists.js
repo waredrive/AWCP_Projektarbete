@@ -22,8 +22,7 @@ class PersonBioLists extends Component {
     const { activeTab } = this.state;
 
     return (
-      // <div className="ml-1">
-      <div className="row d-block pr-4">
+      <div className="row d-block pr-4 mt-5">
         <Nav pills className="bg-light rounded justify-content-end">
           <NavItem>
             <NavLink
@@ -59,7 +58,6 @@ class PersonBioLists extends Component {
           </TabPane>
         </TabContent>
       </div>
-      // </div>
     );
   }
 }
