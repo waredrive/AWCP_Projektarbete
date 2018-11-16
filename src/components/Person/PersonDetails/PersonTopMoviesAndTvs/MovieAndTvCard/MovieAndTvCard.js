@@ -15,9 +15,9 @@ const MovieAndTvCard = props => {
             title={name}
           />
         </Link>
-        <div className="card-body py-2 d-flex justify-content-center align-content-center">
+        <div className="card-body py-2 d-flex text-center justify-content-center">
           <Link to={`/${type}/${id}`}>
-            <h6 className="card-subtitle mb-2">{name}</h6>
+            <p className="card-text">{name}</p>
           </Link>
         </div>
       </div>
