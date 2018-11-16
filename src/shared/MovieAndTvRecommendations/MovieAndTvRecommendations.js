@@ -15,7 +15,7 @@ const MovieAndTvRecommendations = props => {
             backdropPath={getImageUrl(
               recommendation.backdrop_path,
               'w300',
-              'h196'
+              'h169'
             )}
             title={recommendation.title || recommendation.name}
           />
