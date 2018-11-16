@@ -22,6 +22,7 @@ class PersonBioLists extends Component {
     const { activeTab } = this.state;
 
     return (
+      // TODO: fix so this dissapears if no results or add text
       <div className="row d-block pr-4 mt-5">
         <Nav pills className="bg-light rounded justify-content-end">
           <NavItem>
