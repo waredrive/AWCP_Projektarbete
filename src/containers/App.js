@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Redirect, Switch, Link } from 'react-router-dom';
 import SearchBar from '../components/SearchBar/SearchBar';
+import Trending from './Trending/Trending';
 import SearchResults from './SearchResults/SearchResults';
 import MovieDetails from '../components/Movie/MovieDetails/MovieDetails';
 import PersonDetails from '../components/Person/PersonDetails/PersonDetails';
@@ -31,11 +32,7 @@ class App extends Component {
         </div>
         {/* TODO: create search/movie search/tv and search/person */}
         <Switch>
-          <Route
-            path="/"
-            exact
-            component={() => <div>THIS IS WELCOME PAGE</div>}
-          />
+          <Route path="/" exact component={Trending} />
           <Route path="/search" exact component={SearchResults} />
           <Route path="/movie/:id" exact component={MovieDetails} />
           <Route path="/movie/:id/credits" exact component={FullCastAndCrew} />

@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from 'nuka-carousel';
 import RecommendationCard from './RecommendationCard/RecommendationCard';
 import { getImageUrl } from '../helperMethods';
+import CarouselButton from '../CarouselButton/CarouselButton';
 
 const MovieAndTvRecommendations = props => {
   const { recommendations, type } = props;
@@ -42,22 +43,13 @@ const MovieAndTvRecommendations = props => {
             easing="easeQuadInOut"
             renderBottomCenterControls={() => null}
             renderCenterRightControls={({ nextSlide }) => (
-              <button
-                type="button"
-                className="btn btn-light btn-circle btn-lg"
-                onClick={nextSlide}
-              >
-                <i className="fa fa-angle-right fa-lg" />
-              </button>
+              <CarouselButton orientation="right" onButtonClick={nextSlide} />
             )}
             renderCenterLeftControls={({ previousSlide }) => (
-              <button
-                type="button"
-                className="btn btn-light btn-circle btn-lg"
-                onClick={previousSlide}
-              >
-                <i className="fa fa-angle-left fa-lg" />
-              </button>
+              <CarouselButton
+                orientation="left"
+                onButtonClick={previousSlide}
+              />
             )}
           >
             {recommendationCards}

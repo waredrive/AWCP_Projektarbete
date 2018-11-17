@@ -26,3 +26,12 @@ export const fetchCreditsFromAPI = params =>
       }&language=en-US`
     )
     .then(response => response.data);
+
+export const fetchTrendingFromAPI = type =>
+  axios
+    .get(
+      `https://api.themoviedb.org/3/trending/${type}/week?api_key=${
+        process.env.REACT_APP_TMDB_API_KEY
+      }&language=en-US`
+    )
+    .then(response => response.data);
