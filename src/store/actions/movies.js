@@ -30,3 +30,29 @@ export const fetchMovieSearchResults = (searchQuery, page) => dispatch => {
       dispatch(fetchMovieSearchResultsFailed(err));
     });
 };
+
+export const fetchTrendingMoviesSuccess = trending => ({
+  type: actionTypes.FETCH_TRENDING_MOVIES_SUCCESS,
+  trending
+});
+
+export const fetchTrendingMoviesFailed = error => ({
+  type: actionTypes.FETCH_TRENDING_MOVIES_FAILED,
+  error
+});
+
+export const fetchTrendingMoviesStart = () => ({
+  type: actionTypes.FETCH_TRENDING_MOVIES_START
+});
+
+export const fetchTrendingMovies = () => dispatch => {
+  dispatch(fetchMovieSearchResultsStart());
+  axios
+    .get(`trending/movie/week?api_key=${process.env.REACT_APP_TMDB_API_KEY}`)
+    .then(res => {
+      dispatch(fetchTrendingMoviesSuccess(res.data));
+    })
+    .catch(err => {
+      dispatch(fetchTrendingMoviesFailed(err));
+    });
+};

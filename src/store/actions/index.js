@@ -1,3 +1,3 @@
-export { fetchMovieSearchResults } from './movies';
-export { fetchTvShowSearchResults } from './tvShows';
-export { fetchPeopleSearchResults } from './people';
+export { fetchMovieSearchResults, fetchTrendingMovies } from './movies';
+export { fetchTvShowSearchResults, fetchTrendingTvShows } from './tvShows';
+export { fetchPeopleSearchResults, fetchTrendingPeople } from './people';

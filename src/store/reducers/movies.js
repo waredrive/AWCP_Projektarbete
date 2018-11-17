@@ -3,8 +3,8 @@ import { updateObject } from '../../shared/helperMethods';
 
 const initialState = {
   searchResults: null,
-  movieDetails: null,
-  trendingMovies: null,
+  details: null,
+  trending: null,
   sError: null,
   sLoading: false,
   dError: null,
@@ -22,6 +22,15 @@ const fetchMovieSearchResultsSuccess = (state, action) =>
 const fetchMovieSearchResultsFailed = state =>
   updateObject(state, { sLoading: false });
 
+const fetchTrendingMoviesStart = state =>
+  updateObject(state, { tLoading: true });
+
+const fetchTrendingMoviesSuccess = (state, action) =>
+  updateObject(state, { trending: action.trending, tLoading: true });
+
+const fetchTrendingMoviesFailed = state =>
+  updateObject(state, { tLoading: false });
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_MOVIE_SEARCH_RESULTS_START:
@@ -30,6 +39,12 @@ const reducer = (state = initialState, action) => {
       return fetchMovieSearchResultsSuccess(state, action);
     case actionTypes.FETCH_MOVIE_SEARCH_RESULTS_FAILED:
       return fetchMovieSearchResultsFailed(state, action);
+    case actionTypes.FETCH_TRENDING_MOVIES_START:
+      return fetchTrendingMoviesStart(state, action);
+    case actionTypes.FETCH_TRENDING_MOVIES_SUCCESS:
+      return fetchTrendingMoviesSuccess(state, action);
+    case actionTypes.FETCH_TRENDING_MOVIES_FAILED:
+      return fetchTrendingMoviesFailed(state, action);
     default:
       return state;
   }

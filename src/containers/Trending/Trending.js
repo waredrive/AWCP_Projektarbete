@@ -1,51 +1,67 @@
 import React, { Component } from 'react';
-import { fetchTrendingFromAPI } from '../../shared/fetchFromAPI';
+import { connect } from 'react-redux';
 import TrendingCarousel from './TrendingCarousel/TrendingCarousel';
+import * as actions from '../../store/actions';
 
 class Trending extends Component {
-  state = {
-    trendingMovies: [],
-    trendingTvShows: [],
-    trendingPeople: []
-  };
-
   componentDidMount() {
-    Promise.all([
-      fetchTrendingFromAPI('movie'),
-      fetchTrendingFromAPI('tv'),
-      fetchTrendingFromAPI('person')
-    ]).then(([res1, res2, res3]) =>
-      this.setState({
-        trendingMovies: res1,
-        trendingTvShows: res2,
-        trendingPeople: res3
-      })
-    );
+    const {
+      onFetchTrendingMovies,
+      onFetchTrendingTvShows,
+      onFetchTrendingPeople
+    } = this.props;
+    onFetchTrendingMovies();
+    onFetchTrendingTvShows();
+    onFetchTrendingPeople();
   }
 
   render() {
-    const { trendingMovies, trendingTvShows, trendingPeople } = this.state;
+    const { trendingMovies, trendingTvShows, trendingPeople } = this.props;
 
     return (
       <div className="container">
-        <TrendingCarousel
-          headLine="Trending Movies"
-          type="movie"
-          results={trendingMovies.results}
-        />
-        <TrendingCarousel
-          headLine="Trending Tv Shows"
-          type="tv"
-          results={trendingTvShows.results}
-        />
-        <TrendingCarousel
-          headLine="Trending People"
-          type="person"
-          results={trendingPeople.results}
-        />
+        {trendingMovies ? (
+          <TrendingCarousel
+            headLine="Trending Movies"
+            type="movie"
+            results={trendingMovies.results}
+          />
+        ) : null}
+        {trendingTvShows ? (
+          <TrendingCarousel
+            headLine="Trending Tv Shows"
+            type="tv"
+            results={trendingTvShows.results}
+          />
+        ) : null}
+        {trendingPeople ? (
+          <TrendingCarousel
+            headLine="Trending People"
+            type="person"
+            results={trendingPeople.results}
+          />
+        ) : null}
       </div>
     );
   }
 }
 
-export default Trending;
+const mapStateAsProps = state => ({
+  trendingMovies: state.movies.trending,
+  trendingTvShows: state.tvShows.trending,
+  trendingPeople: state.people.trending
+});
+
+const mapDispatchAsProps = dispatch => ({
+  onFetchTrendingMovies: (query, page) =>
+    dispatch(actions.fetchTrendingMovies(query, page)),
+  onFetchTrendingTvShows: (query, page) =>
+    dispatch(actions.fetchTrendingTvShows(query, page)),
+  onFetchTrendingPeople: (query, page) =>
+    dispatch(actions.fetchTrendingPeople(query, page))
+});
+
+export default connect(
+  mapStateAsProps,
+  mapDispatchAsProps
+)(Trending);

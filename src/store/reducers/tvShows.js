@@ -3,8 +3,8 @@ import { updateObject } from '../../shared/helperMethods';
 
 const initialState = {
   searchResults: null,
-  tvShowDetails: null,
-  trendingTvShows: null,
+  details: null,
+  trending: null,
   sError: null,
   sLoading: false,
   dError: null,
@@ -22,6 +22,15 @@ const fetchTvShowSearchResultsSuccess = (state, action) =>
 const fetchTvShowSearchResultsFailed = state =>
   updateObject(state, { sLoading: false });
 
+const fetchTrendingTvShowsStart = state =>
+  updateObject(state, { tLoading: true });
+
+const fetchTrendingTvShowsSuccess = (state, action) =>
+  updateObject(state, { trending: action.trending, tLoading: true });
+
+const fetchTrendingTvShowsFailed = state =>
+  updateObject(state, { tLoading: false });
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_TV_SHOW_SEARCH_RESULTS_START:
@@ -30,6 +39,12 @@ const reducer = (state = initialState, action) => {
       return fetchTvShowSearchResultsSuccess(state, action);
     case actionTypes.FETCH_TV_SHOW_SEARCH_RESULTS_FAILED:
       return fetchTvShowSearchResultsFailed(state, action);
+    case actionTypes.FETCH_TRENDING_TV_SHOWS_START:
+      return fetchTrendingTvShowsStart(state, action);
+    case actionTypes.FETCH_TRENDING_TV_SHOWS_SUCCESS:
+      return fetchTrendingTvShowsSuccess(state, action);
+    case actionTypes.FETCH_TRENDING_TV_SHOWS_FAILED:
+      return fetchTrendingTvShowsFailed(state, action);
     default:
       return state;
   }

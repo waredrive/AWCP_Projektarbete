@@ -30,3 +30,29 @@ export const fetchPeopleSearchResults = (searchQuery, page) => dispatch => {
       dispatch(fetchPeopleSearchResultsFailed(err));
     });
 };
+
+export const fetchTrendingPeopleSuccess = trending => ({
+  type: actionTypes.FETCH_TRENDING_PEOPLE_SUCCESS,
+  trending
+});
+
+export const fetchTrendingPeopleFailed = error => ({
+  type: actionTypes.FETCH_TRENDING_PEOPLE_FAILED,
+  error
+});
+
+export const fetchTrendingPeopleStart = () => ({
+  type: actionTypes.FETCH_TRENDING_PEOPLE_START
+});
+
+export const fetchTrendingPeople = () => dispatch => {
+  dispatch(fetchTrendingPeopleStart());
+  axios
+    .get(`trending/person/week?api_key=${process.env.REACT_APP_TMDB_API_KEY}`)
+    .then(res => {
+      dispatch(fetchTrendingPeopleSuccess(res.data));
+    })
+    .catch(err => {
+      dispatch(fetchTrendingPeopleFailed(err));
+    });
+};
