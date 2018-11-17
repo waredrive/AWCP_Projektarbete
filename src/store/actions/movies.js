@@ -1,22 +1,22 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-instance';
 
-export const fetchMoviesSuccess = movies => ({
-  type: actionTypes.FETCH_MOVIES_SUCCESS,
-  movies
+export const fetchMovieSearchResultsSuccess = searchResults => ({
+  type: actionTypes.FETCH_MOVIE_SEARCH_RESULTS_SUCCESS,
+  searchResults
 });
 
-export const fetchMoviesFailed = error => ({
-  type: actionTypes.FETCH_MOVIES_FAILED,
+export const fetchMovieSearchResultsFailed = error => ({
+  type: actionTypes.FETCH_MOVIE_SEARCH_RESULTS_FAILED,
   error
 });
 
-export const fetchMoviesStart = () => ({
-  type: actionTypes.FETCH_MOVIES_START
+export const fetchMovieSearchResultsStart = () => ({
+  type: actionTypes.FETCH_MOVIE_SEARCH_RESULTS_START
 });
 
-export const fetchMovies = (searchQuery, page) => dispatch => {
-  dispatch(fetchMoviesStart());
+export const fetchMovieSearchResults = (searchQuery, page) => dispatch => {
+  dispatch(fetchMovieSearchResultsStart());
   axios
     .get(
       `search/movie?api_key=${
@@ -24,9 +24,9 @@ export const fetchMovies = (searchQuery, page) => dispatch => {
       }&query=${searchQuery}&language=en-US&page=${page}&include_adult=false`
     )
     .then(res => {
-      dispatch(fetchMoviesSuccess(res.data));
+      dispatch(fetchMovieSearchResultsSuccess(res.data));
     })
     .catch(err => {
-      dispatch(fetchMoviesFailed(err));
+      dispatch(fetchMovieSearchResultsFailed(err));
     });
 };

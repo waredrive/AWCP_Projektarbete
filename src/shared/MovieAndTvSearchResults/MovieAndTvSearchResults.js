@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import PersonSummaryCard from '../../../components/Person/PersonSummaryCard/PersonSummaryCard';
-import PaginationNav from '../../../shared/PaginationNav/PaginationNav';
-import { getImageUrl } from '../../../shared/helperMethods';
+import MovieAndTvSummaryCard from './MovieAndTvSummaryCard/MovieAndTvSummaryCard';
+import PaginationNav from '../PaginationNav/PaginationNav';
+import { getImageUrl } from '../helperMethods';
 
-class PeopleSearchResults extends Component {
+class MovieSearchResults extends Component {
   onShowDetailsClickHandler = id => {
-    const { history } = this.props;
-    history.push(`/person/${id}`);
+    const { history, type } = this.props;
+    history.push(`/${type}/${id}`);
   };
 
   render() {
@@ -18,19 +18,21 @@ class PeopleSearchResults extends Component {
 
     if (searchResults) {
       searchResults.results.forEach(result => {
-        const knownFor = result.known_for
-          ? result.known_for.map(
-              production => production.title || production.name
-            )
-          : [];
+        const overviewText = result.overview
+          ? result.overview
+          : "We don't have a description of this movie.";
 
         searchPage.push(
-          <PersonSummaryCard
+          <MovieAndTvSummaryCard
             id={result.id}
+            type="movie"
             key={result.id}
-            name={result.name}
-            knownFor={knownFor}
-            profilePath={getImageUrl(result.profile_path, 'w154')}
+            title={result.title || result.name}
+            overviewText={overviewText}
+            posterPath={getImageUrl(result.poster_path, 'w185')}
+            voteAverage={result.vote_average}
+            voteCount={result.vote_count}
+            releaseDate={result.release_date}
             onShowDetailsClick={() => this.onShowDetailsClickHandler(result.id)}
           />
         );
@@ -54,4 +56,4 @@ class PeopleSearchResults extends Component {
   }
 }
 
-export default withRouter(PeopleSearchResults);
+export default withRouter(MovieSearchResults);

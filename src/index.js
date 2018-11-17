@@ -13,13 +13,15 @@ import './index.css';
 import App from './containers/App';
 import * as serviceWorker from './serviceWorker';
 import moviesReducer from './store/reducers/movies';
+import tvShowsReducer from './store/reducers/tvShows';
+import peopleReducer from './store/reducers/people';
 
 const rootElement = document.getElementById('root');
 
 const rootReducer = combineReducers({
-  movies: moviesReducer
-  // order: orderBuilderReducer,
-  // auth: authReducer
+  movies: moviesReducer,
+  tvShows: tvShowsReducer,
+  people: peopleReducer
 });
 
 const composeEnhancers =

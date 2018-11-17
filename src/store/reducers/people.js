@@ -3,8 +3,8 @@ import { updateObject } from '../../shared/helperMethods';
 
 const initialState = {
   searchResults: null,
-  movieDetails: null,
-  trendingMovies: null,
+  personDetails: null,
+  trendingPeople: null,
   sError: null,
   sLoading: false,
   dError: null,
@@ -13,23 +13,23 @@ const initialState = {
   tLoading: false
 };
 
-const fetchMovieSearchResultsStart = state =>
+const fetchPeopleSearchResultsStart = state =>
   updateObject(state, { sLoading: true });
 
-const fetchMovieSearchResultsSuccess = (state, action) =>
+const fetchPeopleSearchResultsSuccess = (state, action) =>
   updateObject(state, { searchResults: action.searchResults, sLoading: true });
 
-const fetchMovieSearchResultsFailed = state =>
+const fetchPeopleSearchResultsFailed = state =>
   updateObject(state, { sLoading: false });
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case actionTypes.FETCH_MOVIE_SEARCH_RESULTS_START:
-      return fetchMovieSearchResultsStart(state, action);
-    case actionTypes.FETCH_MOVIE_SEARCH_RESULTS_SUCCESS:
-      return fetchMovieSearchResultsSuccess(state, action);
-    case actionTypes.FETCH_MOVIE_SEARCH_RESULTS_FAILED:
-      return fetchMovieSearchResultsFailed(state, action);
+    case actionTypes.FETCH_PEOPLE_SEARCH_RESULTS_START:
+      return fetchPeopleSearchResultsStart(state, action);
+    case actionTypes.FETCH_PEOPLE_SEARCH_RESULTS_SUCCESS:
+      return fetchPeopleSearchResultsSuccess(state, action);
+    case actionTypes.FETCH_PEOPLE_SEARCH_RESULTS_FAILED:
+      return fetchPeopleSearchResultsFailed(state, action);
     default:
       return state;
   }
