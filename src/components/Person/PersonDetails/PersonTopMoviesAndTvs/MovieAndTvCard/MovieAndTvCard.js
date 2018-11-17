@@ -5,7 +5,7 @@ const MovieAndTvCard = props => {
   const { name, type, imagePath, id } = props;
 
   return (
-    <div className="col mb-4">
+    <div className="col-3 mb-4">
       <div className="card h-100" style={{ width: '160px' }}>
         <Link to={`/${type}/${id}`}>
           <img
