@@ -36,6 +36,7 @@ const MovieAndTvRecommendations = props => {
             dragging={false}
             slidesToShow={3}
             cellSpacing={15}
+            disableKeyboardControls
             wrapAround
             cellAlign="center"
             easing="easeQuadInOut"

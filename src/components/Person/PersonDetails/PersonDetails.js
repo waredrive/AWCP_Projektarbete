@@ -57,7 +57,7 @@ class PersonDetails extends Component {
                     }
                   />
                 </div>
-                <PersonBioLists
+                 <PersonBioLists
                   movieCredits={person.movie_credits}
                   tvCredits={person.tv_credits}
                 />

@@ -51,16 +51,19 @@ const PersonBioList = props => {
     ));
   }
   return (
-    // TODO: fix so the headlines dissapears if no results or add text
     <div>
-      <div>
-        <h5 className="mt-3 ml-1">As Cast Member</h5>
-        <ul className="list-group">{cast}</ul>
-      </div>
-      <div>
-        <h5 className="mt-3 ml-1">As Crew Member</h5>
-        <ul className="list-group">{crew}</ul>
-      </div>
+      {cast && cast.length > 0 ? (
+        <div>
+          <h5 className="mt-3 ml-1">As Cast Member</h5>
+          <ul className="list-group">{cast}</ul>
+        </div>
+      ) : null}
+      {crew && crew.length > 0 ? (
+        <div>
+          <h5 className="mt-3 ml-1">As Crew Member</h5>
+          <ul className="list-group">{crew}</ul>
+        </div>
+      ) : null}
     </div>
   );
 };
