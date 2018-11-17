@@ -15,6 +15,15 @@ class Trending extends Component {
     onFetchTrendingPeople();
   }
 
+  // This is a solution for a bug in the nuka-carousel package,
+  // as stated in https://github.com/FormidableLabs/nuka-carousel/issues/265
+  componentDidUpdate() {
+    setTimeout(() => {
+      // eslint-disable-next-line no-undef
+      window.dispatchEvent(new Event('resize'));
+    }, 0);
+  }
+
   render() {
     const { trendingMovies, trendingTvShows, trendingPeople } = this.props;
 
