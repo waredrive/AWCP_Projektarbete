@@ -1,3 +1,5 @@
+// TODO: WILL BE REDUNTADT
+
 import axios from 'axios';
 
 export const fetchSearchesFromAPI = (query, type = 'multi', page = 1) =>

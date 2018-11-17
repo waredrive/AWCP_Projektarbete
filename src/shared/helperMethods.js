@@ -41,3 +41,10 @@ export const formatCurrency = amount => {
   });
   return formatter.format(amount);
 };
+
+export const updateObject = (oldObject, newProperties) => {
+  return {
+    ...oldObject,
+    ...newProperties
+  };
+};

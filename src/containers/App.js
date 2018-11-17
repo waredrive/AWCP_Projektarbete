@@ -30,7 +30,6 @@ class App extends Component {
             </div>
           </div>
         </div>
-        {/* TODO: create search/movie search/tv and search/person */}
         <Switch>
           <Route path="/" exact component={Trending} />
           <Route path="/search" exact component={SearchResults} />
