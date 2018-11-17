@@ -32,6 +32,7 @@ const TvShowFacts = props => {
       href={person.homepage}
       target="_blank"
       rel="noopener noreferrer"
+      style={{ wordWrap: 'break-word' }}
     >
       {person.homepage}
     </a>
