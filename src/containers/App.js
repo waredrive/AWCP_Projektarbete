@@ -34,10 +34,9 @@ class App extends Component {
           <Route path="/" exact component={Trending} />
           <Route path="/search" exact component={SearchResults} />
           <Route path="/movie/:id" exact component={MovieDetails} />
-          <Route path="/movie/:id/credits" exact component={FullCastAndCrew} />
           <Route path="/tv/:id" exact component={TvShowDetails} />
-          <Route path="/tv/:id/credits" exact component={FullCastAndCrew} />
           <Route path="/person/:id" exact component={PersonDetails} />
+          <Route path="/:type/:id/credits" exact component={FullCastAndCrew} />
           {/* <Route
             path="/error"
             component={() => (

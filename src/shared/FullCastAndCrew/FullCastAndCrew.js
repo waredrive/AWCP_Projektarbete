@@ -1,27 +1,21 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import { fetchCreditsFromAPI } from '../fetchFromAPI';
+import { connect } from 'react-redux';
 import CastAndCrewCard from './CastAndCrewCard/CastAndCrewCard';
 import { getImageUrl } from '../helperMethods';
+import * as actions from '../../store/actions/index';
 
 class FullCastAndCrew extends Component {
-  state = {
-    crew: [],
-    cast: []
-  };
-
   componentDidMount() {
-    const { location } = this.props;
-    fetchCreditsFromAPI(location.pathname).then(resp => {
-      this.setState({ crew: resp.crew, cast: resp.cast });
-    });
+    const { match, onFetchCredits } = this.props;
+    onFetchCredits(match.params.type, match.params.id);
   }
 
   render() {
-    const { crew, cast } = this.state;
+    const { crew, cast } = this.props;
 
     const allCast =
-      cast.length > 0
+      cast && cast.length > 0
         ? cast.map(person => (
             <CastAndCrewCard
               id={person.id}
@@ -34,7 +28,7 @@ class FullCastAndCrew extends Component {
         : null;
 
     const allCrew =
-      crew.length > 0
+      crew && crew.length > 0
         ? crew.map(person => (
             <CastAndCrewCard
               id={person.id}
@@ -63,4 +57,18 @@ class FullCastAndCrew extends Component {
   }
 }
 
-export default withRouter(FullCastAndCrew);
+const mapStateAsProps = state => ({
+  cast: state.credits.cast,
+  crew: state.credits.crew
+});
+
+const mapDispatchAsProps = dispatch => ({
+  onFetchCredits: (type, id) => dispatch(actions.fetchCredits(type, id))
+});
+
+export default withRouter(
+  connect(
+    mapStateAsProps,
+    mapDispatchAsProps
+  )(FullCastAndCrew)
+);

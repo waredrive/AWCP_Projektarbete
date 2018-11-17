@@ -15,13 +15,15 @@ import * as serviceWorker from './serviceWorker';
 import moviesReducer from './store/reducers/movies';
 import tvShowsReducer from './store/reducers/tvShows';
 import peopleReducer from './store/reducers/people';
+import creditsReducer from './store/reducers/credits';
 
 const rootElement = document.getElementById('root');
 
 const rootReducer = combineReducers({
   movies: moviesReducer,
   tvShows: tvShowsReducer,
-  people: peopleReducer
+  people: peopleReducer,
+  credits: creditsReducer
 });
 
 const composeEnhancers =
