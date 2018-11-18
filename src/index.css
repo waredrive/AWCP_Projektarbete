@@ -28,6 +28,10 @@ a.active.nav-link {
   background-color: #5a6268 !important;
 }
 
+a.nav-link.disabled {
+  cursor: default;
+}
+
 .page-item.active > .page-link {
   background-color: #5a6268 !important;
   color: white !important;

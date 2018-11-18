@@ -15,6 +15,7 @@ class Trending extends Component {
     onFetchTrendingPeople();
   }
 
+  // TODO: Still not working
   // This is a solution for a bug in the nuka-carousel package,
   // as stated here: https://github.com/FormidableLabs/nuka-carousel/issues/265
   componentDidUpdate() {

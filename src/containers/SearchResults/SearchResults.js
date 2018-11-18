@@ -6,6 +6,7 @@ import MovieAndTvSearchResults from '../../shared/MovieAndTvSearchResults/MovieA
 import PeopleSearchResults from '../People/PeopleSearchResults/PeopleSearchResults';
 import * as actions from '../../store/actions/index';
 
+// TODO: move fetch to resp classes and make activeTab dynamic
 class SearchResults extends Component {
   state = {
     activeTab: 'Movies'
@@ -25,8 +26,8 @@ class SearchResults extends Component {
     }
   }
 
-  fetchQueryString = loc => {
-    const { location } = loc || this.props;
+  fetchQueryString = props => {
+    const { location } = props || this.props;
     const queryParam = new URLSearchParams(location.search);
     return queryParam.get('query');
   };
@@ -78,6 +79,7 @@ class SearchResults extends Component {
             <Nav pills className="bg-light rounded">
               <NavItem>
                 <NavLink
+                  disabled={!movies || movies.results.length === 0}
                   className={classnames({
                     active: activeTab === 'Movies'
                   })}
@@ -87,10 +89,19 @@ class SearchResults extends Component {
                   }}
                 >
                   Movies
+                  {movies ? (
+                    <span
+                      className="badge badge-pill badge-success ml-1"
+                      style={{ verticalAlign: 'top' }}
+                    >
+                      {movies.total_results}
+                    </span>
+                  ) : null}
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
+                  disabled={!tvShows || tvShows.results.length === 0}
                   href="#"
                   className={classnames({ active: activeTab === 'Tv' })}
                   onClick={() => {
@@ -98,10 +109,19 @@ class SearchResults extends Component {
                   }}
                 >
                   Tv Shows
+                  {tvShows ? (
+                    <span
+                      className="badge badge-pill badge-success ml-1"
+                      style={{ verticalAlign: 'top' }}
+                    >
+                      {tvShows.total_results}
+                    </span>
+                  ) : null}
                 </NavLink>
               </NavItem>
               <NavItem>
                 <NavLink
+                  disabled={!people || people.results.length === 0}
                   href="#"
                   className={classnames({
                     active: activeTab === 'People'
@@ -111,6 +131,14 @@ class SearchResults extends Component {
                   }}
                 >
                   People
+                  {people ? (
+                    <span
+                      className="badge badge-pill badge-success ml-1"
+                      style={{ verticalAlign: 'top' }}
+                    >
+                      {people.total_results}
+                    </span>
+                  ) : null}
                 </NavLink>
               </NavItem>
             </Nav>
