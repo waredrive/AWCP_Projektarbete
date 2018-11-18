@@ -29,7 +29,7 @@ class MovieDetails extends Component {
 
     const crew = movie && movie.credits ? movie.credits.crew : null;
 
-    return movie && String(movie.id) === match.params.id ? (
+    return movie && match.params.id.startsWith(String(movie.id)) ? (
       <div>
         <MovieAndTvHeader production={movie} />
         <div className="bg-light">

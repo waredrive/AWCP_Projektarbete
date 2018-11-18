@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Redirect, Switch, Link, withRouter } from 'react-router-dom';
 import SearchBar from '../components/SearchBar/SearchBar';
 import Trending from './Trending/Trending';
@@ -10,48 +10,32 @@ import FullCastAndCrew from '../shared/FullCastAndCrew/FullCastAndCrew';
 import withErrorHandler from '../hoc/withErrorHandler/withErrorHandler';
 import axios from '../axios-instance';
 
-// eslint-disable-next-line react/prefer-stateless-function
-class App extends Component {
-  render() {
-    return (
-      <main>
-        <nav className="navbar navbar-dark bg-dark">
-          <Link className="navbar-brand" to="/">
-            <i className="fa fa-home fa-2x" />
-          </Link>
-        </nav>
-        <div className="bg-light">
-          <div className="container-fluid" style={{ minWidth: '480px' }}>
-            <div className="row justify-content-center">
-              <div
-                className="col-md-12 mx-0 px-0"
-                style={{ maxWidth: '1100px' }}
-              >
-                <SearchBar />
-              </div>
-            </div>
+const App = () => (
+  <main>
+    <nav className="navbar navbar-dark bg-dark">
+      <Link className="navbar-brand" to="/">
+        <i className="fa fa-home fa-2x" />
+      </Link>
+    </nav>
+    <div className="bg-light">
+      <div className="container-fluid" style={{ minWidth: '480px' }}>
+        <div className="row justify-content-center">
+          <div className="col-md-12 mx-0 px-0" style={{ maxWidth: '1100px' }}>
+            <SearchBar />
           </div>
         </div>
-        {/* TODO: Add withErrorHandler and default error page */}
-        <Switch>
-          <Route path="/" exact component={Trending} />
-          <Route path="/search" exact component={SearchResults} />
-          <Route path="/movie/:id" exact component={MovieDetails} />
-          <Route path="/tv/:id" exact component={TvShowDetails} />
-          <Route path="/person/:id" exact component={PersonDetails} />
-          <Route path="/:type/:id/credits" exact component={FullCastAndCrew} />
-          {/* <Route
-            path="/error"
-            component={() => (
-              <div>TempError</div>
-              <ErrorMessage>An Error has occurred while fetching data from SL. Please try again.</ErrorMessage>
-            )}
-          /> */}
-          <Redirect to="/" />
-        </Switch>
-      </main>
-    );
-  }
-}
+      </div>
+    </div>
+    <Switch>
+      <Route path="/" exact component={Trending} />
+      <Route path="/search" exact component={SearchResults} />
+      <Route path="/movie/:id" exact component={MovieDetails} />
+      <Route path="/tv/:id" exact component={TvShowDetails} />
+      <Route path="/person/:id" exact component={PersonDetails} />
+      <Route path="/:type/:id/credits" exact component={FullCastAndCrew} />
+      <Redirect to="/" />
+    </Switch>
+  </main>
+);
 
 export default withRouter(withErrorHandler(App, axios));
