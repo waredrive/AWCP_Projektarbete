@@ -23,13 +23,13 @@ class TvShowDetails extends Component {
   }
 
   render() {
-    const { tvShow } = this.props;
+    const { tvShow, match } = this.props;
 
     const cast = tvShow && tvShow.credits ? tvShow.credits.cast : null;
 
     const crew = tvShow && tvShow.credits ? tvShow.credits.crew : null;
 
-    return tvShow ? (
+    return tvShow && String(tvShow.id) === match.params.id ? (
       <div>
         <MovieAndTvHeader production={tvShow} />
         <div className="bg-light">

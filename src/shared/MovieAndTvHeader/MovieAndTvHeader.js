@@ -33,7 +33,7 @@ const MovieAndTvHeader = props => {
   const crewInfo =
     crew && crew.length > 0
       ? crew.splice(0, 3).map(person => (
-          <div key={person.job + person.id}>
+          <div key={person.job + String(person.id)}>
             <Link to={`/person/${person.id}`} className="light">
               <h5 className="mb-0">{person.name}</h5>
             </Link>

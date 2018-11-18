@@ -23,13 +23,13 @@ class MovieDetails extends Component {
   }
 
   render() {
-    const { movie } = this.props;
+    const { movie, match } = this.props;
 
     const cast = movie && movie.credits ? movie.credits.cast : null;
 
     const crew = movie && movie.credits ? movie.credits.crew : null;
 
-    return movie ? (
+    return movie && String(movie.id) === match.params.id ? (
       <div>
         <MovieAndTvHeader production={movie} />
         <div className="bg-light">

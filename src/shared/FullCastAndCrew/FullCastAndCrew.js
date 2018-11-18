@@ -32,7 +32,7 @@ class FullCastAndCrew extends Component {
         ? crew.map(person => (
             <CastAndCrewCard
               id={person.id}
-              key={person.id + person.job}
+              key={String(person.id) + person.job}
               actorName={person.name}
               playedRoleName={person.job}
               imagePath={getImageUrl(person.profile_path, 'w92')}

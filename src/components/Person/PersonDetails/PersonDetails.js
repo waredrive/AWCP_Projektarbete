@@ -24,9 +24,9 @@ class PersonDetails extends Component {
   }
 
   render() {
-    const { person } = this.props;
+    const { person, match } = this.props;
 
-    return person ? (
+    return person && String(person.id) === match.params.id ? (
       <div>
         <PersonHeader
           imagePath={getImageUrl(person.profile_path, 'h632')}
