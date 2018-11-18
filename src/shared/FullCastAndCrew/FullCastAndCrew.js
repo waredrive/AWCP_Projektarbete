@@ -28,7 +28,7 @@ class FullCastAndCrew extends Component {
         ))
       ) : (
         <p className="text-light ml-3 mt-3">
-          No cast found for this production
+          No cast was found for this production
         </p>
       );
 
@@ -45,7 +45,7 @@ class FullCastAndCrew extends Component {
         ))
       ) : (
         <p className="text-light ml-3 mt-3">
-          No crew found for this production
+          No crew was found for this production
         </p>
       );
 
