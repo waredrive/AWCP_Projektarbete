@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import CastAndCrewCard from './CastAndCrewCard/CastAndCrewCard';
 import { getImageUrl } from '../helperMethods';
 import * as actions from '../../store/actions/index';
+import Spinner from '../Spinner/Spinner';
 
 class FullCastAndCrew extends Component {
   componentDidMount() {
@@ -15,32 +16,40 @@ class FullCastAndCrew extends Component {
     const { crew, cast } = this.props;
 
     const allCast =
-      cast && cast.length > 0
-        ? cast.map(person => (
-            <CastAndCrewCard
-              id={person.id}
-              key={person.id + person.character}
-              actorName={person.name}
-              playedRoleName={person.character}
-              imagePath={getImageUrl(person.profile_path, 'w92')}
-            />
-          ))
-        : null;
+      cast && cast.length > 0 ? (
+        cast.map(person => (
+          <CastAndCrewCard
+            id={person.id}
+            key={person.id + person.character}
+            actorName={person.name}
+            playedRoleName={person.character}
+            imagePath={getImageUrl(person.profile_path, 'w92')}
+          />
+        ))
+      ) : (
+        <p className="text-light ml-3 mt-3">
+          No cast found for this production
+        </p>
+      );
 
     const allCrew =
-      crew && crew.length > 0
-        ? crew.map(person => (
-            <CastAndCrewCard
-              id={person.id}
-              key={String(person.id) + person.job}
-              actorName={person.name}
-              playedRoleName={person.job}
-              imagePath={getImageUrl(person.profile_path, 'w92')}
-            />
-          ))
-        : null;
+      crew && crew.length > 0 ? (
+        crew.map(person => (
+          <CastAndCrewCard
+            id={person.id}
+            key={String(person.id) + person.job}
+            actorName={person.name}
+            playedRoleName={person.job}
+            imagePath={getImageUrl(person.profile_path, 'w92')}
+          />
+        ))
+      ) : (
+        <p className="text-light ml-3 mt-3">
+          No crew found for this production
+        </p>
+      );
 
-    return (
+    return crew && cast ? (
       <div className="container">
         <div className="row">
           <div className="col-6">
@@ -53,6 +62,8 @@ class FullCastAndCrew extends Component {
           </div>
         </div>
       </div>
+    ) : (
+      <Spinner />
     );
   }
 }
