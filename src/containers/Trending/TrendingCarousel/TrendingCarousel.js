@@ -19,6 +19,7 @@ const TrendingCarousel = props => {
               )}
               alt={result.name || result.title}
               title={result.name || result.title}
+              style={{ height: '278px' }}
             />
           </Link>
         ))
