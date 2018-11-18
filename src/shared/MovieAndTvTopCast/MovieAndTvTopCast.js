@@ -4,7 +4,7 @@ import ActorCard from './ActorCard/ActorCard';
 import { getImageUrl } from '../helperMethods';
 
 const MovieAndTvTopCast = props => {
-  const { cast } = props;
+  const { cast, crew } = props;
 
   const actorCards =
     cast && cast.length > 0
@@ -34,8 +34,7 @@ const MovieAndTvTopCast = props => {
         <p>There is no cast added to this movie.</p>
       )}
       <div className="row d-block pr-5">
-        {/* TODO: this must also check the crew. Will be possible when redux implemented. */}
-        {cast && cast.length > 0 ? (
+        {(cast && cast.length > 0) || (crew && crew.length > 0) ? (
           <button
             type="button"
             className="btn btn-outline-secondary btn-block btn-lg ml-3"
