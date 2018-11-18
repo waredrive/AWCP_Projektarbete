@@ -1,69 +1,37 @@
 import React, { Component } from 'react';
-import { fetchDetailsFromAPI } from '../../../shared/fetchFromAPI';
+import { connect } from 'react-redux';
 import MovieAndTvTopCast from '../../../shared/MovieAndTvTopCast/MovieAndTvTopCast';
 import MovieAndTvHeader from '../../../shared/MovieAndTvHeader/MovieAndTvHeader';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
 import MovieFacts from './MovieFacts/MovieFacts';
 import MovieAndTvRecommendations from '../../../shared/MovieAndTvRecommendations/MovieAndTvRecommendations';
-import { getImageUrl } from '../../../shared/helperMethods';
+import * as actions from '../../../store/actions/index';
+import Spinner from '../../../shared/Spinner/Spinner';
 
 class MovieDetails extends Component {
-  state = {
-    movie: {}
-  };
-
   componentDidMount() {
-    const { match } = this.props;
-    this.fetchMovieFromAPI(match.params.id);
+    const { match, onFetchMovie } = this.props;
+    onFetchMovie(match.params.id);
   }
 
   componentDidUpdate(prevProps) {
-    const { match } = this.props;
+    const { match, onFetchMovie } = this.props;
     if (prevProps.match.params.id === match.params.id) {
       return;
     }
-    this.fetchMovieFromAPI(match.params.id);
+    onFetchMovie(match.params.id);
   }
 
-  fetchMovieFromAPI = id => {
-    fetchDetailsFromAPI('movie', id).then(response => {
-      this.setState({ movie: response });
-    });
-  };
-
   render() {
-    const { movie } = this.state;
+    const { movie } = this.props;
 
-    const yearOfProduction = movie.release_date
-      ? new Date(movie.release_date).getFullYear()
-      : null;
+    const cast = movie && movie.credits ? movie.credits.cast : null;
 
-    const quote = movie.tagline ? `"${movie.tagline}"` : null;
-    const overview =
-      movie.overview || "We don't have a description of this movie.";
+    const crew = movie && movie.credits ? movie.credits.crew : null;
 
-    const cast = movie.credits ? movie.credits.cast : null;
-
-    const crew = movie.credits ? movie.credits.crew : null;
-
-    const videos = movie.videos ? movie.videos.results : null;
-
-    return (
+    return movie ? (
       <div>
-        <MovieAndTvHeader
-          backdropImagePath={movie.backdrop_path}
-          posterImagePath={getImageUrl(movie.poster_path, 'w300')}
-          title={movie.title}
-          yearOfProduction={yearOfProduction}
-          quote={quote}
-          voteAverage={movie.vote_average}
-          voteCount={movie.vote_count}
-          overview={overview}
-          crew={crew}
-          homepage={movie.homepage}
-          externalIds={movie.external_ids}
-          videos={videos}
-        />
+        <MovieAndTvHeader production={movie} />
         <div className="bg-light">
           <div className="container bg-light">
             <div className="row">
@@ -85,8 +53,21 @@ class MovieDetails extends Component {
         </div>
         <Backdrop backdropPath={movie.backdrop_path} />
       </div>
+    ) : (
+      <Spinner />
     );
   }
 }
 
-export default MovieDetails;
+const mapStateAsProps = state => ({
+  movie: state.movies.details
+});
+
+const mapDispatchAsProps = dispatch => ({
+  onFetchMovie: id => dispatch(actions.fetchMovieDetails(id))
+});
+
+export default connect(
+  mapStateAsProps,
+  mapDispatchAsProps
+)(MovieDetails);

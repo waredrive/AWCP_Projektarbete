@@ -1,77 +1,45 @@
 import React, { Component } from 'react';
-import { fetchDetailsFromAPI } from '../../../shared/fetchFromAPI';
-import MovieAndTvHeader from '../../../shared/MovieAndTvHeader/MovieAndTvHeader';
-import { getImageUrl } from '../../../shared/helperMethods';
-import Backdrop from '../../../shared/Backdrop/Backdrop';
-import MovieAndTvRecommendations from '../../../shared/MovieAndTvRecommendations/MovieAndTvRecommendations';
+import { connect } from 'react-redux';
 import MovieAndTvTopCast from '../../../shared/MovieAndTvTopCast/MovieAndTvTopCast';
+import MovieAndTvHeader from '../../../shared/MovieAndTvHeader/MovieAndTvHeader';
+import Backdrop from '../../../shared/Backdrop/Backdrop';
 import TvShowFacts from './TvShowFacts/TvShowFacts';
+import MovieAndTvRecommendations from '../../../shared/MovieAndTvRecommendations/MovieAndTvRecommendations';
+import * as actions from '../../../store/actions/index';
+import Spinner from '../../../shared/Spinner/Spinner';
 
 class TvShowDetails extends Component {
-  state = {
-    tvShow: {}
-  };
-
   componentDidMount() {
-    const { match } = this.props;
-    this.fetchTvShowsFromAPI(match.params.id);
+    const { match, onFetchTvShow } = this.props;
+    onFetchTvShow(match.params.id);
   }
 
   componentDidUpdate(prevProps) {
-    const { match } = this.props;
+    const { match, onFetchTvShow } = this.props;
     if (prevProps.match.params.id === match.params.id) {
       return;
     }
-    this.fetchTvShowsFromAPI(match.params.id);
+    onFetchTvShow(match.params.id);
   }
 
-  fetchTvShowsFromAPI = id => {
-    fetchDetailsFromAPI('tv', id).then(response => {
-      this.setState({ tvShow: response });
-    });
-  };
-
   render() {
-    const { tvShow } = this.state;
-    const yearOfProduction = tvShow.first_air_date
-      ? new Date(tvShow.first_air_date).getFullYear()
-      : null;
+    const { tvShow } = this.props;
 
-    const quote = tvShow.tagline ? `"${tvShow.tagline}"` : null;
-    const overview =
-      tvShow.overview || "We don't have a description of this movie.";
+    const cast = tvShow && tvShow.credits ? tvShow.credits.cast : null;
 
-    const cast = tvShow.credits ? tvShow.credits.cast : null;
+    const crew = tvShow && tvShow.credits ? tvShow.credits.crew : null;
 
-    const crew = tvShow.credits ? tvShow.credits.crew : null;
-
-    const videos = tvShow.videos ? tvShow.videos.results : null;
-
-    return (
+    return tvShow ? (
       <div>
-        <MovieAndTvHeader
-          backdropImagePath={tvShow.backdrop_path}
-          posterImagePath={getImageUrl(tvShow.poster_path, 'w300')}
-          title={tvShow.name}
-          yearOfProduction={yearOfProduction}
-          quote={quote}
-          voteAverage={tvShow.vote_average}
-          voteCount={tvShow.vote_count}
-          overview={overview}
-          crew={crew}
-          creator={tvShow.created_by}
-          homepage={tvShow.homepage}
-          externalIds={tvShow.external_ids}
-          videos={videos}
-        />
+        <MovieAndTvHeader production={tvShow} />
         <div className="bg-light">
           <div className="container bg-light">
             <div className="row">
               <div className="col-9 my-3 pr-5">
                 <MovieAndTvTopCast cast={cast} crew={crew} />
                 <MovieAndTvRecommendations
-                  type="tv"
                   recommendations={tvShow.recommendations}
+                  type="movie"
                 />
               </div>
               <div
@@ -85,8 +53,21 @@ class TvShowDetails extends Component {
         </div>
         <Backdrop backdropPath={tvShow.backdrop_path} />
       </div>
+    ) : (
+      <Spinner />
     );
   }
 }
 
-export default TvShowDetails;
+const mapStateAsProps = state => ({
+  tvShow: state.tvShows.details
+});
+
+const mapDispatchAsProps = dispatch => ({
+  onFetchTvShow: id => dispatch(actions.fetchTvShowDetails(id))
+});
+
+export default connect(
+  mapStateAsProps,
+  mapDispatchAsProps
+)(TvShowDetails);

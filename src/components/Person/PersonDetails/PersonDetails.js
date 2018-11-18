@@ -1,41 +1,32 @@
 import React, { Component } from 'react';
-import { fetchDetailsFromAPI } from '../../../shared/fetchFromAPI';
+import { connect } from 'react-redux';
 import PersonHeader from './PersonHeader/PersonHeader';
 import { getImageUrl } from '../../../shared/helperMethods';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
 import PersonFacts from './PersonFacts/PersonFacts';
 import PersonBioLists from './PersonBioLists/PersonBioLists';
 import PersonTopMoviesAndTvs from './PersonTopMoviesAndTvs/PersonTopMoviesAndTvs';
+import * as actions from '../../../store/actions/index';
+import Spinner from '../../../shared/Spinner/Spinner';
 
 class PersonDetails extends Component {
-  state = {
-    person: {}
-  };
-
   componentDidMount() {
-    const { match } = this.props;
-    this.fetchPersonFromAPI(match.params.id);
+    const { match, onFetchPerson } = this.props;
+    onFetchPerson(match.params.id);
   }
 
   componentDidUpdate(prevProps) {
-    const { match } = this.props;
+    const { match, onFetchPerson } = this.props;
     if (prevProps.match.params.id === match.params.id) {
       return;
     }
-    this.fetchPersonFromAPI(match.params.id);
+    onFetchPerson(match.params.id);
   }
 
-  fetchPersonFromAPI = id => {
-    fetchDetailsFromAPI('person', id).then(response => {
-      this.setState({ person: response });
-      console.log(this.state);
-    });
-  };
-
   render() {
-    const { person } = this.state;
+    const { person } = this.props;
 
-    return (
+    return person ? (
       <div>
         <PersonHeader
           imagePath={getImageUrl(person.profile_path, 'h632')}
@@ -57,7 +48,7 @@ class PersonDetails extends Component {
                     }
                   />
                 </div>
-                 <PersonBioLists
+                <PersonBioLists
                   movieCredits={person.movie_credits}
                   tvCredits={person.tv_credits}
                 />
@@ -73,8 +64,21 @@ class PersonDetails extends Component {
         </div>
         <Backdrop />
       </div>
+    ) : (
+      <Spinner />
     );
   }
 }
 
-export default PersonDetails;
+const mapStateAsProps = state => ({
+  person: state.people.details
+});
+
+const mapDispatchAsProps = dispatch => ({
+  onFetchPerson: id => dispatch(actions.fetchPersonDetails(id))
+});
+
+export default connect(
+  mapStateAsProps,
+  mapDispatchAsProps
+)(PersonDetails);
