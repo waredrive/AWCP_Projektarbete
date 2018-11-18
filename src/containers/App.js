@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Redirect, Switch, Link } from 'react-router-dom';
+import { Route, Redirect, Switch, Link, withRouter } from 'react-router-dom';
 import SearchBar from '../components/SearchBar/SearchBar';
 import Trending from './Trending/Trending';
 import SearchResults from './SearchResults/SearchResults';
@@ -7,6 +7,8 @@ import MovieDetails from '../components/Movie/MovieDetails/MovieDetails';
 import PersonDetails from '../components/Person/PersonDetails/PersonDetails';
 import TvShowDetails from '../components/TvShow/TvShowDetails/TvShowDetails';
 import FullCastAndCrew from '../shared/FullCastAndCrew/FullCastAndCrew';
+import withErrorHandler from '../hoc/withErrorHandler/withErrorHandler';
+import axios from '../axios-instance';
 
 // eslint-disable-next-line react/prefer-stateless-function
 class App extends Component {
@@ -52,4 +54,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(withErrorHandler(App, axios));
