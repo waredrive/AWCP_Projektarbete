@@ -1,6 +1,8 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-instance';
 
+// Fetch Tv Show Searches
+
 export const fetchTvShowSearchResultsSuccess = searchResults => ({
   type: actionTypes.FETCH_TV_SHOW_SEARCH_RESULTS_SUCCESS,
   searchResults
@@ -31,6 +33,8 @@ export const fetchTvShowSearchResults = (searchQuery, page) => dispatch => {
     });
 };
 
+// Fetch Trending Tv Shows
+
 export const fetchTrendingTvShowsSuccess = trending => ({
   type: actionTypes.FETCH_TRENDING_TV_SHOWS_SUCCESS,
   trending
@@ -54,5 +58,37 @@ export const fetchTrendingTvShows = () => dispatch => {
     })
     .catch(err => {
       dispatch(fetchTrendingTvShowsFailed(err));
+    });
+};
+
+// Fetch Tv Show Details
+
+export const fetchTvShowDetailsSuccess = details => ({
+  type: actionTypes.FETCH_TV_SHOW_DETAILS_SUCCESS,
+  details
+});
+
+export const fetchTvShowDetailsFailed = error => ({
+  type: actionTypes.FETCH_TV_SHOW_DETAILS_FAILED,
+  error
+});
+
+export const fetchTvShowDetailsStart = () => ({
+  type: actionTypes.FETCH_TV_SHOW_DETAILS_START
+});
+
+export const fetchTvShowDetails = id => dispatch => {
+  dispatch(fetchTvShowDetailsStart());
+  axios
+    .get(
+      `https://api.themoviedb.org/3/tv/${id}?api_key=${
+        process.env.REACT_APP_TMDB_API_KEY
+      }&language=en-US&append_to_response=videos,external_ids,recommendations,credits`
+    )
+    .then(res => {
+      dispatch(fetchTvShowDetailsSuccess(res.data));
+    })
+    .catch(err => {
+      dispatch(fetchTvShowDetailsFailed(err));
     });
 };

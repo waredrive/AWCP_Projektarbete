@@ -16,7 +16,7 @@ class Trending extends Component {
   }
 
   // This is a solution for a bug in the nuka-carousel package,
-  // as stated in https://github.com/FormidableLabs/nuka-carousel/issues/265
+  // as stated here: https://github.com/FormidableLabs/nuka-carousel/issues/265
   componentDidUpdate() {
     setTimeout(() => {
       // eslint-disable-next-line no-undef

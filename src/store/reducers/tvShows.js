@@ -31,6 +31,15 @@ const fetchTrendingTvShowsSuccess = (state, action) =>
 const fetchTrendingTvShowsFailed = state =>
   updateObject(state, { tLoading: false });
 
+const fetchTvShowDetailsStart = state =>
+  updateObject(state, { dLoading: true });
+
+const fetchTvShowDetailsSuccess = (state, action) =>
+  updateObject(state, { details: action.details, dLoading: true });
+
+const fetchTvShowDetailsFailed = state =>
+  updateObject(state, { dLoading: false });
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_TV_SHOW_SEARCH_RESULTS_START:
@@ -45,6 +54,12 @@ const reducer = (state = initialState, action) => {
       return fetchTrendingTvShowsSuccess(state, action);
     case actionTypes.FETCH_TRENDING_TV_SHOWS_FAILED:
       return fetchTrendingTvShowsFailed(state, action);
+    case actionTypes.FETCH_TV_SHOW_DETAILS_START:
+      return fetchTvShowDetailsStart(state, action);
+    case actionTypes.FETCH_TV_SHOW_DETAILS_SUCCESS:
+      return fetchTvShowDetailsSuccess(state, action);
+    case actionTypes.FETCH_TV_SHOW_DETAILS_FAILED:
+      return fetchTvShowDetailsFailed(state, action);
     default:
       return state;
   }

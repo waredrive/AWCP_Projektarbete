@@ -1,6 +1,8 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-instance';
 
+// Fetch People Searches
+
 export const fetchPeopleSearchResultsSuccess = searchResults => ({
   type: actionTypes.FETCH_PEOPLE_SEARCH_RESULTS_SUCCESS,
   searchResults
@@ -31,6 +33,8 @@ export const fetchPeopleSearchResults = (searchQuery, page) => dispatch => {
     });
 };
 
+// Fetch Trending People
+
 export const fetchTrendingPeopleSuccess = trending => ({
   type: actionTypes.FETCH_TRENDING_PEOPLE_SUCCESS,
   trending
@@ -54,5 +58,37 @@ export const fetchTrendingPeople = () => dispatch => {
     })
     .catch(err => {
       dispatch(fetchTrendingPeopleFailed(err));
+    });
+};
+
+// Fetch Person Details
+
+export const fetchPersonDetailsSuccess = details => ({
+  type: actionTypes.FETCH_PERSON_DETAILS_SUCCESS,
+  details
+});
+
+export const fetchPersonDetailsFailed = error => ({
+  type: actionTypes.FETCH_PERSON_DETAILS_FAILED,
+  error
+});
+
+export const fetchPersonDetailsStart = () => ({
+  type: actionTypes.FETCH_PERSON_DETAILS_START
+});
+
+export const fetchPersonDetails = id => dispatch => {
+  dispatch(fetchPersonDetailsStart());
+  axios
+    .get(
+      `https://api.themoviedb.org/3/person/${id}?api_key=${
+        process.env.REACT_APP_TMDB_API_KEY
+      }&language=en-US&append_to_response=external_ids,tv_credits,movie_credits,combined_credits`
+    )
+    .then(res => {
+      dispatch(fetchPersonDetailsSuccess(res.data));
+    })
+    .catch(err => {
+      dispatch(fetchPersonDetailsFailed(err));
     });
 };

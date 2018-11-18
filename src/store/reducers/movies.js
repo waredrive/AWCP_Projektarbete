@@ -31,6 +31,14 @@ const fetchTrendingMoviesSuccess = (state, action) =>
 const fetchTrendingMoviesFailed = state =>
   updateObject(state, { tLoading: false });
 
+const fetchMovieDetailsStart = state => updateObject(state, { dLoading: true });
+
+const fetchMovieDetailsSuccess = (state, action) =>
+  updateObject(state, { details: action.details, dLoading: true });
+
+const fetchMovieDetailsFailed = state =>
+  updateObject(state, { dLoading: false });
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_MOVIE_SEARCH_RESULTS_START:
@@ -45,6 +53,12 @@ const reducer = (state = initialState, action) => {
       return fetchTrendingMoviesSuccess(state, action);
     case actionTypes.FETCH_TRENDING_MOVIES_FAILED:
       return fetchTrendingMoviesFailed(state, action);
+    case actionTypes.FETCH_MOVIE_DETAILS_START:
+      return fetchMovieDetailsStart(state, action);
+    case actionTypes.FETCH_MOVIE_DETAILS_SUCCESS:
+      return fetchMovieDetailsSuccess(state, action);
+    case actionTypes.FETCH_MOVIE_DETAILS_FAILED:
+      return fetchMovieDetailsFailed(state, action);
     default:
       return state;
   }

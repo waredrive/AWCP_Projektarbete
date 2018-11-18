@@ -1,6 +1,8 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-instance';
 
+// Fetch Movie Searches
+
 export const fetchMovieSearchResultsSuccess = searchResults => ({
   type: actionTypes.FETCH_MOVIE_SEARCH_RESULTS_SUCCESS,
   searchResults
@@ -31,6 +33,8 @@ export const fetchMovieSearchResults = (searchQuery, page) => dispatch => {
     });
 };
 
+// Fetch Trending Movies
+
 export const fetchTrendingMoviesSuccess = trending => ({
   type: actionTypes.FETCH_TRENDING_MOVIES_SUCCESS,
   trending
@@ -54,5 +58,37 @@ export const fetchTrendingMovies = () => dispatch => {
     })
     .catch(err => {
       dispatch(fetchTrendingMoviesFailed(err));
+    });
+};
+
+// Fetch Movie Details
+
+export const fetchMovieDetailsSuccess = details => ({
+  type: actionTypes.FETCH_MOVIE_DETAILS_SUCCESS,
+  details
+});
+
+export const fetchMovieDetailsFailed = error => ({
+  type: actionTypes.FETCH_MOVIE_DETAILS_FAILED,
+  error
+});
+
+export const fetchMovieDetailsStart = () => ({
+  type: actionTypes.FETCH_MOVIE_DETAILS_START
+});
+
+export const fetchMovieDetails = id => dispatch => {
+  dispatch(fetchMovieDetailsStart());
+  axios
+    .get(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=${
+        process.env.REACT_APP_TMDB_API_KEY
+      }&language=en-US&append_to_response=videos,external_ids,recommendations,credits`
+    )
+    .then(res => {
+      dispatch(fetchMovieDetailsSuccess(res.data));
+    })
+    .catch(err => {
+      dispatch(fetchMovieDetailsFailed(err));
     });
 };

@@ -31,6 +31,15 @@ const fetchTrendingPeopleSuccess = (state, action) =>
 const fetchTrendingPeopleFailed = state =>
   updateObject(state, { tLoading: false });
 
+const fetchPersonDetailsStart = state =>
+  updateObject(state, { dLoading: true });
+
+const fetchPersonDetailsSuccess = (state, action) =>
+  updateObject(state, { details: action.details, dLoading: true });
+
+const fetchPersonDetailsFailed = state =>
+  updateObject(state, { dLoading: false });
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_PEOPLE_SEARCH_RESULTS_START:
@@ -39,13 +48,18 @@ const reducer = (state = initialState, action) => {
       return fetchPeopleSearchResultsSuccess(state, action);
     case actionTypes.FETCH_PEOPLE_SEARCH_RESULTS_FAILED:
       return fetchPeopleSearchResultsFailed(state, action);
-
     case actionTypes.FETCH_TRENDING_PEOPLE_START:
       return fetchTrendingPeopleStart(state, action);
     case actionTypes.FETCH_TRENDING_PEOPLE_SUCCESS:
       return fetchTrendingPeopleSuccess(state, action);
     case actionTypes.FETCH_TRENDING_PEOPLE_FAILED:
       return fetchTrendingPeopleFailed(state, action);
+    case actionTypes.FETCH_PERSON_DETAILS_START:
+      return fetchPersonDetailsStart(state, action);
+    case actionTypes.FETCH_PERSON_DETAILS_SUCCESS:
+      return fetchPersonDetailsSuccess(state, action);
+    case actionTypes.FETCH_PERSON_DETAILS_FAILED:
+      return fetchPersonDetailsFailed(state, action);
     default:
       return state;
   }
