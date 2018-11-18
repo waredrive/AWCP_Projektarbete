@@ -30,6 +30,7 @@ class App extends Component {
             </div>
           </div>
         </div>
+        {/* TODO: Add withErrorHandler and default error page */}
         <Switch>
           <Route path="/" exact component={Trending} />
           <Route path="/search" exact component={SearchResults} />
