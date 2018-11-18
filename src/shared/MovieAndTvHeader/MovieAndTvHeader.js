@@ -11,14 +11,28 @@ const MovieAndTvHeader = props => {
 
   let yearOfProduction = null;
   if (production.release_date)
-    yearOfProduction = `(${new Date(production.release_date).getFullYear()})`;
+    yearOfProduction = (
+      <p className="font-weight-light h4">
+        ({new Date(production.release_date).getFullYear()})
+      </p>
+    );
   else if (production.first_air_date) {
-    yearOfProduction = `(${new Date(production.first_air_date).getFullYear()})`;
+    yearOfProduction = (
+      <p className="font-weight-light h4">
+        ({new Date(production.first_air_date).getFullYear()})
+      </p>
+    );
   }
 
   const posterImagePath = getImageUrl(production.poster_path, 'w300');
 
-  const quote = production.tagline ? `"${production.tagline}"` : null;
+  const quote = production.tagline ? (
+    <p className="font-italic h5 font-weight-light mt-4">
+      &quot;
+      {production.tagline}
+      &quot;
+    </p>
+  ) : null;
   const overview = production
     ? production.overview || "We don't have a description of this production."
     : null;
@@ -62,8 +76,8 @@ const MovieAndTvHeader = props => {
           </div>
           <div className="col-8 my-3">
             <h1 className="mb-1">{production.title || production.name}</h1>
-            <p className="font-weight-light h4">{yearOfProduction}</p>
-            <p className="font-italic h5 font-weight-light mt-4">{quote}</p>
+            {yearOfProduction}
+            {quote}
             <div className="my-5 d-inline-block">
               <div className=" d-inline-block mr-4">
                 <RatingBar
