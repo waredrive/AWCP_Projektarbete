@@ -17,29 +17,25 @@ class SearchResults extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.fetchQueryString(prevProps) !== this.fetchQueryString()) {
+    if (
+      this.fetchQueryString('query', prevProps) !==
+      this.fetchQueryString('query')
+    ) {
       this.onPageLoad();
     }
   }
 
   onPageLoad = () => {
-    this.chooseActiveTab();
+    this.setState({ activeTab: this.fetchQueryString('type') });
     this.fetchMoviesFromAPI(1);
     this.fetchTvShowsFromAPI(1);
     this.fetchPeopleFromAPI(1);
   };
 
-  chooseActiveTab = () => {
-    const { location } = this.props;
-    const queryParams = new URLSearchParams(location.search);
-    const type = queryParams.get('type');
-    this.setState({ activeTab: type });
-  };
-
-  fetchQueryString = props => {
+  fetchQueryString = (param, props) => {
     const { location } = props || this.props;
     const queryParams = new URLSearchParams(location.search);
-    return queryParams.get('query');
+    return queryParams.get(param);
   };
 
   onMoviesPageChangeHandler = page => {
@@ -56,17 +52,17 @@ class SearchResults extends Component {
 
   fetchMoviesFromAPI(page) {
     const { onFetchMovies } = this.props;
-    onFetchMovies(this.fetchQueryString(), page);
+    onFetchMovies(this.fetchQueryString('query'), page);
   }
 
   fetchTvShowsFromAPI(page) {
     const { onFetchTvShows } = this.props;
-    onFetchTvShows(this.fetchQueryString(), page);
+    onFetchTvShows(this.fetchQueryString('query'), page);
   }
 
   fetchPeopleFromAPI(page) {
     const { onFetchPeople } = this.props;
-    onFetchPeople(this.fetchQueryString(), page);
+    onFetchPeople(this.fetchQueryString('query'), page);
   }
 
   toggleTabs(tab) {
