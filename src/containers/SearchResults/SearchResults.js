@@ -23,10 +23,10 @@ class SearchResults extends Component {
   }
 
   onPageLoad = () => {
+    this.chooseActiveTab();
     this.fetchMoviesFromAPI(1);
     this.fetchTvShowsFromAPI(1);
     this.fetchPeopleFromAPI(1);
-    this.chooseActiveTab();
   };
 
   chooseActiveTab = () => {
