@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import MovieAndTvSearchResults from '../../shared/MovieAndTvSearchResults/MovieAndTvSearchResults';
 import PeopleSearchResults from '../People/PeopleSearchResults/PeopleSearchResults';
+import ResultsBadge from './ResultsBadge/ResultsBadge';
 import * as actions from '../../store/actions/index';
 
 // TODO: move fetch to resp classes and make activeTab dynamic
@@ -89,14 +90,7 @@ class SearchResults extends Component {
                   }}
                 >
                   Movies
-                  {movies ? (
-                    <span
-                      className="badge badge-pill badge-success ml-1"
-                      style={{ verticalAlign: 'top' }}
-                    >
-                      {movies.total_results}
-                    </span>
-                  ) : null}
+                  <ResultsBadge type={movies} />
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -109,14 +103,7 @@ class SearchResults extends Component {
                   }}
                 >
                   Tv Shows
-                  {tvShows ? (
-                    <span
-                      className="badge badge-pill badge-success ml-1"
-                      style={{ verticalAlign: 'top' }}
-                    >
-                      {tvShows.total_results}
-                    </span>
-                  ) : null}
+                  <ResultsBadge type={tvShows} />
                 </NavLink>
               </NavItem>
               <NavItem>
@@ -131,14 +118,7 @@ class SearchResults extends Component {
                   }}
                 >
                   People
-                  {people ? (
-                    <span
-                      className="badge badge-pill badge-success ml-1"
-                      style={{ verticalAlign: 'top' }}
-                    >
-                      {people.total_results}
-                    </span>
-                  ) : null}
+                  <ResultsBadge type={people} />
                 </NavLink>
               </NavItem>
             </Nav>
