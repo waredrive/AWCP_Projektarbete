@@ -46,6 +46,7 @@ class PeopleSearchResults extends Component {
         ) : null;
     }
     return (
+      // TODO: Add spinner
       <div>
         {searchPage}
         {pagination}
