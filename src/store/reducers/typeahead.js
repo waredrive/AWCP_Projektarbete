@@ -70,9 +70,6 @@ const fetchTypeaheadResultsFailed = (state, action) =>
 const clearTypeahead = state =>
   updateObject(state, { noMatch: false, input: '' });
 
-const addTypeaheadSelection = (state, action) =>
-  updateObject(state, { selectedItem: action.selection });
-
 const changeTypeaheadInput = (state, action) =>
   updateObject(state, { input: action.input });
 
@@ -86,8 +83,6 @@ const reducer = (state = initialState, action) => {
       return fetchTypeaheadResultsFailed(state, action);
     case actionTypes.CLEAR_TYPEAHEAD:
       return clearTypeahead(state, action);
-    case actionTypes.ADD_TYPEAHEAD_SELECTION:
-      return addTypeaheadSelection(state, action);
     case actionTypes.CHANGE_TYPEAHEAD_INPUT:
       return changeTypeaheadInput(state, action);
     default:

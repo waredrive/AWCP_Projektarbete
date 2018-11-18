@@ -7,30 +7,39 @@ import PeopleSearchResults from '../People/PeopleSearchResults/PeopleSearchResul
 import ResultsBadge from './ResultsBadge/ResultsBadge';
 import * as actions from '../../store/actions/index';
 
-// TODO: move fetch to resp classes and make activeTab dynamic
 class SearchResults extends Component {
   state = {
     activeTab: 'movie'
   };
 
   componentDidMount() {
-    this.fetchMoviesFromAPI(1);
-    this.fetchTvShowsFromAPI(1);
-    this.fetchPeopleFromAPI(1);
+    this.onPageLoad();
   }
 
   componentDidUpdate(prevProps) {
     if (this.fetchQueryString(prevProps) !== this.fetchQueryString()) {
-      this.fetchMoviesFromAPI(1);
-      this.fetchTvShowsFromAPI(1);
-      this.fetchPeopleFromAPI(1);
+      this.onPageLoad();
     }
   }
 
+  onPageLoad = () => {
+    this.fetchMoviesFromAPI(1);
+    this.fetchTvShowsFromAPI(1);
+    this.fetchPeopleFromAPI(1);
+    this.chooseActiveTab();
+  };
+
+  chooseActiveTab = () => {
+    const { location } = this.props;
+    const queryParams = new URLSearchParams(location.search);
+    const type = queryParams.get('type');
+    this.setState({ activeTab: type });
+  };
+
   fetchQueryString = props => {
     const { location } = props || this.props;
-    const queryParam = new URLSearchParams(location.search);
-    return queryParam.get('query');
+    const queryParams = new URLSearchParams(location.search);
+    return queryParams.get('query');
   };
 
   onMoviesPageChangeHandler = page => {
@@ -154,7 +163,8 @@ class SearchResults extends Component {
 const mapStateAsProps = state => ({
   movies: state.movies.searchResults,
   tvShows: state.tvShows.searchResults,
-  people: state.people.searchResults
+  people: state.people.searchResults,
+  selection: state.typeahead.selectedItem
 });
 
 const mapDispatchAsProps = dispatch => ({

@@ -18,20 +18,6 @@ export const fetchTypeaheadResultsStart = () => ({
   type: actionTypes.FETCH_TYPEAHEAD_RESULTS_START
 });
 
-export const clearTypeahead = () => ({
-  type: actionTypes.CLEAR_TYPEAHEAD
-});
-
-export const addTypeaheadSelection = selection => ({
-  type: actionTypes.ADD_TYPEAHEAD_SELECTION,
-  selection
-});
-
-export const changeTypeaheadInput = input => ({
-  type: actionTypes.CHANGE_TYPEAHEAD_INPUT,
-  input
-});
-
 export const fetchTypeaheadResults = searchQuery => dispatch => {
   dispatch(fetchTypeaheadResultsStart());
   axios
@@ -47,3 +33,14 @@ export const fetchTypeaheadResults = searchQuery => dispatch => {
       dispatch(fetchTypeaheadResultsFailed(err));
     });
 };
+
+// Misc Typeahead Actions
+
+export const clearTypeahead = () => ({
+  type: actionTypes.CLEAR_TYPEAHEAD
+});
+
+export const changeTypeaheadInput = input => ({
+  type: actionTypes.CHANGE_TYPEAHEAD_INPUT,
+  input
+});

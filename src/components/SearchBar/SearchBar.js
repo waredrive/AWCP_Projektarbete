@@ -18,13 +18,16 @@ class SearchBar extends Component {
     onTypeaheadClear();
   };
 
-  searchSelected = selection => {
-    const { history, onSelectionMade } = this.props;
+  onSearchSelected = selection => {
+    const { history } = this.props;
     if (selection.length !== 1) {
       return;
     }
-    onSelectionMade(selection[0]);
-    history.push(`/search?query=${encodeURIComponent(selection[0].name)}`);
+    history.push(
+      `/search?type=${selection[0].type}&query=${encodeURIComponent(
+        selection[0].name
+      )}`
+    );
     this.clearSearch();
     this.typeahead.getInstance().blur();
   };
@@ -92,7 +95,7 @@ class SearchBar extends Component {
             renderMenuItemChildren={this.renderMenuItemChildren}
             useCache={false}
             options={searchResults}
-            onChange={selected => this.searchSelected(selected)}
+            onChange={selected => this.onSearchSelected(selected)}
             onInputChange={t => {
               onInputChanged(t);
             }}
@@ -129,8 +132,6 @@ const mapStateAsProps = state => ({
 const mapDispatchAsProps = dispatch => ({
   onFetchResults: query => dispatch(actions.fetchTypeaheadResults(query)),
   onTypeaheadClear: () => dispatch(actions.clearTypeahead()),
-  onSelectionMade: selection =>
-    dispatch(actions.addTypeaheadSelection(selection)),
   onInputChanged: input => dispatch(actions.changeTypeaheadInput(input))
 });
 
