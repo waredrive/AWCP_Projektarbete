@@ -16,6 +16,7 @@ import moviesReducer from './store/reducers/movies';
 import tvShowsReducer from './store/reducers/tvShows';
 import peopleReducer from './store/reducers/people';
 import creditsReducer from './store/reducers/credits';
+import typeaheadReducer from './store/reducers/typeahead';
 
 const rootElement = document.getElementById('root');
 
@@ -23,7 +24,8 @@ const rootReducer = combineReducers({
   movies: moviesReducer,
   tvShows: tvShowsReducer,
   people: peopleReducer,
-  credits: creditsReducer
+  credits: creditsReducer,
+  typeahead: typeaheadReducer
 });
 
 const composeEnhancers =

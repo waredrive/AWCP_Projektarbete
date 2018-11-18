@@ -10,7 +10,7 @@ import * as actions from '../../store/actions/index';
 // TODO: move fetch to resp classes and make activeTab dynamic
 class SearchResults extends Component {
   state = {
-    activeTab: 'Movies'
+    activeTab: 'movie'
   };
 
   componentDidMount() {
@@ -82,11 +82,11 @@ class SearchResults extends Component {
                 <NavLink
                   disabled={!movies || movies.results.length === 0}
                   className={classnames({
-                    active: activeTab === 'Movies'
+                    active: activeTab === 'movie'
                   })}
                   href="#"
                   onClick={() => {
-                    this.toggleTabs('Movies');
+                    this.toggleTabs('movie');
                   }}
                 >
                   Movies
@@ -97,9 +97,9 @@ class SearchResults extends Component {
                 <NavLink
                   disabled={!tvShows || tvShows.results.length === 0}
                   href="#"
-                  className={classnames({ active: activeTab === 'Tv' })}
+                  className={classnames({ active: activeTab === 'tv' })}
                   onClick={() => {
-                    this.toggleTabs('Tv');
+                    this.toggleTabs('tv');
                   }}
                 >
                   Tv Shows
@@ -111,10 +111,10 @@ class SearchResults extends Component {
                   disabled={!people || people.results.length === 0}
                   href="#"
                   className={classnames({
-                    active: activeTab === 'People'
+                    active: activeTab === 'person'
                   })}
                   onClick={() => {
-                    this.toggleTabs('People');
+                    this.toggleTabs('person');
                   }}
                 >
                   People
@@ -123,21 +123,21 @@ class SearchResults extends Component {
               </NavItem>
             </Nav>
             <TabContent activeTab={activeTab}>
-              <TabPane tabId="Movies">
+              <TabPane tabId="movie">
                 <MovieAndTvSearchResults
                   searchResults={movies}
                   onPageChange={page => this.onMoviesPageChangeHandler(page)}
                   type="movie"
                 />
               </TabPane>
-              <TabPane tabId="Tv">
+              <TabPane tabId="tv">
                 <MovieAndTvSearchResults
                   searchResults={tvShows}
                   onPageChange={page => this.onTvShowsPageChangeHandler(page)}
                   type="tv"
                 />
               </TabPane>
-              <TabPane tabId="People">
+              <TabPane tabId="person">
                 <PeopleSearchResults
                   searchResults={people}
                   onPageChange={page => this.onPeoplePageChangeHandler(page)}

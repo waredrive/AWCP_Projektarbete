@@ -14,3 +14,10 @@ export {
   fetchPersonDetails
 } from './people';
 export { fetchCredits } from './credits';
+
+export {
+  fetchTypeaheadResults,
+  clearTypeahead,
+  addTypeaheadSelection,
+  changeTypeaheadInput
+} from './typeahead';
