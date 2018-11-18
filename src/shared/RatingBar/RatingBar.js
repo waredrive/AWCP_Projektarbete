@@ -4,7 +4,7 @@ import 'react-circular-progressbar/dist/styles.css';
 
 const RatingBar = props => {
   const { sizeInPixels, hexColor, voteAverage, voteCount } = props;
-  const voteAvr = voteCount === 0 ? 'NR' : voteAverage;
+  const voteAvr = voteCount === 0 ? 'NR' : voteAverage.toFixed(1);
   let strokeColor;
 
   if (voteAverage >= 7) {
