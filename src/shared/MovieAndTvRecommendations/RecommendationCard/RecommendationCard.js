@@ -6,7 +6,12 @@ const RecommendationCard = props => {
   return (
     <Link to={`/${type}/${id}`}>
       <div className="card" title={title} style={{ height: '200px' }}>
-        <img className="card-img-top" src={backdropPath} alt={title} />
+        <img
+          className="card-img-top"
+          src={backdropPath}
+          alt={title}
+          style={{ height: '133px' }}
+        />
         <div className="card-body">
           <h6
             className="card-subtitle"
