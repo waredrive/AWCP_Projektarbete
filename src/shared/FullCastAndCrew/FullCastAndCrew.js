@@ -12,42 +12,28 @@ class FullCastAndCrew extends Component {
     onFetchCredits(match.params.type, match.params.id);
   }
 
+  getCastAndCrewCards = people =>
+    people && people.length > 0 ? (
+      people.map(person => (
+        <CastAndCrewCard
+          id={person.id}
+          key={String(person.id) + (person.character || person.job)}
+          actorName={person.name}
+          playedRoleName={person.character || person.job}
+          imagePath={getImageUrl(person.profile_path, 'w92')}
+        />
+      ))
+    ) : (
+      <p className="text-light ml-3 mt-3">
+        No cast was found for this production
+      </p>
+    );
+
   render() {
     const { crew, cast } = this.props;
 
-    const allCast =
-      cast && cast.length > 0 ? (
-        cast.map(person => (
-          <CastAndCrewCard
-            id={person.id}
-            key={person.id + person.character}
-            actorName={person.name}
-            playedRoleName={person.character}
-            imagePath={getImageUrl(person.profile_path, 'w92')}
-          />
-        ))
-      ) : (
-        <p className="text-light ml-3 mt-3">
-          No cast was found for this production
-        </p>
-      );
-
-    const allCrew =
-      crew && crew.length > 0 ? (
-        crew.map(person => (
-          <CastAndCrewCard
-            id={person.id}
-            key={String(person.id) + person.job}
-            actorName={person.name}
-            playedRoleName={person.job}
-            imagePath={getImageUrl(person.profile_path, 'w92')}
-          />
-        ))
-      ) : (
-        <p className="text-light ml-3 mt-3">
-          No crew was found for this production
-        </p>
-      );
+    const allCast = this.getCastAndCrewCards(cast);
+    const allCrew = this.getCastAndCrewCards(crew);
 
     return crew && cast ? (
       <div className="container">
