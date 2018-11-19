@@ -7,7 +7,7 @@ const PersonTopMoviesAndTvs = props => {
 
   const movieAndTvCards =
     credits && credits.length > 0
-      ? [...credits]
+      ? credits
           .filter((e, i, self) => self.findIndex(x => x.id === e.id) === i)
           .sort(
             (a, b) =>

@@ -9,6 +9,7 @@ const MovieAndTvTopCast = props => {
   const actorCards =
     cast && cast.length > 0
       ? cast
+          .sort((a, b) => b.popularity - a.popularity)
           .slice(0, 5)
           .map(person => (
             <ActorCard
