@@ -39,7 +39,7 @@ class TvShowDetails extends Component {
                 <MovieAndTvTopCast cast={cast} crew={crew} />
                 <MovieAndTvRecommendations
                   recommendations={tvShow.recommendations}
-                  type="movie"
+                  type="tv"
                 />
               </div>
               <div
