@@ -5,7 +5,28 @@ import PersonBioList from './PersonBioList/PersonBioList';
 
 class PersonBioLists extends Component {
   state = {
-    activeTab: 'Movies'
+    activeTab: 'movie'
+  };
+
+  componentDidMount() {
+    this.setActiveTab();
+  }
+
+  hasCrewOrCast = credits => credits.cast.length > 0 || credits.crew.length > 0;
+
+  setActiveTab = () => {
+    const { movieCredits, tvCredits } = this.props;
+    let active = '';
+
+    if (
+      tvCredits.cast.length + tvCredits.crew.length >
+      movieCredits.cast.length + movieCredits.crew.length
+    ) {
+      active = 'tv';
+    } else {
+      active = 'movie';
+    }
+    this.setState({ activeTab: active });
   };
 
   toggleTabs(tab) {
@@ -22,17 +43,16 @@ class PersonBioLists extends Component {
     const { activeTab } = this.state;
 
     return (
-      // TODO: fix so this dissapears if no results or add text
       <div className="row d-block pr-4 mt-5">
         <Nav pills className="bg-light rounded justify-content-end">
           <NavItem>
             <NavLink
               className={classnames({
-                active: activeTab === 'Movies'
+                active: activeTab === 'movie'
               })}
               href="#"
               onClick={() => {
-                this.toggleTabs('Movies');
+                this.toggleTabs('movie');
               }}
             >
               Movies
@@ -41,9 +61,9 @@ class PersonBioLists extends Component {
           <NavItem>
             <NavLink
               href="#"
-              className={classnames({ active: activeTab === 'Tv' })}
+              className={classnames({ active: activeTab === 'tv' })}
               onClick={() => {
-                this.toggleTabs('Tv');
+                this.toggleTabs('tv');
               }}
             >
               Tv Shows
@@ -51,11 +71,41 @@ class PersonBioLists extends Component {
           </NavItem>
         </Nav>
         <TabContent activeTab={activeTab}>
-          <TabPane tabId="Movies">
-            <PersonBioList bioList={movieCredits} />
+          <TabPane tabId="movie">
+            {this.hasCrewOrCast(movieCredits) ? (
+              <>
+                <PersonBioList
+                  members={movieCredits.crew}
+                  headline="As Cast Member"
+                />
+                <PersonBioList
+                  members={movieCredits.crew}
+                  headline="As Crew Member"
+                />
+              </>
+            ) : (
+              <p className="mt-3 ml-1">
+                There is no starring list fort this person.
+              </p>
+            )}
           </TabPane>
-          <TabPane tabId="Tv">
-            <PersonBioList bioList={tvCredits} />
+          <TabPane tabId="tv">
+            {this.hasCrewOrCast(tvCredits) ? (
+              <>
+                <PersonBioList
+                  members={tvCredits.cast}
+                  headline="As Cast Member"
+                />
+                <PersonBioList
+                  members={tvCredits.crew}
+                  headline="As Crew Member"
+                />
+              </>
+            ) : (
+              <p className="mt-3 ml-1">
+                There is no starring list fort this person.
+              </p>
+            )}
           </TabPane>
         </TabContent>
       </div>
