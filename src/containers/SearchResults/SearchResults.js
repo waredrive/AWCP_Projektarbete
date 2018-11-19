@@ -6,6 +6,7 @@ import MovieAndTvSearchResults from '../../shared/MovieAndTvSearchResults/MovieA
 import PeopleSearchResults from '../People/PeopleSearchResults/PeopleSearchResults';
 import ResultsBadge from './ResultsBadge/ResultsBadge';
 import * as actions from '../../store/actions/index';
+import Spinner from '../../shared/Spinner/Spinner'
 
 class SearchResults extends Component {
   state = {
@@ -79,7 +80,7 @@ class SearchResults extends Component {
     const { movies, tvShows, people } = this.props;
 
     return (
-      <div className="container mt-5">
+     movies || tvShows || people ? <div className="container mt-5">
         <div className="row">
           <div className="col-md-12">
             <Nav pills className="bg-light rounded">
@@ -151,7 +152,7 @@ class SearchResults extends Component {
             </TabContent>
           </div>
         </div>
-      </div>
+      </div> : <Spinner/>
     );
   }
 }
@@ -160,7 +161,6 @@ const mapStateAsProps = state => ({
   movies: state.movies.searchResults,
   tvShows: state.tvShows.searchResults,
   people: state.people.searchResults,
-  selection: state.typeahead.selectedItem
 });
 
 const mapDispatchAsProps = dispatch => ({

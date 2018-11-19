@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import MovieAndTvSummaryCard from './MovieAndTvSummaryCard/MovieAndTvSummaryCard';
 import PaginationNav from '../PaginationNav/PaginationNav';
 import { getImageUrl } from '../helperMethods';
+import Spinner from '../Spinner/Spinner';
 
 class MovieSearchResults extends Component {
   onShowDetailsClickHandler = id => {
@@ -48,9 +49,8 @@ class MovieSearchResults extends Component {
         ) : null;
     }
     return (
-      // TODO: Add spinner
       <div>
-        {searchPage}
+        {searchPage || <Spinner />}
         {pagination}
       </div>
     );

@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import PersonSummaryCard from '../../../components/Person/PersonSummaryCard/PersonSummaryCard';
 import PaginationNav from '../../../shared/PaginationNav/PaginationNav';
 import { getImageUrl } from '../../../shared/helperMethods';
+import Spinner from '../../../shared/Spinner/Spinner'
 
 class PeopleSearchResults extends Component {
   onShowDetailsClickHandler = id => {
@@ -48,7 +49,7 @@ class PeopleSearchResults extends Component {
     return (
       // TODO: Add spinner
       <div>
-        {searchPage}
+        {searchPage || <Spinner/>}
         {pagination}
       </div>
     );
