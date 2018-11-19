@@ -4,7 +4,7 @@ import MovieAndTvTopCast from '../../../shared/MovieAndTvTopCast/MovieAndTvTopCa
 import MovieAndTvHeader from '../../../shared/MovieAndTvHeader/MovieAndTvHeader';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
 import MovieFacts from './MovieFacts/MovieFacts';
-import MovieAndTvRecommendations from '../../../shared/MovieAndTvRecommendations/MovieAndTvRecommendations';
+import RecommendationsAndSimilar from '../../../shared/RecommendationsAndSimilar/RecommendationsAndSimilar';
 import * as actions from '../../../store/actions/index';
 import Spinner from '../../../shared/Spinner/Spinner';
 
@@ -37,9 +37,17 @@ class MovieDetails extends Component {
             <div className="row">
               <div className="col-9 my-3 pr-5">
                 <MovieAndTvTopCast cast={cast} crew={crew} />
-                <MovieAndTvRecommendations
+                <RecommendationsAndSimilar
+                  recommendations={movie.similar}
+                  type="movie"
+                  header="Similar Movies"
+                  notFoundText="There are no movies similar to this one."
+                />
+                <RecommendationsAndSimilar
                   recommendations={movie.recommendations}
                   type="movie"
+                  header="Recommendations"
+                  notFoundText="There are no recommendations based on this movie."
                 />
               </div>
               <div

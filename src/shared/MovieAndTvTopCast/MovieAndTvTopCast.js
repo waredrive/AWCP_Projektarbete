@@ -22,7 +22,7 @@ const MovieAndTvTopCast = props => {
       : null;
 
   return (
-    <>
+    <div className="mb-5 pb-2">
       <div className="row">
         <h4 className="ml-3">Top Cast</h4>
       </div>
@@ -49,7 +49,7 @@ const MovieAndTvTopCast = props => {
           </button>
         ) : null}
       </div>
-    </>
+    </div>
   );
 };
 

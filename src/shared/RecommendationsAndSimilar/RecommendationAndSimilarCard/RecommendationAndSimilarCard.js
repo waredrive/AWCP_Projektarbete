@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const RecommendationCard = props => {
+const RecommendationAndSimilarCard = props => {
   const { backdropPath, title, id, type } = props;
   return (
     <Link to={`/${type}/${id}`}>
@@ -30,4 +30,4 @@ const RecommendationCard = props => {
   );
 };
 
-export default RecommendationCard;
+export default RecommendationAndSimilarCard;

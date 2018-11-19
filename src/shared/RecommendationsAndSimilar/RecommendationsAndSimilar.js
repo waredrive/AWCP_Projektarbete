@@ -1,15 +1,15 @@
 import React from 'react';
 import Carousel from 'nuka-carousel';
-import RecommendationCard from './RecommendationCard/RecommendationCard';
+import RecommendationAndSimilarCard from './RecommendationAndSimilarCard/RecommendationAndSimilarCard';
 import { getImageUrl } from '../helperMethods';
 import CarouselButton from '../CarouselButton/CarouselButton';
 
-const MovieAndTvRecommendations = props => {
-  const { recommendations, type } = props;
+const RecommendationsAndSimilar = props => {
+  const { recommendations, type, header, notFoundText } = props;
   const recommendationCards =
     recommendations && recommendations.results.length > 0
       ? recommendations.results.map(recommendation => (
-          <RecommendationCard
+          <RecommendationAndSimilarCard
             type={type}
             key={recommendation.id}
             id={recommendation.id}
@@ -25,8 +25,8 @@ const MovieAndTvRecommendations = props => {
 
   return (
     <>
-      <div className="row mt-5 pt-5">
-        <h4 className="ml-3">Recommendations</h4>
+      <div className="row mt-5">
+        <h4 className="ml-3">{header}</h4>
       </div>
       <div className="row d-block pr-4 pl-3">
         {recommendationCards ? (
@@ -55,11 +55,11 @@ const MovieAndTvRecommendations = props => {
             {recommendationCards}
           </Carousel>
         ) : (
-          <p>There are no recommendations.</p>
+          <p>{notFoundText}</p>
         )}
       </div>
     </>
   );
 };
 
-export default MovieAndTvRecommendations;
+export default RecommendationsAndSimilar;

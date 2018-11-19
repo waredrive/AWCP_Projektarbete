@@ -4,7 +4,7 @@ import MovieAndTvTopCast from '../../../shared/MovieAndTvTopCast/MovieAndTvTopCa
 import MovieAndTvHeader from '../../../shared/MovieAndTvHeader/MovieAndTvHeader';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
 import TvShowFacts from './TvShowFacts/TvShowFacts';
-import MovieAndTvRecommendations from '../../../shared/MovieAndTvRecommendations/MovieAndTvRecommendations';
+import RecommendationsAndSimilar from '../../../shared/RecommendationsAndSimilar/RecommendationsAndSimilar';
 import * as actions from '../../../store/actions/index';
 import Spinner from '../../../shared/Spinner/Spinner';
 
@@ -37,9 +37,17 @@ class TvShowDetails extends Component {
             <div className="row">
               <div className="col-9 my-3 pr-5">
                 <MovieAndTvTopCast cast={cast} crew={crew} />
-                <MovieAndTvRecommendations
+                <RecommendationsAndSimilar
+                  recommendations={tvShow.similar}
+                  type="tv"
+                  header="Similar Movies"
+                  notFoundText="There are no Tv Shows similar to this one."
+                />
+                <RecommendationsAndSimilar
                   recommendations={tvShow.recommendations}
                   type="tv"
+                  header="Recommendations"
+                  notFoundText="There are no recommendations based on this Tv Show."
                 />
               </div>
               <div
