@@ -5,7 +5,7 @@ const PersonBioListItem = props => {
   const { year, nameOfProduction, job, type, id } = props;
 
   return (
-    <li className="list-group-item my-1">
+    <li className="list-group-item my-1 rounded">
       <div className="row">
         <div className="d-inline-block col-1 text-center">{year}</div>
         <div className="d-inline-block col-11">
