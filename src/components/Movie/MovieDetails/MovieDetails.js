@@ -46,7 +46,7 @@ class MovieDetails extends Component {
                 <RecommendationsAndSimilar
                   recommendations={movie.recommendations}
                   type="movie"
-                  header="Recommendations"
+                  header="Recommended Movies"
                   notFoundText="There are no recommendations based on this movie."
                 />
               </div>
