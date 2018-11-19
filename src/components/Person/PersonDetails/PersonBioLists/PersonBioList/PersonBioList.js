@@ -10,7 +10,7 @@ const PersonBioList = props => {
     arr.length > 0
       ? [...arr].sort(
           (a, b) =>
-            !a.release_date || a.first_air_date
+            !a.release_date && !a.first_air_date
               ? -1
               : new Date(b.release_date || b.first_air_date) -
                 new Date(a.release_date || a.first_air_date)
