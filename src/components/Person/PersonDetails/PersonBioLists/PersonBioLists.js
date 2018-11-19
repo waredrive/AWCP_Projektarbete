@@ -19,8 +19,8 @@ class PersonBioLists extends Component {
     let active = '';
 
     if (
-      tvCredits.cast.length + tvCredits.crew.length >
-      movieCredits.cast.length + movieCredits.crew.length
+      movieCredits.cast.length + movieCredits.crew.length === 0 &&
+      tvCredits.cast.length + tvCredits.crew.length > 0
     ) {
       active = 'tv';
     } else {
