@@ -29,8 +29,9 @@ const PersonBioList = props => {
     return (
       <PersonBioListItem
         year={
-          getYearFromDateStr(member.release_date || member.first_air_date) ||
-          null
+          getYearFromDateStr(member.release_date || member.first_air_date) || (
+            <span>&mdash;</span>
+          )
         }
         nameOfProduction={member.title || member.name}
         job={job}

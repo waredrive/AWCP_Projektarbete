@@ -7,7 +7,7 @@ const PersonBioListItem = props => {
   return (
     <li className="list-group-item my-1">
       <div className="row">
-        <div className="d-inline-block col-1">{year}</div>
+        <div className="d-inline-block col-1 text-center">{year}</div>
         <div className="d-inline-block col-11">
           <Link to={`/${type}/${id}`}>
             <span className="font-weight-bold">{nameOfProduction}</span>
