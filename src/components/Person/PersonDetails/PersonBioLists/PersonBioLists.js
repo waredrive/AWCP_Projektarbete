@@ -12,10 +12,7 @@ class PersonBioLists extends Component {
     this.setActiveTab();
   }
 
-  hasCrewOrCast = credits => {
-    console.log(credits.cast.length > 0 || credits.crew.length > 0);
-    return credits.cast.length > 0 || credits.crew.length > 0;
-  };
+  hasCrewOrCast = credits => credits.cast.length > 0 || credits.crew.length > 0;
 
   setActiveTab = () => {
     const { movieCredits, tvCredits } = this.props;
