@@ -13,7 +13,6 @@ class PeopleSearchResults extends Component {
 
   render() {
     const { searchResults, onPageChange } = this.props;
-
     const searchPage = [];
     let pagination = null;
 

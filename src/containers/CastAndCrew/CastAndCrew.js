@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CastAndCrewCard from './CastAndCrewCard/CastAndCrewCard';
-import { getImageUrl, arrayExistsIsNotEmpty } from '../helperMethods';
+import { getImageUrl, arrayExistsIsNotEmpty } from '../../shared/helperMethods';
 import * as actions from '../../store/actions/index';
-import Spinner from '../Spinner/Spinner';
+import Spinner from '../../shared/Spinner/Spinner';
 
-class FullCastAndCrew extends Component {
+class CastAndCrew extends Component {
   componentDidMount() {
     const { match, onFetchCredits } = this.props;
     onFetchCredits(match.params.type, match.params.id);
@@ -67,5 +67,5 @@ export default withRouter(
   connect(
     mapStateAsProps,
     mapDispatchAsProps
-  )(FullCastAndCrew)
+  )(CastAndCrew)
 );

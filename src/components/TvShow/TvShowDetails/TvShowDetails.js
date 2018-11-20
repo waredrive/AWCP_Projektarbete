@@ -24,9 +24,7 @@ class TvShowDetails extends Component {
 
   render() {
     const { tvShow, match } = this.props;
-
     const cast = tvShow && tvShow.credits ? tvShow.credits.cast : null;
-
     const crew = tvShow && tvShow.credits ? tvShow.credits.crew : null;
 
     return tvShow && match.params.id.startsWith(String(tvShow.id)) ? (
