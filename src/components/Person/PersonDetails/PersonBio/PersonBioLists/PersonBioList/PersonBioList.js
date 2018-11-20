@@ -6,14 +6,17 @@ const PersonBioList = props => {
 
   const getYearFromDateStr = date => new Date(date).getFullYear();
 
+  // Sorts array immutably based on productions release date or first air date,
+  // if none of those fields exist, the result will get higher order so
+  // it appears at the top of the list.
   const getSortedArrByDateDesc = arr =>
     arr.length > 0
       ? [...arr].sort(
-          (a, b) =>
-            !a.release_date && !a.first_air_date
+          (objA, objB) =>
+            !objA.release_date && !objB.first_air_date
               ? -1
-              : new Date(b.release_date || b.first_air_date) -
-                new Date(a.release_date || a.first_air_date)
+              : new Date(objB.release_date || objB.first_air_date) -
+                new Date(objA.release_date || objA.first_air_date)
         )
       : [];
 

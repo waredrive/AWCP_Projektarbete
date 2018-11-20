@@ -5,14 +5,19 @@ import { getImageUrl } from '../../../../shared/helperMethods';
 const PersonTopMoviesAndTvs = props => {
   const { credits } = props;
 
+  // Filters out duplicates and sort the top eight popular productions based
+  // on popularity, average vote and average count.
+
   const movieAndTvCards =
     credits && credits.length > 0
       ? credits
-          .filter((e, i, self) => self.findIndex(x => x.id === e.id) === i)
+          .filter(
+            (obj, index, self) => self.findIndex(s => s.id === obj.id) === index
+          )
           .sort(
-            (a, b) =>
-              b.popularity * b.vote_average * b.vote_count -
-              a.popularity * a.vote_average * a.vote_count
+            (objA, objB) =>
+              objB.popularity * objB.vote_average * objB.vote_count -
+              objA.popularity * objA.vote_average * objA.vote_count
           )
           .slice(0, 8)
           .map(item => (
