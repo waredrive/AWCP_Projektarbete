@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
+import { Nav, NavItem, NavLink, TabContent } from 'reactstrap';
 import classnames from 'classnames';
-import PersonBioList from './PersonBioList/PersonBioList';
+import PersonFactTabPane from '../PersonFacts/PersonFactTabPane/PersonFactTabPane';
 
 class PersonBioLists extends Component {
   state = {
@@ -11,8 +11,6 @@ class PersonBioLists extends Component {
   componentDidMount() {
     this.setActiveTab();
   }
-
-  hasCrewOrCast = credits => credits.cast.length > 0 || credits.crew.length > 0;
 
   setActiveTab = () => {
     const { movieCredits, tvCredits } = this.props;
@@ -71,42 +69,8 @@ class PersonBioLists extends Component {
           </NavItem>
         </Nav>
         <TabContent activeTab={activeTab}>
-          <TabPane tabId="movie">
-            {this.hasCrewOrCast(movieCredits) ? (
-              <>
-                <PersonBioList
-                  members={movieCredits.cast}
-                  headline="As Cast Member"
-                />
-                <PersonBioList
-                  members={movieCredits.crew}
-                  headline="As Crew Member"
-                />
-              </>
-            ) : (
-              <p className="mt-3 ml-1">
-                There is no starring list fort this person.
-              </p>
-            )}
-          </TabPane>
-          <TabPane tabId="tv">
-            {this.hasCrewOrCast(tvCredits) ? (
-              <>
-                <PersonBioList
-                  members={tvCredits.cast}
-                  headline="As Cast Member"
-                />
-                <PersonBioList
-                  members={tvCredits.crew}
-                  headline="As Crew Member"
-                />
-              </>
-            ) : (
-              <p className="mt-3 ml-1">
-                There is no starring list fort this person.
-              </p>
-            )}
-          </TabPane>
+          <PersonFactTabPane tabId="movie" credits={movieCredits} />
+          <PersonFactTabPane tabId="tv" credits={tvCredits} />
         </TabContent>
       </div>
     );

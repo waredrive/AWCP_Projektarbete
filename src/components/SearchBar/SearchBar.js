@@ -66,7 +66,6 @@ class SearchBar extends Component {
       : null;
 
     let buttonIcon = '';
-
     if (input.length === 0) {
       buttonIcon = 'fa fa-search fa-fw';
     } else if (loading) {

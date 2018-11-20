@@ -9,9 +9,9 @@ const TvShowFacts = props => {
 
   const alsoKnownAs =
     person.also_known_as && person.also_known_as.length > 0
-      ? person.also_known_as.map(name => (
-          <span key={name} className="my-0 d-block">
-            {name}
+      ? person.also_known_as.map(altName => (
+          <span key={altName} className="my-0 d-block">
+            {altName}
           </span>
         ))
       : null;
