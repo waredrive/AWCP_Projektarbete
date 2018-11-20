@@ -1,21 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import RatingBar from '../RatingBar/RatingBar';
 import Backdrop from '../Backdrop/Backdrop';
 import ExternalPagesNavBar from '../ExternalPagesNavBar/ExternalPagesNavBar';
 import PlayTrailerButton from '../PlayTrailerButton/PlayTrailerButton';
 import { getImageUrl, arrayExistsIsNotEmpty } from '../helperMethods';
+import CrewHeaderItem from './CrewHeaderItem/CrewHeaderItem';
 
 const MovieAndTvHeader = props => {
   const { production } = props;
 
-  const yearOfProduction = (
-    <p className="font-weight-light h4">
-      {`(${new Date(
-        production.release_date || production.first_air_date
-      ).getFullYear()})`}
-    </p>
-  );
+  const yearOfProduction =
+    production.release_date || production.first_air_date ? (
+      <p className="font-weight-light h4">
+        {`(${new Date(
+          production.release_date || production.first_air_date
+        ).getFullYear()})`}
+      </p>
+    ) : null;
 
   const posterImagePath = getImageUrl(production.poster_path, 'w300');
 
@@ -44,14 +45,16 @@ const MovieAndTvHeader = props => {
 
   // Takes first three persons of the crew array determined above to add them to the header.
   const crewInfo = arrayExistsIsNotEmpty(crew)
-    ? crew.splice(0, 3).map(person => (
-        <div key={person.job + String(person.id)}>
-          <Link to={`/person/${person.id}`} className="light">
-            <h5 className="mb-0">{person.name}</h5>
-          </Link>
-          <p>{person.job || 'Creator'}</p>
-        </div>
-      ))
+    ? crew
+        .splice(0, 3)
+        .map(person => (
+          <CrewHeaderItem
+            key={person.job + String(person.id)}
+            personJob={person.job || 'Creator'}
+            personName={person.name}
+            personId={person.id}
+          />
+        ))
     : null;
 
   const videos = production.videos ? production.videos.results : null;
@@ -75,9 +78,7 @@ const MovieAndTvHeader = props => {
           </div>
           <div className="col-8 my-3">
             <h1 className="mb-1">{production.title || production.name}</h1>
-            {production.release_date || production.first_air_date
-              ? yearOfProduction
-              : null}
+            {yearOfProduction}
             {quote}
             <div className="my-5 d-inline-block">
               <div className=" d-inline-block mr-4">
