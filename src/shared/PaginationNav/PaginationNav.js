@@ -2,12 +2,16 @@ import React, { Component } from 'react';
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
 class PaginationNav extends Component {
-  changePage = page => {
+  changePage = changedPage => {
     const { onPageChanged, currentPage, totalPages } = this.props;
-    if (page === currentPage || page > totalPages || page < 1) {
+    if (
+      changedPage === currentPage ||
+      changedPage > totalPages ||
+      changedPage < 1
+    ) {
       return;
     }
-    onPageChanged(page);
+    onPageChanged(changedPage);
   };
 
   render() {
