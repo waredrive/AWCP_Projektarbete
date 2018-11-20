@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as actionTypes from './actionTypes';
 
-// Fetch Typeahead Results
+// FETCH TYPEAHEAD RESULTS
 
 export const fetchTypeaheadResultsSuccess = (searchResults, query) => ({
   type: actionTypes.FETCH_TYPEAHEAD_RESULTS_SUCCESS,
@@ -34,7 +34,7 @@ export const fetchTypeaheadResults = searchQuery => dispatch => {
     });
 };
 
-// Misc Typeahead Actions
+// MISC TYPEAHEAD ACTIONS
 
 export const clearTypeahead = () => ({
   type: actionTypes.CLEAR_TYPEAHEAD

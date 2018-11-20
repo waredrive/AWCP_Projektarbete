@@ -13,6 +13,8 @@ const initialState = {
   tLoading: false
 };
 
+// FETCH PEOPLE SEARCHES
+
 const fetchPeopleSearchResultsStart = state =>
   updateObject(state, { sLoading: true });
 
@@ -21,6 +23,8 @@ const fetchPeopleSearchResultsSuccess = (state, action) =>
 
 const fetchPeopleSearchResultsFailed = state =>
   updateObject(state, { sLoading: false });
+
+// FETCH TRENDING PEOPLE
 
 const fetchTrendingPeopleStart = state =>
   updateObject(state, { tLoading: true });
@@ -31,6 +35,8 @@ const fetchTrendingPeopleSuccess = (state, action) =>
 const fetchTrendingPeopleFailed = state =>
   updateObject(state, { tLoading: false });
 
+// FETCH PERSON DETAILS
+
 const fetchPersonDetailsStart = state =>
   updateObject(state, { dLoading: true });
 
@@ -39,6 +45,8 @@ const fetchPersonDetailsSuccess = (state, action) =>
 
 const fetchPersonDetailsFailed = state =>
   updateObject(state, { dLoading: false });
+
+// ACTION TYPE SWITCH
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

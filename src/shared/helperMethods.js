@@ -1,4 +1,5 @@
 /* eslint-disable */
+
 export const getImageUrl = (pathParam, firstSizeParam, secondSizeParam) => {
   const localImgNamePath =
     firstSizeParam && secondSizeParam

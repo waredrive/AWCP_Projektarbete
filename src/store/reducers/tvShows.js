@@ -13,6 +13,8 @@ const initialState = {
   tLoading: false
 };
 
+// FETCH TV SHOW SEARCHES
+
 const fetchTvShowSearchResultsStart = state =>
   updateObject(state, { loading: true });
 
@@ -21,6 +23,8 @@ const fetchTvShowSearchResultsSuccess = (state, action) =>
 
 const fetchTvShowSearchResultsFailed = state =>
   updateObject(state, { sLoading: false });
+
+// FETCH TRENDING TV SHOWS
 
 const fetchTrendingTvShowsStart = state =>
   updateObject(state, { tLoading: true });
@@ -31,6 +35,8 @@ const fetchTrendingTvShowsSuccess = (state, action) =>
 const fetchTrendingTvShowsFailed = state =>
   updateObject(state, { tLoading: false });
 
+// FETCH TV SHOW DETAILS
+
 const fetchTvShowDetailsStart = state =>
   updateObject(state, { dLoading: true });
 
@@ -39,6 +45,8 @@ const fetchTvShowDetailsSuccess = (state, action) =>
 
 const fetchTvShowDetailsFailed = state =>
   updateObject(state, { dLoading: false });
+
+// ACTION TYPE SWITCH
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

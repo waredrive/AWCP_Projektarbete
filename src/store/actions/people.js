@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-instance';
 
-// Fetch People Searches
+// FETCH PEOPLE SEARCHES
 
 export const fetchPeopleSearchResultsSuccess = searchResults => ({
   type: actionTypes.FETCH_PEOPLE_SEARCH_RESULTS_SUCCESS,
@@ -33,7 +33,7 @@ export const fetchPeopleSearchResults = (searchQuery, page) => dispatch => {
     });
 };
 
-// Fetch Trending People
+// FETCH TRENDING PEOPLE
 
 export const fetchTrendingPeopleSuccess = trending => ({
   type: actionTypes.FETCH_TRENDING_PEOPLE_SUCCESS,
@@ -52,7 +52,7 @@ export const fetchTrendingPeopleStart = () => ({
 export const fetchTrendingPeople = () => dispatch => {
   dispatch(fetchTrendingPeopleStart());
   axios
-    .get(`trending/person/week?api_key=${process.env.REACT_APP_TMDB_API_KEY}`)
+    .get(`trending/person/WEEK?api_key=${process.env.REACT_APP_TMDB_API_KEY}`)
     .then(res => {
       dispatch(fetchTrendingPeopleSuccess(res.data));
     })
@@ -61,7 +61,7 @@ export const fetchTrendingPeople = () => dispatch => {
     });
 };
 
-// Fetch Person Details
+// FETCH PERSON DETAILS
 
 export const fetchPersonDetailsSuccess = details => ({
   type: actionTypes.FETCH_PERSON_DETAILS_SUCCESS,

@@ -6,6 +6,7 @@ import { getImageUrl, arrayExistsIsNotEmpty } from '../helperMethods';
 const MovieAndTvTopCast = props => {
   const { cast, crew } = props;
 
+  // Creates actor-cards for the top five actors sorted by popularity.
   const actorCards = arrayExistsIsNotEmpty(cast)
     ? cast
         .sort((objA, objB) => objB.popularity - objA.popularity)

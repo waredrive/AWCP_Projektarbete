@@ -13,6 +13,8 @@ const initialState = {
   tLoading: false
 };
 
+// FETCH MOVIE SEARCHES
+
 const fetchMovieSearchResultsStart = state =>
   updateObject(state, { sLoading: true });
 
@@ -21,6 +23,8 @@ const fetchMovieSearchResultsSuccess = (state, action) =>
 
 const fetchMovieSearchResultsFailed = state =>
   updateObject(state, { sLoading: false });
+
+// FETCH TRENDING MOVIES
 
 const fetchTrendingMoviesStart = state =>
   updateObject(state, { tLoading: true });
@@ -31,6 +35,8 @@ const fetchTrendingMoviesSuccess = (state, action) =>
 const fetchTrendingMoviesFailed = state =>
   updateObject(state, { tLoading: false });
 
+// FETCH MOVIE DETAILS
+
 const fetchMovieDetailsStart = state => updateObject(state, { dLoading: true });
 
 const fetchMovieDetailsSuccess = (state, action) =>
@@ -38,6 +44,8 @@ const fetchMovieDetailsSuccess = (state, action) =>
 
 const fetchMovieDetailsFailed = state =>
   updateObject(state, { dLoading: false });
+
+// ACTION TYPE SWITCH
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

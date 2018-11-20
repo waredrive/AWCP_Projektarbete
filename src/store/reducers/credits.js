@@ -19,6 +19,8 @@ const fetchCreditsSuccess = (state, action) =>
 
 const fetchCreditsFailed = state => updateObject(state, { loading: false });
 
+// ACTION TYPE SWITCH
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.FETCH_CREDITS_START:

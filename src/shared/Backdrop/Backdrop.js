@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// This component uses styled-components package to make it possible to
+// dynamically edit css pseudo classes (in this case ":after"). Component
+// creates a wrapping div with a styled dynamic backdrop image or a color.
 const Backdrop = props => {
   const { children, backdropPath } = props;
   const background = backdropPath

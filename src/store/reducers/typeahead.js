@@ -17,6 +17,10 @@ const isMatchingStrings = (stringToMatch, query) =>
     .trim()
     .includes(query.toLowerCase().trim());
 
+// Maps the three types of response objects to a new uniform object that can be easily
+// styled and displayed in typeahead search results window. This function checks for
+// original name/title of the movie/tv-series so a search for those also returns
+// a result.
 const formatSearchResults = (results, query) =>
   results.map(result => {
     let matchedName = '';
@@ -48,6 +52,8 @@ const formatSearchResults = (results, query) =>
     return { name: matchedName, type: result.media_type, icon: typeIcon };
   });
 
+// FETCH TYPEAHEAD RESULTS
+
 const fetchTypeaheadResultsStart = state =>
   updateObject(state, { loading: true });
 
@@ -67,11 +73,15 @@ const fetchTypeaheadResultsFailed = (state, action) =>
     noMatch: true
   });
 
+// MISC TYPEAHEAD ACTIONS
+
 const clearTypeahead = state =>
   updateObject(state, { noMatch: false, input: '' });
 
 const changeTypeaheadInput = (state, action) =>
   updateObject(state, { input: action.input });
+
+// ACTION TYPE SWITCH
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {

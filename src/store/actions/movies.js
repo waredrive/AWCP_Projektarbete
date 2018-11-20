@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-instance';
 
-// Fetch Movie Searches
+// FETCH MOVIE SEARCHES
 
 export const fetchMovieSearchResultsSuccess = searchResults => ({
   type: actionTypes.FETCH_MOVIE_SEARCH_RESULTS_SUCCESS,
@@ -33,7 +33,7 @@ export const fetchMovieSearchResults = (searchQuery, page) => dispatch => {
     });
 };
 
-// Fetch Trending Movies
+// FETCH TRENDING MOVIES
 
 export const fetchTrendingMoviesSuccess = trending => ({
   type: actionTypes.FETCH_TRENDING_MOVIES_SUCCESS,
@@ -61,7 +61,7 @@ export const fetchTrendingMovies = () => dispatch => {
     });
 };
 
-// Fetch Movie Details
+// FETCH MOVIE DETAILS
 
 export const fetchMovieDetailsSuccess = details => ({
   type: actionTypes.FETCH_MOVIE_DETAILS_SUCCESS,

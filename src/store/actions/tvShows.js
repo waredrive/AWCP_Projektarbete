@@ -1,7 +1,7 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-instance';
 
-// Fetch Tv Show Searches
+// FETCH TV SHOW SEARCHES
 
 export const fetchTvShowSearchResultsSuccess = searchResults => ({
   type: actionTypes.FETCH_TV_SHOW_SEARCH_RESULTS_SUCCESS,
@@ -33,7 +33,7 @@ export const fetchTvShowSearchResults = (searchQuery, page) => dispatch => {
     });
 };
 
-// Fetch Trending Tv Shows
+// FETCH TRENDING TV SHOWS
 
 export const fetchTrendingTvShowsSuccess = trending => ({
   type: actionTypes.FETCH_TRENDING_TV_SHOWS_SUCCESS,
@@ -61,7 +61,7 @@ export const fetchTrendingTvShows = () => dispatch => {
     });
 };
 
-// Fetch Tv Show Details
+// FETCH TV SHOW DETAILS
 
 export const fetchTvShowDetailsSuccess = details => ({
   type: actionTypes.FETCH_TV_SHOW_DETAILS_SUCCESS,
