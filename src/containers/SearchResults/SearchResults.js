@@ -19,8 +19,7 @@ class SearchResults extends Component {
 
   componentDidUpdate(prevProps) {
     if (
-      this.fetchQueryString('query', prevProps) !==
-      this.fetchQueryString('query')
+      this.getQueryString('query', prevProps) !== this.getQueryString('query')
     ) {
       this.onPageLoad();
     }
@@ -28,16 +27,16 @@ class SearchResults extends Component {
 
   onPageLoad = () => {
     const { onFetchMovies, onFetchTvShows, onFetchPeople } = this.props;
-    const query = this.fetchQueryString('query');
-    this.setState({ activeTab: this.fetchQueryString('type') });
+    const query = this.getQueryString('query');
+    this.setState({ activeTab: this.getQueryString('type') });
     onFetchMovies(query, 1);
     onFetchTvShows(query, 1);
     onFetchPeople(query, 1);
   };
 
-  // Fetches given query param from URL query string.
-  // Fetches from current props or props past in by parameter.
-  fetchQueryString = (param, props) => {
+  // Gets given query param from URL query string.
+  // Gets from current props or props past in by parameter.
+  getQueryString = (param, props) => {
     const { location } = props || this.props;
     const queryParams = new URLSearchParams(location.search);
     return queryParams.get(param);
@@ -62,7 +61,7 @@ class SearchResults extends Component {
       onFetchTvShows,
       onFetchPeople
     } = this.props;
-    const query = this.fetchQueryString('query');
+    const query = this.getQueryString('query');
 
     return movies || tvShows || people ? (
       <div className="container mt-5">
