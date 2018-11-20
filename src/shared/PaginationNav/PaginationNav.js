@@ -29,10 +29,13 @@ class PaginationNav extends Component {
         ? 1
         : Math.floor(currentPage / 10) * 10;
 
+    // Calculates the endPoint of the bar based on the startPoint calculated above.
+    // Adds 10 to the start
     const endPoint =
       startPoint + 10 > totalPages ? totalPages + 1 : startPoint + 10;
 
     // Creates pagination-buttons based on startPoint and endPoint calculated above.
+    // Sets button with index of current page to active.
     for (let i = startPoint; i < endPoint; i += 1) {
       pagination.push(
         <PaginationItem key={i} active={currentPage === i} id={i}>
