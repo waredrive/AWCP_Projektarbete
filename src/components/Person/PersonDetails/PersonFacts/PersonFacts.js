@@ -1,20 +1,20 @@
 import React from 'react';
 import './PersonFacts.module.css';
 import FactField from '../../../../shared/FactField/FactField';
+import { arrayExistsIsNotEmpty } from '../../../../shared/helperMethods';
 
 const TvShowFacts = props => {
   const { person } = props;
   const genders = { 1: 'Female', 2: 'Male' };
   const gender = genders[person.gender];
 
-  const alsoKnownAs =
-    person.also_known_as && person.also_known_as.length > 0
-      ? person.also_known_as.map(altName => (
-          <span key={altName} className="my-0 d-block">
-            {altName}
-          </span>
-        ))
-      : null;
+  const alsoKnownAs = arrayExistsIsNotEmpty(person.also_known_as)
+    ? person.also_known_as.map(altName => (
+        <span key={altName} className="my-0 d-block">
+          {altName}
+        </span>
+      ))
+    : null;
 
   const knownCredits = person.combined_credits
     ? person.combined_credits.cast.length + person.combined_credits.crew.length

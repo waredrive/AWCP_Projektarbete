@@ -1,27 +1,26 @@
 import React from 'react';
 import Carousel from 'nuka-carousel';
 import RecommendationAndSimilarCard from './RecommendationAndSimilarCard/RecommendationAndSimilarCard';
-import { getImageUrl } from '../helperMethods';
+import { getImageUrl, arrayExistsIsNotEmpty } from '../helperMethods';
 import CarouselButton from '../CarouselButton/CarouselButton';
 
 const RecommendationsAndSimilar = props => {
   const { recommendations, type, header, notFoundText } = props;
-  const recommendationCards =
-    recommendations && recommendations.results.length > 0
-      ? recommendations.results.map(recommendation => (
-          <RecommendationAndSimilarCard
-            type={type}
-            key={recommendation.id}
-            id={recommendation.id}
-            backdropPath={getImageUrl(
-              recommendation.backdrop_path,
-              'w300',
-              'h169'
-            )}
-            title={recommendation.title || recommendation.name}
-          />
-        ))
-      : null;
+  const recommendationCards = arrayExistsIsNotEmpty(recommendations.results)
+    ? recommendations.results.map(recommendation => (
+        <RecommendationAndSimilarCard
+          type={type}
+          key={recommendation.id}
+          id={recommendation.id}
+          backdropPath={getImageUrl(
+            recommendation.backdrop_path,
+            'w300',
+            'h169'
+          )}
+          title={recommendation.title || recommendation.name}
+        />
+      ))
+    : null;
 
   return (
     <>

@@ -4,7 +4,7 @@ import RatingBar from '../RatingBar/RatingBar';
 import Backdrop from '../Backdrop/Backdrop';
 import ExternalPagesNavBar from '../ExternalPagesNavBar/ExternalPagesNavBar';
 import PlayTrailerButton from '../PlayTrailerButton/PlayTrailerButton';
-import { getImageUrl } from '../helperMethods';
+import { getImageUrl, arrayExistsIsNotEmpty } from '../helperMethods';
 
 const MovieAndTvHeader = props => {
   const { production } = props;
@@ -44,23 +44,21 @@ const MovieAndTvHeader = props => {
     const c = production.credits.crew;
     crew = c;
   }
-  const crewInfo =
-    crew && crew.length > 0
-      ? crew.splice(0, 3).map(person => (
-          <div key={person.job + String(person.id)}>
-            <Link to={`/person/${person.id}`} className="light">
-              <h5 className="mb-0">{person.name}</h5>
-            </Link>
-            <p>{person.job || 'Creator'}</p>
-          </div>
-        ))
-      : null;
+  const crewInfo = arrayExistsIsNotEmpty(crew)
+    ? crew.splice(0, 3).map(person => (
+        <div key={person.job + String(person.id)}>
+          <Link to={`/person/${person.id}`} className="light">
+            <h5 className="mb-0">{person.name}</h5>
+          </Link>
+          <p>{person.job || 'Creator'}</p>
+        </div>
+      ))
+    : null;
 
   const videos = production.videos ? production.videos.results : null;
-  const trailer =
-    videos && videos.length > 0
-      ? videos.map(video => video).filter(vid => vid.type === 'Trailer')[0]
-      : null;
+  const trailer = arrayExistsIsNotEmpty(videos)
+    ? videos.map(video => video).filter(vid => vid.type === 'Trailer')[0]
+    : null;
 
   return (
     <Backdrop backdropPath={production.backdrop_path}>

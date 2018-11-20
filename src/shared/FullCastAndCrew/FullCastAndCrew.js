@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import CastAndCrewCard from './CastAndCrewCard/CastAndCrewCard';
-import { getImageUrl } from '../helperMethods';
+import { getImageUrl, arrayExistsIsNotEmpty } from '../helperMethods';
 import * as actions from '../../store/actions/index';
 import Spinner from '../Spinner/Spinner';
 
@@ -13,7 +13,7 @@ class FullCastAndCrew extends Component {
   }
 
   getCastAndCrewCards = people =>
-    people && people.length > 0 ? (
+    arrayExistsIsNotEmpty(people) ? (
       people.map(person => (
         <CastAndCrewCard
           id={person.id}

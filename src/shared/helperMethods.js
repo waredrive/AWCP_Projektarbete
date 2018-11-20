@@ -48,3 +48,7 @@ export const updateObject = (oldObject, newProperties) => {
     ...newProperties
   };
 };
+
+export const arrayExistsIsNotEmpty = arr => {
+  return arr && arr.length > 0;
+};

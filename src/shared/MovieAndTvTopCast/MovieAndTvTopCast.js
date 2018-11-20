@@ -1,26 +1,25 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import ActorCard from './ActorCard/ActorCard';
-import { getImageUrl } from '../helperMethods';
+import { getImageUrl, arrayExistsIsNotEmpty } from '../helperMethods';
 
 const MovieAndTvTopCast = props => {
   const { cast, crew } = props;
 
-  const actorCards =
-    cast && cast.length > 0
-      ? cast
-          .sort((objA, objB) => objB.popularity - objA.popularity)
-          .slice(0, 5)
-          .map(person => (
-            <ActorCard
-              id={person.id}
-              key={person.id}
-              actorName={person.name}
-              playedRoleName={person.character}
-              imagePath={getImageUrl(person.profile_path, 'w185')}
-            />
-          ))
-      : null;
+  const actorCards = arrayExistsIsNotEmpty(cast)
+    ? cast
+        .sort((objA, objB) => objB.popularity - objA.popularity)
+        .slice(0, 5)
+        .map(person => (
+          <ActorCard
+            id={person.id}
+            key={person.id}
+            actorName={person.name}
+            playedRoleName={person.character}
+            imagePath={getImageUrl(person.profile_path, 'w185')}
+          />
+        ))
+    : null;
 
   return (
     <div className="mb-5 pb-2">
@@ -35,7 +34,7 @@ const MovieAndTvTopCast = props => {
         <p>There is no cast added to this movie.</p>
       )}
       <div className="row d-block pr-5">
-        {(cast && cast.length > 0) || (crew && crew.length > 0) ? (
+        {arrayExistsIsNotEmpty(cast) || arrayExistsIsNotEmpty(crew) ? (
           <button
             type="button"
             className="btn btn-outline-secondary btn-block btn-lg ml-3"
