@@ -6,7 +6,7 @@ import MovieAndTvSearchResults from '../../shared/MovieAndTvSearchResults/MovieA
 import PeopleSearchResults from '../People/PeopleSearchResults/PeopleSearchResults';
 import ResultsBadge from './ResultsBadge/ResultsBadge';
 import * as actions from '../../store/actions/index';
-import Spinner from '../../shared/Spinner/Spinner'
+import Spinner from '../../shared/Spinner/Spinner';
 
 class SearchResults extends Component {
   state = {
@@ -27,44 +27,21 @@ class SearchResults extends Component {
   }
 
   onPageLoad = () => {
+    const { onFetchMovies, onFetchTvShows, onFetchPeople } = this.props;
+    const query = this.fetchQueryString('query');
     this.setState({ activeTab: this.fetchQueryString('type') });
-    this.fetchMoviesFromAPI(1);
-    this.fetchTvShowsFromAPI(1);
-    this.fetchPeopleFromAPI(1);
+    onFetchMovies(query, 1);
+    onFetchTvShows(query, 1);
+    onFetchPeople(query, 1);
   };
 
+  // Fetches given query param from URL query string.
+  // Fetches from current props or props past in by parameter.
   fetchQueryString = (param, props) => {
     const { location } = props || this.props;
     const queryParams = new URLSearchParams(location.search);
     return queryParams.get(param);
   };
-
-  onMoviesPageChangeHandler = page => {
-    this.fetchMoviesFromAPI(page);
-  };
-
-  onTvShowsPageChangeHandler = page => {
-    this.fetchTvShowsFromAPI(page);
-  };
-
-  onPeoplePageChangeHandler = page => {
-    this.fetchPeopleFromAPI(page);
-  };
-
-  fetchMoviesFromAPI(page) {
-    const { onFetchMovies } = this.props;
-    onFetchMovies(this.fetchQueryString('query'), page);
-  }
-
-  fetchTvShowsFromAPI(page) {
-    const { onFetchTvShows } = this.props;
-    onFetchTvShows(this.fetchQueryString('query'), page);
-  }
-
-  fetchPeopleFromAPI(page) {
-    const { onFetchPeople } = this.props;
-    onFetchPeople(this.fetchQueryString('query'), page);
-  }
 
   toggleTabs(tab) {
     const { activeTab } = this.state;
@@ -77,10 +54,18 @@ class SearchResults extends Component {
 
   render() {
     const { activeTab } = this.state;
-    const { movies, tvShows, people } = this.props;
+    const {
+      movies,
+      tvShows,
+      people,
+      onFetchMovies,
+      onFetchTvShows,
+      onFetchPeople
+    } = this.props;
+    const query = this.fetchQueryString('query');
 
-    return (
-     movies || tvShows || people ? <div className="container mt-5">
+    return movies || tvShows || people ? (
+      <div className="container mt-5">
         <div className="row">
           <div className="col-md-12">
             <Nav pills className="bg-light rounded">
@@ -132,27 +117,29 @@ class SearchResults extends Component {
               <TabPane tabId="movie">
                 <MovieAndTvSearchResults
                   searchResults={movies}
-                  onPageChange={page => this.onMoviesPageChangeHandler(page)}
+                  onPageChange={page => onFetchMovies(query, page)}
                   type="movie"
                 />
               </TabPane>
               <TabPane tabId="tv">
                 <MovieAndTvSearchResults
                   searchResults={tvShows}
-                  onPageChange={page => this.onTvShowsPageChangeHandler(page)}
+                  onPageChange={page => onFetchTvShows(query, page)}
                   type="tv"
                 />
               </TabPane>
               <TabPane tabId="person">
                 <PeopleSearchResults
                   searchResults={people}
-                  onPageChange={page => this.onPeoplePageChangeHandler(page)}
+                  onPageChange={page => onFetchPeople(query, page)}
                 />
               </TabPane>
             </TabContent>
           </div>
         </div>
-      </div> : <Spinner/>
+      </div>
+    ) : (
+      <Spinner />
     );
   }
 }
@@ -160,7 +147,7 @@ class SearchResults extends Component {
 const mapStateAsProps = state => ({
   movies: state.movies.searchResults,
   tvShows: state.tvShows.searchResults,
-  people: state.people.searchResults,
+  people: state.people.searchResults
 });
 
 const mapDispatchAsProps = dispatch => ({
