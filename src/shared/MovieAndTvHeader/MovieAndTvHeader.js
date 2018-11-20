@@ -9,23 +9,13 @@ import { getImageUrl, arrayExistsIsNotEmpty } from '../helperMethods';
 const MovieAndTvHeader = props => {
   const { production } = props;
 
-  let yearOfProduction = null;
-
-  // Because movies have release_date and tv-shows have first_air_date this
-  // if-statement checks for both cases.
-  if (production.release_date)
-    yearOfProduction = (
-      <p className="font-weight-light h4">
-        ({new Date(production.release_date).getFullYear()})
-      </p>
-    );
-  else if (production.first_air_date) {
-    yearOfProduction = (
-      <p className="font-weight-light h4">
-        ({new Date(production.first_air_date).getFullYear()})
-      </p>
-    );
-  }
+  const yearOfProduction = (
+    <p className="font-weight-light h4">
+      {`(${new Date(
+        production.release_date || production.first_air_date
+      ).getFullYear()})`}
+    </p>
+  );
 
   const posterImagePath = getImageUrl(production.poster_path, 'w300');
 
@@ -52,7 +42,7 @@ const MovieAndTvHeader = props => {
     crew = c;
   }
 
-  // Takes first three persons of the crew array determined above and adds them to the header.
+  // Takes first three persons of the crew array determined above to add them to the header.
   const crewInfo = arrayExistsIsNotEmpty(crew)
     ? crew.splice(0, 3).map(person => (
         <div key={person.job + String(person.id)}>
@@ -85,7 +75,9 @@ const MovieAndTvHeader = props => {
           </div>
           <div className="col-8 my-3">
             <h1 className="mb-1">{production.title || production.name}</h1>
-            {yearOfProduction}
+            {production.release_date || production.first_air_date
+              ? yearOfProduction
+              : null}
             {quote}
             <div className="my-5 d-inline-block">
               <div className=" d-inline-block mr-4">
@@ -109,7 +101,7 @@ const MovieAndTvHeader = props => {
             <div className="mt-5">
               <h4>Crew</h4>
               <div className="d-flex justify-content-between">
-                {crewInfo || <p>There is no crew added to this movie.</p>}
+                {crewInfo || <p>There is no crew added.</p>}
               </div>
             </div>
           </div>
