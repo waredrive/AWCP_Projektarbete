@@ -24,9 +24,7 @@ class MovieDetails extends Component {
 
   render() {
     const { movie, match } = this.props;
-
     const cast = movie && movie.credits ? movie.credits.cast : null;
-
     const crew = movie && movie.credits ? movie.credits.crew : null;
 
     return movie && match.params.id.startsWith(String(movie.id)) ? (

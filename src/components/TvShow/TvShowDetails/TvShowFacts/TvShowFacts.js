@@ -1,5 +1,6 @@
 import React from 'react';
 import ISO6391 from 'iso-639-1';
+import GenreButton from '../../../../shared/GenreButton/GenreButton';
 import './TvShowFacts.module.css';
 import {
   formatEmptyFields,
@@ -12,13 +13,7 @@ const TvShowFacts = props => {
   const genres =
     tvShow.genres && tvShow.genres.length > 0
       ? tvShow.genres.map(genre => (
-          <button
-            type="button"
-            key={genre.id}
-            className="btn btn-light btn-sm mr-2 mt-2 disabled"
-          >
-            {genre.name.toUpperCase()}
-          </button>
+          <GenreButton key={genre.id} name={genre.name} />
         ))
       : null;
 
