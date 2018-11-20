@@ -28,6 +28,9 @@ const rootReducer = combineReducers({
   typeahead: typeaheadReducer
 });
 
+// Makes it possible to use Redux Devtools extension.
+// Won't work in production but does not give any negative side-effects
+// if left alone.
 const composeEnhancers =
   process.env.NODE_ENV === 'development'
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
