@@ -10,6 +10,9 @@ const MovieAndTvHeader = props => {
   const { production } = props;
 
   let yearOfProduction = null;
+
+  // Because movies have release_date and tv-shows have first_air_date this
+  // if-statement checks for both cases.
   if (production.release_date)
     yearOfProduction = (
       <p className="font-weight-light h4">
@@ -33,17 +36,23 @@ const MovieAndTvHeader = props => {
       &quot;
     </p>
   ) : null;
+
   const overview = production
     ? production.overview || "We don't have a description of this production."
     : null;
 
   let crew = null;
+
+  // Because movies have credits.crew array and tv-shows have created_by array this
+  // if-statement checks for both cases.
   if (production.created_by) {
     crew = production.created_by;
   } else if (production.credits) {
     const c = production.credits.crew;
     crew = c;
   }
+
+  // Takes first three persons of the crew array determined above and adds them to the header.
   const crewInfo = arrayExistsIsNotEmpty(crew)
     ? crew.splice(0, 3).map(person => (
         <div key={person.job + String(person.id)}>
@@ -56,6 +65,8 @@ const MovieAndTvHeader = props => {
     : null;
 
   const videos = production.videos ? production.videos.results : null;
+
+  // Takes first video with the type 'Trailer' from the videos array.
   const trailer = arrayExistsIsNotEmpty(videos)
     ? videos.map(video => video).filter(vid => vid.type === 'Trailer')[0]
     : null;
