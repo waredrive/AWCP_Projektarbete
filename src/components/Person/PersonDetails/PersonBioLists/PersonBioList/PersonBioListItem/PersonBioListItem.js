@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { formatEmptyFields } from '../../../../../../shared/helperMethods';
 
 const PersonBioListItem = props => {
   const { year, nameOfProduction, job, type, id } = props;
@@ -7,7 +8,9 @@ const PersonBioListItem = props => {
   return (
     <li className="list-group-item my-1 rounded">
       <div className="row">
-        <div className="d-inline-block col-1 text-center">{year}</div>
+        <div className="d-inline-block col-1 text-center">
+          {formatEmptyFields(year)}
+        </div>
         <div className="d-inline-block col-11">
           <Link to={`/${type}/${id}`}>
             <span className="font-weight-bold">{nameOfProduction}</span>

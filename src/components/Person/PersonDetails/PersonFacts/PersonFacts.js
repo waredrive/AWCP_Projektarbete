@@ -47,15 +47,15 @@ const TvShowFacts = props => {
       </div>
       <div>
         <h6>Gender</h6>
-        <div className="mb-3 mt-1">{formatEmptyFields(gender)}</div>
+        <p>{formatEmptyFields(gender)}</p>
       </div>
       <div>
         <h6>Known Credits</h6>
-        <div className="mb-3 mt-1">{formatEmptyFields(knownCredits)}</div>
+        <p>{formatEmptyFields(knownCredits)}</p>
       </div>
       <div>
         <h6>Birthday</h6>
-        <div className="mb-3 mt-1">{formatEmptyFields(person.birthday)}</div>
+        <p>{formatEmptyFields(person.birthday)}</p>
       </div>
       {dayOfDeath}
       <div>

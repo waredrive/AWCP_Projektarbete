@@ -51,7 +51,7 @@ const TvShowFacts = props => {
       </div>
       <div>
         <h6>Network</h6>
-        <div className="mb-3 mt-1">{formatEmptyFields(networks)}</div>
+        <p>{formatEmptyFields(networks)}</p>
       </div>
       <div>
         <h6>Type</h6>

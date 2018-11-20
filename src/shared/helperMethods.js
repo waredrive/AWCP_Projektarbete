@@ -13,7 +13,7 @@ export const getImageUrl = (pathParam, firstSizeParam, secondSizeParam) => {
 
 export const formatEmptyFields = (field, functionToRunAfter) => {
   if (!field) {
-    return '-';
+    return String.fromCharCode(0x2014); //EM DASH
   }
   if (!functionToRunAfter) {
     return field;
