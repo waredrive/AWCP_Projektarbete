@@ -4,7 +4,7 @@ import PersonHeader from './PersonHeader/PersonHeader';
 import { getImageUrl } from '../../../shared/helperMethods';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
 import PersonFacts from './PersonFacts/PersonFacts';
-import PersonBioLists from './PersonBioLists/PersonBioLists';
+import PersonBio from './PersonBio/PersonBio';
 import PersonTopMoviesAndTvs from './PersonTopMoviesAndTvs/PersonTopMoviesAndTvs';
 import * as actions from '../../../store/actions/index';
 import Spinner from '../../../shared/Spinner/Spinner';
@@ -48,7 +48,7 @@ class PersonDetails extends Component {
                     }
                   />
                 </div>
-                <PersonBioLists
+                <PersonBio
                   movieCredits={person.movie_credits}
                   tvCredits={person.tv_credits}
                 />

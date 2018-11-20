@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Nav, NavItem, NavLink, TabContent } from 'reactstrap';
+import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
-import PersonFactTabPane from '../PersonFacts/PersonFactTabPane/PersonFactTabPane';
+import PersonBioLists from './PersonBioLists/PersonBioLists';
 
-class PersonBioLists extends Component {
+class PersonBio extends Component {
   state = {
     activeTab: 'movie'
   };
@@ -69,12 +69,16 @@ class PersonBioLists extends Component {
           </NavItem>
         </Nav>
         <TabContent activeTab={activeTab}>
-          <PersonFactTabPane tabId="movie" credits={movieCredits} />
-          <PersonFactTabPane tabId="tv" credits={tvCredits} />
+          <TabPane tabId="movie">
+            <PersonBioLists credits={movieCredits} />
+          </TabPane>
+          <TabPane tabId="tv">
+            <PersonBioLists credits={tvCredits} />
+          </TabPane>
         </TabContent>
       </div>
     );
   }
 }
 
-export default PersonBioLists;
+export default PersonBio;
