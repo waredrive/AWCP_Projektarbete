@@ -22,20 +22,20 @@ class PaginationNav extends Component {
     const { currentPage, totalPages } = this.props;
     const pagination = [];
 
-    // Calculates the start point of the bar based on current page.
-    //
+    // Calculates the start point of pagination bar based on current page with minimum of 1.
+    // Uses Math.floor to get the nearest tenth page to start from.
     const startPoint =
       Math.floor(currentPage / 10) * 10 === 0
         ? 1
         : Math.floor(currentPage / 10) * 10;
 
-    // Calculates the endPoint of the bar based on the startPoint calculated above.
-    // Adds 10 to the start
+    // Calculates the endPoint of the bar based on the startPoint calculated above. Result gives ten pages
+    // from start point or total amount of pages + 1 (due to for loop using the less then operator ).
     const endPoint =
       startPoint + 10 > totalPages ? totalPages + 1 : startPoint + 10;
 
-    // Creates pagination-buttons based on startPoint and endPoint calculated above.
-    // Sets button with index of current page to active.
+    // Creates pagination-buttons based on startPoint and endPoint calculated above. Sets button
+    // with index of current page to active.
     for (let i = startPoint; i < endPoint; i += 1) {
       pagination.push(
         <PaginationItem key={i} active={currentPage === i} id={i}>
