@@ -11,14 +11,14 @@ export const getImageUrl = (pathParam, firstSizeParam, secondSizeParam) => {
   return require(`../assets/images/placeholders/${localImgNamePath}.png`);
 };
 
-export const formatEmptyFields = (field, functionToRunAfter) => {
+export const formatEmptyFields = (field, functionToRunOnText) => {
   if (!field) {
     return String.fromCharCode(0x2014); //EM DASH
   }
-  if (!functionToRunAfter) {
+  if (!functionToRunOnText) {
     return field;
   }
-  return functionToRunAfter(field);
+  return functionToRunOnText(field);
 };
 
 export const convertRuntimeToHoursAndMinutes = runtime => {

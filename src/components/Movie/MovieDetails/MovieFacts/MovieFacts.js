@@ -3,10 +3,10 @@ import ISO6391 from 'iso-639-1';
 import GenreButton from '../../../../shared/GenreButton/GenreButton';
 import './MovieFacts.module.css';
 import {
-  formatEmptyFields,
   convertRuntimeToHoursAndMinutes,
   formatCurrency
 } from '../../../../shared/helperMethods';
+import FactField from '../../../../shared/FactField/FactField';
 
 const MovieFacts = props => {
   const { movie } = props;
@@ -21,36 +21,29 @@ const MovieFacts = props => {
   return (
     <div className="ml-3 py-4 pr-3 position-sticky sticky-top">
       <h5>Facts</h5>
-      <div>
-        <h6>Status</h6>
-        <p>{formatEmptyFields(movie.status)}</p>
-      </div>
-      <div>
-        <h6>Release date</h6>
-        <p>{formatEmptyFields(movie.release_date)}</p>
-      </div>
-      <div>
-        <h6>Runtime</h6>
-        <p>
-          {formatEmptyFields(movie.runtime, convertRuntimeToHoursAndMinutes)}
-        </p>
-      </div>
-      <div>
-        <h6>Original Language</h6>
-        <p>{formatEmptyFields(movie.original_language, ISO6391.getName)}</p>
-      </div>
-      <div>
-        <h6>Budget</h6>
-        <p>{formatEmptyFields(movie.budget, formatCurrency)}</p>
-      </div>
-      <div>
-        <h6>Revenue</h6>
-        <p>{formatEmptyFields(movie.revenue, formatCurrency)}</p>
-      </div>
-      <div>
-        <h6>Genres</h6>
-        {formatEmptyFields(genres)}
-      </div>
+      <FactField headline="Status" text={movie.status} />
+      <FactField headline="Release Date" text={movie.release_date} />
+      <FactField
+        headline="Runtime"
+        text={movie.runtime}
+        functionToRunOnText={convertRuntimeToHoursAndMinutes}
+      />
+      <FactField
+        headline="Original Language"
+        text={movie.original_language}
+        functionToRunOnText={ISO6391.getName}
+      />
+      <FactField
+        headline="Budget"
+        text={movie.budget}
+        functionToRunOnText={formatCurrency}
+      />
+      <FactField
+        headline="Revenue"
+        text={movie.revenue}
+        functionToRunOnText={formatCurrency}
+      />
+      <FactField headline="Genres" text={genres} />
     </div>
   );
 };

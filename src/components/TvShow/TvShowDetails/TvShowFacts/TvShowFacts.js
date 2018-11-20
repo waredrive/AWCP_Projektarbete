@@ -2,10 +2,8 @@ import React from 'react';
 import ISO6391 from 'iso-639-1';
 import GenreButton from '../../../../shared/GenreButton/GenreButton';
 import './TvShowFacts.module.css';
-import {
-  formatEmptyFields,
-  convertRuntimeToHoursAndMinutes
-} from '../../../../shared/helperMethods';
+import { convertRuntimeToHoursAndMinutes } from '../../../../shared/helperMethods';
+import FactField from '../../../../shared/FactField/FactField';
 
 const TvShowFacts = props => {
   const { tvShow } = props;
@@ -30,7 +28,7 @@ const TvShowFacts = props => {
                 title={network.name}
               />
             ) : (
-              <p key={network.id}>{network.name}</p>
+              network.name
             )
         )
       : null;
@@ -45,46 +43,23 @@ const TvShowFacts = props => {
   return (
     <div className="ml-3 py-4 pr-3 position-sticky sticky-top">
       <h5>Facts</h5>
-      <div>
-        <h6>Status</h6>
-        <p>{formatEmptyFields(tvShow.status)}</p>
-      </div>
-      <div>
-        <h6>Network</h6>
-        <p>{formatEmptyFields(networks)}</p>
-      </div>
-      <div>
-        <h6>Type</h6>
-        <p>{formatEmptyFields(tvShow.type)}</p>
-      </div>
-      <div>
-        <h6>Original Language</h6>
-        <p>{formatEmptyFields(tvShow.original_language, ISO6391.getName)}</p>
-      </div>
-      <div>
-        <h6>First Aired</h6>
-        <p>{formatEmptyFields(tvShow.first_air_date)}</p>
-      </div>
-      <div>
-        <h6>Last Aired</h6>
-        <p>{formatEmptyFields(tvShow.last_air_date)}</p>
-      </div>
-      <div>
-        <h6>Runtime</h6>
-        <p>{formatEmptyFields(runtime)}</p>
-      </div>
-      <div>
-        <h6>Number Of Seasons</h6>
-        <p>{formatEmptyFields(tvShow.number_of_seasons)}</p>
-      </div>
-      <div>
-        <h6>Number Of Episodes</h6>
-        <p>{formatEmptyFields(tvShow.number_of_episodes)}</p>
-      </div>
-      <div>
-        <h6>Genres</h6>
-        {formatEmptyFields(genres)}
-      </div>
+      <FactField headline="Status" text={tvShow.status} />
+      <FactField headline="Network" text={networks} />
+      <FactField headline="Type" text={tvShow.type} />
+      <FactField
+        headline="Original Language"
+        text={tvShow.original_language}
+        functionToRunOnText={ISO6391.getName}
+      />
+      <FactField headline="First Aired" text={tvShow.first_air_date} />
+      <FactField headline="Last Aired" text={tvShow.last_air_date} />
+      <FactField headline="Runtime" text={runtime} />
+      <FactField headline="Number Of Seasons" text={tvShow.number_of_seasons} />
+      <FactField
+        headline="Number Of Episodes"
+        text={tvShow.number_of_episodes}
+      />
+      <FactField headline="Genres" text={genres} />
     </div>
   );
 };
