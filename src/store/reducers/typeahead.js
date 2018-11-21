@@ -23,8 +23,8 @@ const isMatchingStrings = (stringToMatch, query) =>
 // a result.
 const formatSearchResults = (results, query) =>
   results.map(result => {
-    let matchedName = '';
-    let typeIcon = '';
+    let matchedName = null;
+    let typeIcon = null;
 
     if (
       result.media_type === 'person' &&
@@ -49,7 +49,11 @@ const formatSearchResults = (results, query) =>
         matchedName = result.original_name;
       }
     }
-    return { name: matchedName, type: result.media_type, icon: typeIcon };
+    return {
+      name: matchedName,
+      type: result.media_type,
+      icon: typeIcon
+    };
   });
 
 // FETCH TYPEAHEAD RESULTS
