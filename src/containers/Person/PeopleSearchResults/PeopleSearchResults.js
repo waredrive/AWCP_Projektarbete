@@ -13,38 +13,28 @@ class PeopleSearchResults extends Component {
 
   render() {
     const { searchResults, onPageChange } = this.props;
-    const searchPage = [];
-    let pagination = null;
 
-    if (searchResults) {
-      searchResults.results.forEach(result => {
-        const knownFor = result.known_for
-          ? result.known_for.map(
-              production => production.title || production.name
-            )
-          : [];
-
-        searchPage.push(
+    const searchPage = searchResults
+      ? searchResults.results.map(result => (
           <PersonSummaryCard
             id={result.id}
             key={result.id}
             name={result.name}
-            knownFor={knownFor}
+            knownFor={result.known_for}
             profilePath={getImageUrl(result.profile_path, 'w154')}
             onShowDetailsClick={() => this.onShowDetailsClickHandler(result.id)}
           />
-        );
-      });
+        ))
+      : null;
 
-      pagination =
-        searchPage.length > 0 ? (
-          <PaginationNav
-            currentPage={searchResults.page}
-            totalPages={searchResults.total_pages}
-            onPageChanged={page => onPageChange(page)}
-          />
-        ) : null;
-    }
+    const pagination = searchResults ? (
+      <PaginationNav
+        currentPage={searchResults.page}
+        totalPages={searchResults.total_pages}
+        onPageChanged={page => onPageChange(page)}
+      />
+    ) : null;
+
     return (
       <div>
         {searchPage || <Spinner />}

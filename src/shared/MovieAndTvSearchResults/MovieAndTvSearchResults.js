@@ -14,40 +14,31 @@ class MovieSearchResults extends Component {
   render() {
     const { searchResults, onPageChange, type } = this.props;
 
-    const searchPage = [];
-    let pagination = null;
-
-    if (searchResults) {
-      searchResults.results.forEach(result => {
-        const overviewText = result.overview
-          ? result.overview
-          : "We don't have a description of this movie.";
-
-        searchPage.push(
+    const searchPage = searchResults
+      ? searchResults.results.map(result => (
           <MovieAndTvSummaryCard
             id={result.id}
             type={type}
             key={result.id}
             title={result.title || result.name}
-            overviewText={overviewText}
+            overviewText={result.overview || "We don't have a description."}
             posterPath={getImageUrl(result.poster_path, 'w185')}
             voteAverage={result.vote_average}
             voteCount={result.vote_count}
             releaseDate={result.release_date}
             onShowDetailsClick={() => this.onShowDetailsClickHandler(result.id)}
           />
-        );
-      });
+        ))
+      : null;
 
-      pagination =
-        searchPage.length > 0 ? (
-          <PaginationNav
-            currentPage={searchResults.page}
-            totalPages={searchResults.total_pages}
-            onPageChanged={page => onPageChange(page)}
-          />
-        ) : null;
-    }
+    const pagination = searchResults ? (
+      <PaginationNav
+        currentPage={searchResults.page}
+        totalPages={searchResults.total_pages}
+        onPageChanged={page => onPageChange(page)}
+      />
+    ) : null;
+
     return (
       <div>
         {searchPage || <Spinner />}

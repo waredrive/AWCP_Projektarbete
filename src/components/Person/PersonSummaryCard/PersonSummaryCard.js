@@ -5,12 +5,12 @@ const PersonSummaryCard = props => {
   const { knownFor, profilePath, name, onShowDetailsClick, id } = props;
 
   const known =
-    knownFor.length > 1 ? (
+    knownFor && knownFor.length > 1 ? (
       <div className="mt-3">
         <p className="font-weight-bold mb-0">Known For:</p>
         <ul className="list-unstyled">
-          {knownFor.map(title => (
-            <li key={title}>{title}</li>
+          {knownFor.map(production => (
+            <li key={production.id}>{production.title}</li>
           ))}
         </ul>
       </div>
