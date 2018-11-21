@@ -12,7 +12,7 @@ class MovieSearchResults extends Component {
   };
 
   render() {
-    const { searchResults, onPageChange } = this.props;
+    const { searchResults, onPageChange, type } = this.props;
 
     const searchPage = [];
     let pagination = null;
@@ -26,7 +26,7 @@ class MovieSearchResults extends Component {
         searchPage.push(
           <MovieAndTvSummaryCard
             id={result.id}
-            type="movie"
+            type={type}
             key={result.id}
             title={result.title || result.name}
             overviewText={overviewText}
