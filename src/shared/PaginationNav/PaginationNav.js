@@ -16,7 +16,6 @@ class PaginationNav extends Component {
       return;
     }
     onPageChanged(changedPage);
-    window.scrollTo(0, 0);
   };
 
   render() {
