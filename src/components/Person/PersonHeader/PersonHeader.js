@@ -1,6 +1,6 @@
 import React from 'react';
-import Backdrop from '../../../../shared/Backdrop/Backdrop';
-import ExternalPagesNavBar from '../../../../shared/ExternalPagesNavBar/ExternalPagesNavBar';
+import Backdrop from '../../../shared/Backdrop/Backdrop';
+import ExternalPagesNavBar from '../../../shared/ExternalPagesNavBar/ExternalPagesNavBar';
 
 const PersonHeader = props => {
   const { imagePath, name, biography, homepage, externalIds } = props;

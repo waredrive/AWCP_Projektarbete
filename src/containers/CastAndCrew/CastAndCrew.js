@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
-import CastAndCrewCard from './CastAndCrewCard/CastAndCrewCard';
+import CastAndCrewCard from '../../components/CastAndCrew/CastAndCrewCard/CastAndCrewCard';
 import { getImageUrl, arrayExistsIsNotEmpty } from '../../shared/helperMethods';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../shared/Spinner/Spinner';

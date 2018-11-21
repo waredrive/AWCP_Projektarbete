@@ -3,7 +3,7 @@ import MovieAndTvCard from './MovieAndTvCard/MovieAndTvCard';
 import {
   getImageUrl,
   arrayExistsIsNotEmpty
-} from '../../../../shared/helperMethods';
+} from '../../../shared/helperMethods';
 
 const PersonTopMoviesAndTvs = props => {
   const { credits } = props;

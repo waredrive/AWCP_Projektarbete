@@ -1,23 +1,22 @@
 import React from 'react';
 import ISO6391 from 'iso-639-1';
-import GenreButton from '../../../../shared/GenreButton/GenreButton';
+import GenreButton from '../../../shared/GenreButton/GenreButton';
 import './MovieFacts.module.css';
 import {
   convertRuntimeToHoursAndMinutes,
   formatCurrency,
   arrayExistsIsNotEmpty
-} from '../../../../shared/helperMethods';
-import FactField from '../../../../shared/FactField/FactField';
+} from '../../../shared/helperMethods';
+import FactField from '../../../shared/FactField/FactField';
 
 const MovieFacts = props => {
   const { movie } = props;
 
-  const genres =
-  arrayExistsIsNotEmpty(movie.genres)
-      ? movie.genres.map(genre => (
-          <GenreButton key={genre.id} name={genre.name} />
-        ))
-      : null;
+  const genres = arrayExistsIsNotEmpty(movie.genres)
+    ? movie.genres.map(genre => (
+        <GenreButton key={genre.id} name={genre.name} />
+      ))
+    : null;
 
   return (
     <div className="ml-3 py-4 pr-3 position-sticky sticky-top">

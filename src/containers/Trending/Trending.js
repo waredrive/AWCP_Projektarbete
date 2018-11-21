@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import TrendingCarousel from './TrendingCarousel/TrendingCarousel';
+import TrendingCarousel from '../../components/Trending/TrendingCarousel/TrendingCarousel';
 import * as actions from '../../store/actions';
 import Spinner from '../../shared/Spinner/Spinner';
 

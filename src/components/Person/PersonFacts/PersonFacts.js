@@ -1,7 +1,7 @@
 import React from 'react';
 import './PersonFacts.module.css';
-import FactField from '../../../../shared/FactField/FactField';
-import { arrayExistsIsNotEmpty } from '../../../../shared/helperMethods';
+import FactField from '../../../shared/FactField/FactField';
+import { arrayExistsIsNotEmpty } from '../../../shared/helperMethods';
 
 const TvShowFacts = props => {
   const { person } = props;

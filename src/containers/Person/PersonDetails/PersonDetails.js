@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PersonHeader from './PersonHeader/PersonHeader';
+import PersonHeader from '../../../components/Person/PersonHeader/PersonHeader';
 import { getImageUrl } from '../../../shared/helperMethods';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
-import PersonFacts from './PersonFacts/PersonFacts';
-import PersonBio from './PersonBio/PersonBio';
-import PersonTopMoviesAndTvs from './PersonTopMoviesAndTvs/PersonTopMoviesAndTvs';
+import PersonFacts from '../../../components/Person/PersonFacts/PersonFacts';
+import PersonBio from '../../../components/Person/PersonBio/PersonBio';
+import PersonTopMoviesAndTvs from '../../../components/Person/PersonTopMoviesAndTvs/PersonTopMoviesAndTvs';
 import * as actions from '../../../store/actions/index';
 import Spinner from '../../../shared/Spinner/Spinner';
 

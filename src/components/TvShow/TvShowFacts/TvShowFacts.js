@@ -1,12 +1,12 @@
 import React from 'react';
 import ISO6391 from 'iso-639-1';
-import GenreButton from '../../../../shared/GenreButton/GenreButton';
+import GenreButton from '../../../shared/GenreButton/GenreButton';
 import './TvShowFacts.module.css';
 import {
   convertRuntimeToHoursAndMinutes,
   arrayExistsIsNotEmpty
-} from '../../../../shared/helperMethods';
-import FactField from '../../../../shared/FactField/FactField';
+} from '../../../shared/helperMethods';
+import FactField from '../../../shared/FactField/FactField';
 
 const TvShowFacts = props => {
   const { tvShow } = props;

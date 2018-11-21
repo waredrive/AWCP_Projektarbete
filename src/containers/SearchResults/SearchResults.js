@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import classnames from 'classnames';
 import MovieAndTvSearchResults from '../../shared/MovieAndTvSearchResults/MovieAndTvSearchResults';
 import PeopleSearchResults from '../Person/PeopleSearchResults/PeopleSearchResults';
-import ResultsBadge from './ResultsBadge/ResultsBadge';
+import ResultsBadge from '../../components/SearchResults/ResultsBadge/ResultsBadge';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../shared/Spinner/Spinner';
 

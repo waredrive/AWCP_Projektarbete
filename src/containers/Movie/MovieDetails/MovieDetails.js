@@ -3,61 +3,61 @@ import { connect } from 'react-redux';
 import MovieAndTvTopCast from '../../../shared/MovieAndTvTopCast/MovieAndTvTopCast';
 import MovieAndTvHeader from '../../../shared/MovieAndTvHeader/MovieAndTvHeader';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
-import TvShowFacts from './TvShowFacts/TvShowFacts';
+import MovieFacts from '../../../components/Movie/MovieFacts/MovieFacts';
 import RecommendationsAndSimilar from '../../../shared/RecommendationsAndSimilar/RecommendationsAndSimilar';
 import * as actions from '../../../store/actions/index';
 import Spinner from '../../../shared/Spinner/Spinner';
 
-class TvShowDetails extends Component {
+class MovieDetails extends Component {
   componentDidMount() {
-    const { match, onFetchTvShow } = this.props;
-    onFetchTvShow(match.params.id);
+    const { match, onFetchMovie } = this.props;
+    onFetchMovie(match.params.id);
   }
 
   componentDidUpdate(prevProps) {
-    const { match, onFetchTvShow } = this.props;
+    const { match, onFetchMovie } = this.props;
     if (prevProps.match.params.id === match.params.id) {
       return;
     }
-    onFetchTvShow(match.params.id);
+    onFetchMovie(match.params.id);
   }
 
   render() {
-    const { tvShow, match } = this.props;
-    const cast = tvShow && tvShow.credits ? tvShow.credits.cast : null;
-    const crew = tvShow && tvShow.credits ? tvShow.credits.crew : null;
+    const { movie, match } = this.props;
+    const cast = movie && movie.credits ? movie.credits.cast : null;
+    const crew = movie && movie.credits ? movie.credits.crew : null;
 
-    return tvShow && match.params.id.startsWith(String(tvShow.id)) ? (
+    return movie && match.params.id.startsWith(String(movie.id)) ? (
       <div>
-        <MovieAndTvHeader production={tvShow} />
+        <MovieAndTvHeader production={movie} />
         <div className="bg-light">
           <div className="container bg-light">
             <div className="row">
               <div className="col-9 my-3 pr-5">
                 <MovieAndTvTopCast cast={cast} crew={crew} />
                 <RecommendationsAndSimilar
-                  recommendations={tvShow.similar}
-                  type="tv"
-                  header="Similar Tv Shows"
-                  notFoundText="There are no Tv Shows similar to this one."
+                  recommendations={movie.similar}
+                  type="movie"
+                  header="Similar Movies"
+                  notFoundText="There are no movies similar to this one."
                 />
                 <RecommendationsAndSimilar
-                  recommendations={tvShow.recommendations}
-                  type="tv"
-                  header="Recommended Tv Shows"
-                  notFoundText="There are no recommendations based on this Tv Show."
+                  recommendations={movie.recommendations}
+                  type="movie"
+                  header="Recommended Movies"
+                  notFoundText="There are no recommendations based on this movie."
                 />
               </div>
               <div
                 className="col-3 my-3 text-light rounded"
                 style={{ backgroundColor: '#5C6165' }}
               >
-                <TvShowFacts tvShow={tvShow} />
+                <MovieFacts movie={movie} />
               </div>
             </div>
           </div>
         </div>
-        <Backdrop backdropPath={tvShow.backdrop_path} />
+        <Backdrop backdropPath={movie.backdrop_path} />
       </div>
     ) : (
       <Spinner />
@@ -66,14 +66,14 @@ class TvShowDetails extends Component {
 }
 
 const mapStateAsProps = state => ({
-  tvShow: state.tvShows.details
+  movie: state.movies.details
 });
 
 const mapDispatchAsProps = dispatch => ({
-  onFetchTvShow: id => dispatch(actions.fetchTvShowDetails(id))
+  onFetchMovie: id => dispatch(actions.fetchMovieDetails(id))
 });
 
 export default connect(
   mapStateAsProps,
   mapDispatchAsProps
-)(TvShowDetails);
+)(MovieDetails);
