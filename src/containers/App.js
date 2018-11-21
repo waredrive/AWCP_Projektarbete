@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect, Switch, Link, withRouter } from 'react-router-dom';
-import SearchBar from '../components/SearchBar/SearchBar';
+import SearchBar from './SearchBar/SearchBar';
 import Trending from './Trending/Trending';
 import SearchResults from './SearchResults/SearchResults';
 import MovieDetails from '../components/Movie/MovieDetails/MovieDetails';
