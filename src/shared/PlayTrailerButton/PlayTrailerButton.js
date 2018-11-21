@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ModalVideo from 'react-modal-video';
 
-// Creates a play-button and attaches a modal for displaying trailer.
+// Creates a play-button and attaches a modal for displaying the trailer.
 class PlayTrailerButton extends Component {
   state = {
     isOpen: false
