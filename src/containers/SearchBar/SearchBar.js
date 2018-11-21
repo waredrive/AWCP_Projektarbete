@@ -32,13 +32,7 @@ class SearchBar extends Component {
     this.typeahead.getInstance().blur();
   };
 
-  formatMenuItemChild = (text, icon, props) => [
-    <i className={icon} key="icon" />,
-    <Highlighter key="name" search={props.text}>
-      {text}
-    </Highlighter>
-  ];
-
+  // Styling and formatting of the list-item typeahead shows in results
   renderMenuItemChildren = (result, props) => [
     <i className={result.icon} key="icon" />,
     <Highlighter key="name" search={props.text}>
