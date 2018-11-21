@@ -5,6 +5,10 @@ class ScrollToTopButton extends Component {
     showBtn: false
   };
 
+  componentDidMount() {
+    window.addEventListener('scroll', this.onPageScroll, false);
+  }
+
   componentWillUnmount() {
     window.removeEventListener('scroll', this.onPageScroll, false);
   }
@@ -26,8 +30,6 @@ class ScrollToTopButton extends Component {
 
   render() {
     const { showBtn } = this.state;
-
-    window.addEventListener('scroll', this.onPageScroll, false);
 
     return showBtn ? (
       <button
