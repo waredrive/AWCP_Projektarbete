@@ -7,6 +7,7 @@ import PeopleSearchResults from '../Person/PeopleSearchResults/PeopleSearchResul
 import ResultsBadge from '../../components/SearchResults/ResultsBadge/ResultsBadge';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../shared/Spinner/Spinner';
+import ScrollToTopButton from '../../components/SearchResults/ScrollToTopButton/ScrollToTopButton';
 
 class SearchResults extends Component {
   state = {
@@ -65,6 +66,7 @@ class SearchResults extends Component {
 
     return movies || tvShows || people ? (
       <div className="container mt-5">
+        <ScrollToTopButton />
         <div className="row">
           <div className="col-md-12">
             <Nav pills className="bg-light rounded">
