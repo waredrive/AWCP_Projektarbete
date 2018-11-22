@@ -13,7 +13,7 @@ const CarouselButton = props => {
   return (
     <button
       type="button"
-      className="btn btn-light btn-circle btn-lg"
+      className="btn btn-light btn-circle btn-lg justify-content-center align-items-center"
       onClick={onButtonClick}
     >
       <i className={icon} />

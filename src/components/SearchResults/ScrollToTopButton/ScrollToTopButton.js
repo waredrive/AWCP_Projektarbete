@@ -34,11 +34,11 @@ class ScrollToTopButton extends Component {
     return showBtn ? (
       <button
         type="button"
-        className="btn btn-dark border btn-circle btn-lg position-fixed"
+        className="btn btn-dark border btn-circle btn-lg position-fixed justify-content-center align-items-center"
         style={{ zIndex: '99', bottom: '20px', right: '60px' }}
         onClick={this.goToTop}
       >
-        <i className="fa fa-angle-up fa-lg" />
+        <i className="fa fa-angle-up fa-lg pb-2" />
       </button>
     ) : null;
   }
