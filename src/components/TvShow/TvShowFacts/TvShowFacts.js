@@ -23,10 +23,11 @@ const TvShowFacts = props => {
           network.logo_path ? (
             <img
               key={network.id}
-              className="d-block mt-1"
+              className="d-block py-2"
               alt={network.name}
               src={`https://image.tmdb.org/t/p/w92${network.logo_path}`}
               title={network.name}
+              style={{ maxWidth: '4rem' }}
             />
           ) : (
             network.name
@@ -44,7 +45,7 @@ const TvShowFacts = props => {
     <div className="ml-3 py-4 pr-3 position-sticky sticky-top">
       <h5>Facts</h5>
       <FactField headline="Status" text={tvShow.status} />
-      <FactField headline="Network" text={networks} />
+      <FactField headline="Networks" text={networks} />
       <FactField headline="Type" text={tvShow.type} />
       <FactField
         headline="Original Language"
