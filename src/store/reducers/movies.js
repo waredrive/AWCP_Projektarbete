@@ -5,45 +5,49 @@ const initialState = {
   searchResults: null,
   details: null,
   trending: null,
-  sError: null,
-  sLoading: false,
-  dError: null,
-  dLoading: false,
-  tError: null,
-  tLoading: false
+  searchError: null,
+  searchLoading: false,
+  trendingError: null,
+  trendingLoading: false,
+  detailsError: null,
+  detailsLoading: false
 };
 
 // FETCH MOVIE SEARCHES
 
 const fetchMovieSearchResultsStart = state =>
-  updateObject(state, { sLoading: true });
+  updateObject(state, { searchLoading: true });
 
 const fetchMovieSearchResultsSuccess = (state, action) =>
-  updateObject(state, { searchResults: action.searchResults, sLoading: true });
+  updateObject(state, {
+    searchResults: action.searchResults,
+    searchLoading: true
+  });
 
-const fetchMovieSearchResultsFailed = state =>
-  updateObject(state, { sLoading: false });
+const fetchMovieSearchResultsFailed = (state, action) =>
+  updateObject(state, { searchLoading: false, searchError: action.error });
 
 // FETCH TRENDING MOVIES
 
 const fetchTrendingMoviesStart = state =>
-  updateObject(state, { tLoading: true });
+  updateObject(state, { trendingLoading: true });
 
 const fetchTrendingMoviesSuccess = (state, action) =>
-  updateObject(state, { trending: action.trending, tLoading: true });
+  updateObject(state, { trending: action.trending, trendingLoading: true });
 
-const fetchTrendingMoviesFailed = state =>
-  updateObject(state, { tLoading: false });
+const fetchTrendingMoviesFailed = (state, action) =>
+  updateObject(state, { trendingLoading: false, trendingError: action.error });
 
 // FETCH MOVIE DETAILS
 
-const fetchMovieDetailsStart = state => updateObject(state, { dLoading: true });
+const fetchMovieDetailsStart = state =>
+  updateObject(state, { detailsLoading: true });
 
 const fetchMovieDetailsSuccess = (state, action) =>
-  updateObject(state, { details: action.details, dLoading: true });
+  updateObject(state, { details: action.details, detailsLoading: true });
 
-const fetchMovieDetailsFailed = state =>
-  updateObject(state, { dLoading: false });
+const fetchMovieDetailsFailed = (state, action) =>
+  updateObject(state, { detailsLoading: false, detailsError: action.error });
 
 // ACTION TYPE SWITCH
 

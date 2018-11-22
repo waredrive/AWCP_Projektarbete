@@ -17,8 +17,8 @@ const isMatchingStrings = (stringToMatch, query) =>
     .trim()
     .includes(query.toLowerCase().trim());
 
-// Maps the three types of response objects to a new uniform object that can be easily
-// styled and displayed in typeahead search results window. This function checks for
+// Maps the three types of response objects (movie, tv, person) to a new uniform object that can
+// be easily styled and displayed in typeahead search results window. This function checks for
 // original name/title of the movie/tv-series so a search for those also returns
 // a result.
 const formatSearchResults = (results, query) =>

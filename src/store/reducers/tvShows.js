@@ -5,46 +5,49 @@ const initialState = {
   searchResults: null,
   details: null,
   trending: null,
-  sError: null,
-  sLoading: false,
-  dError: null,
-  dLoading: false,
-  tError: null,
-  tLoading: false
+  searchError: null,
+  searchLoading: false,
+  trendingError: null,
+  trendingLoading: false,
+  detailsError: null,
+  detailsLoading: false
 };
 
 // FETCH TV SHOW SEARCHES
 
 const fetchTvShowSearchResultsStart = state =>
-  updateObject(state, { loading: true });
+  updateObject(state, { searchLoading: true });
 
 const fetchTvShowSearchResultsSuccess = (state, action) =>
-  updateObject(state, { searchResults: action.searchResults, sLoading: true });
+  updateObject(state, {
+    searchResults: action.searchResults,
+    searchLoading: true
+  });
 
-const fetchTvShowSearchResultsFailed = state =>
-  updateObject(state, { sLoading: false });
+const fetchTvShowSearchResultsFailed = (state, action) =>
+  updateObject(state, { searchLoading: false, searchError: action.error });
 
 // FETCH TRENDING TV SHOWS
 
 const fetchTrendingTvShowsStart = state =>
-  updateObject(state, { tLoading: true });
+  updateObject(state, { trendingLoading: true });
 
 const fetchTrendingTvShowsSuccess = (state, action) =>
-  updateObject(state, { trending: action.trending, tLoading: true });
+  updateObject(state, { trending: action.trending, trendingLoading: true });
 
-const fetchTrendingTvShowsFailed = state =>
-  updateObject(state, { tLoading: false });
+const fetchTrendingTvShowsFailed = (state, action) =>
+  updateObject(state, { trendingLoading: false, trendingError: action.error });
 
 // FETCH TV SHOW DETAILS
 
 const fetchTvShowDetailsStart = state =>
-  updateObject(state, { dLoading: true });
+  updateObject(state, { detailsLoading: true });
 
 const fetchTvShowDetailsSuccess = (state, action) =>
-  updateObject(state, { details: action.details, dLoading: true });
+  updateObject(state, { details: action.details, detailsLoading: true });
 
-const fetchTvShowDetailsFailed = state =>
-  updateObject(state, { dLoading: false });
+const fetchTvShowDetailsFailed = (state, action) =>
+  updateObject(state, { detailsLoading: false, detailsError: action.error });
 
 // ACTION TYPE SWITCH
 

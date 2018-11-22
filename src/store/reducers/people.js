@@ -5,46 +5,49 @@ const initialState = {
   searchResults: null,
   details: null,
   trending: null,
-  sError: null,
-  sLoading: false,
-  dError: null,
-  dLoading: false,
-  tError: null,
-  tLoading: false
+  searchError: null,
+  searchLoading: false,
+  trendingError: null,
+  trendingLoading: false,
+  detailsError: null,
+  detailsLoading: false
 };
 
 // FETCH PEOPLE SEARCHES
 
 const fetchPeopleSearchResultsStart = state =>
-  updateObject(state, { sLoading: true });
+  updateObject(state, { searchLoading: true });
 
 const fetchPeopleSearchResultsSuccess = (state, action) =>
-  updateObject(state, { searchResults: action.searchResults, sLoading: true });
+  updateObject(state, {
+    searchResults: action.searchResults,
+    searchLoading: true
+  });
 
-const fetchPeopleSearchResultsFailed = state =>
-  updateObject(state, { sLoading: false });
+const fetchPeopleSearchResultsFailed = (state, action) =>
+  updateObject(state, { searchLoading: false, searchError: action.error });
 
 // FETCH TRENDING PEOPLE
 
 const fetchTrendingPeopleStart = state =>
-  updateObject(state, { tLoading: true });
+  updateObject(state, { trendingLoading: true });
 
 const fetchTrendingPeopleSuccess = (state, action) =>
-  updateObject(state, { trending: action.trending, tLoading: true });
+  updateObject(state, { trending: action.trending, trendingLoading: true });
 
-const fetchTrendingPeopleFailed = state =>
-  updateObject(state, { tLoading: false });
+const fetchTrendingPeopleFailed = (state, action) =>
+  updateObject(state, { trendingLoading: false, trendingError: action.error });
 
 // FETCH PERSON DETAILS
 
 const fetchPersonDetailsStart = state =>
-  updateObject(state, { dLoading: true });
+  updateObject(state, { detailsLoading: true });
 
 const fetchPersonDetailsSuccess = (state, action) =>
-  updateObject(state, { details: action.details, dLoading: true });
+  updateObject(state, { details: action.details, detailsLoading: true });
 
-const fetchPersonDetailsFailed = state =>
-  updateObject(state, { dLoading: false });
+const fetchPersonDetailsFailed = (state, action) =>
+  updateObject(state, { detailsLoading: false, detailsError: action.error });
 
 // ACTION TYPE SWITCH
 
