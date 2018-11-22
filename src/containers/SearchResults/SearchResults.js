@@ -35,8 +35,8 @@ class SearchResults extends Component {
     onFetchPeople(query, 1);
   };
 
-  // Gets given query param from URL query string.
-  // Gets from current props or props past in by parameter.
+  // Fetches given query param from URL query string. Can fetch param
+  //  from current props or props past in by parameter.
   getQueryString = (param, props) => {
     const { location } = props || this.props;
     const queryParams = new URLSearchParams(location.search);
