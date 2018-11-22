@@ -5,7 +5,7 @@ const ActorCard = props => {
   const { actorName, playedRoleName, imagePath, id } = props;
 
   return (
-    <div className="col">
+    <div className="col" style={{ minWidth: '163px' }}>
       <div className="card h-100" style={{ width: '132px' }}>
         <Link to={`/person/${id}`}>
           <img
