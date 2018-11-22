@@ -3,7 +3,7 @@ import { updateObject } from '../../shared/helperMethods';
 
 const initialState = {
   searchResults: [],
-  searchEmptyLabel: 'No movies found.',
+  searchEmptyLabel: 'No results found.',
   input: '',
   selectedItem: null,
   noMatch: false,
