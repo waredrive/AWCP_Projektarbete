@@ -92,7 +92,7 @@ const MovieAndTvHeader = props => {
               </div>
               <ExternalPagesNavBar
                 homepage={production.homepage}
-                externalIds={production.externalIds}
+                externalIds={production.external_ids}
               />
               {trailer ? <PlayTrailerButton video={trailer} /> : null}
             </div>

@@ -5,7 +5,6 @@ import ExternalPagesNavButton from './ExternalPagesNavButton/ExternalPagesNavBut
 class ExternalPagesNavBar extends Component {
   createButtons = (externalPages, homepage) => {
     const navButtons = [];
-
     if (homepage) {
       navButtons.push(
         <ExternalPagesNavButton
