@@ -8,6 +8,7 @@ import PersonBio from '../../../components/Person/PersonBio/PersonBio';
 import PersonTopMoviesAndTvs from '../../../components/Person/PersonTopMoviesAndTvs/PersonTopMoviesAndTvs';
 import * as actions from '../../../store/actions/index';
 import Spinner from '../../../shared/Spinner/Spinner';
+import ScrollToTopButton from '../../../shared/ScrollToTopButton/ScrollToTopButton';
 
 // Shows details of a given Person
 class PersonDetails extends Component {
@@ -29,6 +30,7 @@ class PersonDetails extends Component {
 
     return person && !loading ? (
       <div>
+        <ScrollToTopButton />
         <PersonHeader
           imagePath={getImageUrl(person.profile_path, 'h632')}
           name={person.name}

@@ -7,7 +7,7 @@ import PeopleSearchResults from '../Person/PeopleSearchResults/PeopleSearchResul
 import ResultsBadge from '../../components/SearchResults/ResultsBadge/ResultsBadge';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../shared/Spinner/Spinner';
-import ScrollToTopButton from '../../components/SearchResults/ScrollToTopButton/ScrollToTopButton';
+import ScrollToTopButton from '../../shared/ScrollToTopButton/ScrollToTopButton';
 
 // A page showing all search matches for people/movies/tv-shows.
 class SearchResults extends Component {
