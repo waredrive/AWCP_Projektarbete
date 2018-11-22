@@ -1,5 +1,5 @@
 // Returns a placeholder image path if pathParam does not exist otherwise returns url to image on TMDB.
-// Both url and local paths are based on the size parameters (height, width or height width).
+// Both url and local paths are based on the size parameters (Height, Width or HeightWidth).
 export const getImageUrl = (pathParam, firstSizeParam, secondSizeParam) => {
   const localImgNamePath =
     firstSizeParam && secondSizeParam
@@ -12,8 +12,8 @@ export const getImageUrl = (pathParam, firstSizeParam, secondSizeParam) => {
   return require(`../assets/images/placeholders/${localImgNamePath}.png`);
 };
 
-// Returns "em dash" if text is empty. Can run a function before
-// returning text.
+// Returns "em dash" if text is empty. Can run a function on text before
+// returning it.
 export const formatEmptyFields = (text, functionToRunOnText) => {
   if (!text) {
     return String.fromCharCode(0x2014);
