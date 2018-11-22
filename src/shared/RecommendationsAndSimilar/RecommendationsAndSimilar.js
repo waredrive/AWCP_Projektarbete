@@ -4,6 +4,7 @@ import RecommendationAndSimilarCard from './RecommendationAndSimilarCard/Recomme
 import { getImageUrl, arrayExistsIsNotEmpty } from '../helperMethods';
 import CarouselButton from '../CarouselButton/CarouselButton';
 
+// Creates Recommendations and Similar movies/tv-shows Carousel
 const RecommendationsAndSimilar = props => {
   const { recommendations, type, header, notFoundText } = props;
   const recommendationCards = arrayExistsIsNotEmpty(recommendations.results)
