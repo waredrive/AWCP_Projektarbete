@@ -33,7 +33,7 @@ const MovieAndTvTopCast = props => {
           {actorCards}
         </div>
       ) : (
-        <p>There is no cast added to this movie.</p>
+        <p>There is no cast added to this production.</p>
       )}
       <div className="row d-block pr-5">
         {arrayExistsIsNotEmpty(cast) || arrayExistsIsNotEmpty(crew) ? (
