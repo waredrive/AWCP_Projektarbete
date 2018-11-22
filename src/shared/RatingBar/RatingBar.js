@@ -26,6 +26,7 @@ const RatingBar = props => {
       className="d-inline-block"
     >
       <CircularProgressbar
+        className="align-items-center"
         percentage={voteAverage * 10}
         text={String(voteAvr)}
         background
