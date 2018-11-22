@@ -40,13 +40,13 @@ class TvShowDetails extends Component {
                   recommendations={tvShow.similar}
                   type="tv"
                   header="Similar Tv Shows"
-                  notFoundText="There are no Tv Shows similar to this one."
+                  notFoundText="There are no TV-shows similar to this one."
                 />
                 <RecommendationsAndSimilar
                   recommendations={tvShow.recommendations}
                   type="tv"
                   header="Recommended Tv Shows"
-                  notFoundText="There are no recommendations based on this Tv Show."
+                  notFoundText="There are no recommendations based on this TV-show."
                 />
               </div>
               <div
