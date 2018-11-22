@@ -6,12 +6,12 @@ const RecommendationAndSimilarCard = props => {
   const { backdropPath, title, id, type } = props;
   return (
     <Link to={`/${type}/${id}`}>
-      <div className="card" title={title} style={{ height: '200px' }}>
+      <div className="card" title={title} style={{ height: '210px' }}>
         <img
           className="card-img-top"
           src={backdropPath}
           alt={title}
-          style={{ height: '133px' }}
+          style={{ height: '139px' }}
         />
         <div className="card-body text-center">
           <h6
