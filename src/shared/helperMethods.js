@@ -45,7 +45,7 @@ export const formatCurrency = amount => {
   return formatter.format(amount);
 };
 
-// For immutable update of an object.
+// For immutable update of an object (used primary for state updating).
 export const updateObject = (oldObject, newProperties) => ({
   ...oldObject,
   ...newProperties
