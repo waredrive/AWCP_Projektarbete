@@ -13,7 +13,7 @@ const RecommendationAndSimilarCard = props => {
           alt={title}
           style={{ height: '133px' }}
         />
-        <div className="card-body">
+        <div className="card-body text-center">
           <h6
             className="card-subtitle"
             style={{
