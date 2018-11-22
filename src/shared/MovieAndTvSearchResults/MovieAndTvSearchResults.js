@@ -22,7 +22,10 @@ class MovieSearchResults extends Component {
             type={type}
             key={result.id}
             title={result.title || result.name}
-            overviewText={result.overview || "We don't have a description."}
+            overviewText={
+              result.overview ||
+              "We don't have a description of this production.."
+            }
             posterPath={getImageUrl(result.poster_path, 'w185')}
             voteAverage={result.vote_average}
             voteCount={result.vote_count}
