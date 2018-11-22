@@ -13,7 +13,7 @@ class ScrollToTopButton extends Component {
     window.removeEventListener('scroll', this.onPageScroll, false);
   }
 
-  // Shows button if page is scrolled more then 200px
+  // Shows button if page is scrolled down more then 200px
   onPageScroll = () => {
     const { showBtn } = this.state;
 
