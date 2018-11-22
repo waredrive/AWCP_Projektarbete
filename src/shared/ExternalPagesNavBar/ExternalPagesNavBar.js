@@ -20,7 +20,7 @@ class ExternalPagesNavBar extends Component {
       // Traverses through externalPages keys and dynamically creates buttons
       // based on the key and its values.
       Object.keys(externalPages).forEach(key => {
-        // Returns if key exists but has no values attached.
+        // Returns if key exists but has no values.
         if (!externalPages[key]) {
           return;
         }
