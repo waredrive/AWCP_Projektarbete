@@ -29,7 +29,7 @@ class PlayTrailerButton extends Component {
           title="Watch Trailer"
           onClick={this.openModal}
         >
-          <i className="fa fa-play fa-lg" />
+          <i className="fa fa-play fa-lg pl-1" />
         </button>
       </>
     );
