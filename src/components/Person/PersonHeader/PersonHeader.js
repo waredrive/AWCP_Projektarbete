@@ -2,6 +2,7 @@ import React from 'react';
 import Backdrop from '../../../shared/Backdrop/Backdrop';
 import ExternalPagesNavBar from '../../../shared/ExternalPagesNavBar/ExternalPagesNavBar';
 
+// A header to be shown on persons details page.
 const PersonHeader = props => {
   const { imagePath, name, biography, homepage, externalIds } = props;
 

@@ -1,8 +1,9 @@
 import React from 'react';
 import PersonBioListItem from './PersonBioListItem/PersonBioListItem';
 
+// Formats the list of all production given.
 const PersonBioList = props => {
-  const { members, headline } = props;
+  const { productions, headline } = props;
 
   const getYearFromDateStr = date => new Date(date).getFullYear();
 
@@ -20,26 +21,27 @@ const PersonBioList = props => {
         )
       : [];
 
-  const list = getSortedArrByDateDesc(members).map(member => {
+  const list = getSortedArrByDateDesc(productions).map(production => {
     let job = '';
 
-    if (member.character) {
-      job = ` as ${member.character}`;
-    } else if (member.job) {
-      job = ` - ${member.job}`;
+    if (production.character) {
+      job = ` as ${production.character}`;
+    } else if (production.job) {
+      job = ` - ${production.job}`;
     }
 
     return (
       <PersonBioListItem
         year={
-          getYearFromDateStr(member.release_date || member.first_air_date) ||
-          null
+          getYearFromDateStr(
+            production.release_date || production.first_air_date
+          ) || null
         }
-        nameOfProduction={member.title || member.name}
+        nameOfProduction={production.title || production.name}
         job={job}
-        type={member.title ? 'movie' : 'tv'}
-        id={member.id}
-        key={String(member.id) + (member.character || member.job)}
+        type={production.title ? 'movie' : 'tv'}
+        id={production.id}
+        key={String(production.id) + (production.character || production.job)}
       />
     );
   });

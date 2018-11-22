@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import RatingBar from '../../RatingBar/RatingBar';
 
+// A summary card shown in search result page.
 const MovieAndTvSummaryCard = props => {
   const {
     overviewText,

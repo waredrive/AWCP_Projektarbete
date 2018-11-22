@@ -12,7 +12,7 @@ export const getImageUrl = (pathParam, firstSizeParam, secondSizeParam) => {
   return require(`../assets/images/placeholders/${localImgNamePath}.png`);
 };
 
-// Returns "em dash" if text is empty. Can run a function on text before
+// Returns "em dash" character if text is empty. Can run a function on text before
 // returning it.
 export const formatEmptyFields = (text, functionToRunOnText) => {
   if (!text) {

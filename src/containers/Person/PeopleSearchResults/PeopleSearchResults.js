@@ -5,6 +5,7 @@ import PaginationNav from '../../../shared/PaginationNav/PaginationNav';
 import { getImageUrl } from '../../../shared/helperMethods';
 import Spinner from '../../../shared/Spinner/Spinner';
 
+// A page showing all the people found when searching a given query.
 class PeopleSearchResults extends Component {
   onShowDetailsClickHandler = id => {
     const { history } = this.props;

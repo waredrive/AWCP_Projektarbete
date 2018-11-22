@@ -6,6 +6,7 @@ import PlayTrailerButton from '../PlayTrailerButton/PlayTrailerButton';
 import { getImageUrl, arrayExistsIsNotEmpty } from '../helperMethods';
 import CrewHeaderItem from './CrewHeaderItem/CrewHeaderItem';
 
+// A header to be shown on a movies/tv-shows details page.
 const MovieAndTvHeader = props => {
   const { production } = props;
 

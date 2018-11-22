@@ -5,6 +5,7 @@ import {
   arrayExistsIsNotEmpty
 } from '../../../shared/helperMethods';
 
+// Shows top productions the person is known for.
 const PersonTopMoviesAndTvs = props => {
   const { credits } = props;
 

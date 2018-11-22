@@ -8,6 +8,7 @@ import {
 } from '../../../shared/helperMethods';
 import FactField from '../../../shared/FactField/FactField';
 
+// A facts sidebar in movie details page
 const TvShowFacts = props => {
   const { tvShow } = props;
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import './ExternalPagesNavButton.css';
 
+// Formats a button to an external page.
 const ExternalPagesNavButton = props => {
   const { title, icon, href } = props;
 

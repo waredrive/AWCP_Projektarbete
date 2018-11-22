@@ -8,6 +8,7 @@ import RecommendationsAndSimilar from '../../../shared/RecommendationsAndSimilar
 import * as actions from '../../../store/actions/index';
 import Spinner from '../../../shared/Spinner/Spinner';
 
+// Shows details of a given Tv-show
 class TvShowDetails extends Component {
   componentDidMount() {
     const { match, onFetchTvShow } = this.props;

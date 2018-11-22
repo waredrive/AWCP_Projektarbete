@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Creates an individual production to be shown in carousel for recommended or similar productions.
 const RecommendationAndSimilarCard = props => {
   const { backdropPath, title, id, type } = props;
   return (

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Formats the top three crew members on movies/tv-shows headers.
 const CrewHeaderItem = props => {
   const { personJob, personId, personName } = props;
 

@@ -1,5 +1,6 @@
 import React from 'react';
 
+// A badge showing number of results for given production.
 const ResultBadge = props => {
   const { type } = props;
 

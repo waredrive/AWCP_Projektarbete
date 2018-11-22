@@ -6,6 +6,7 @@ import { getImageUrl, arrayExistsIsNotEmpty } from '../../shared/helperMethods';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../shared/Spinner/Spinner';
 
+// Shows a page with all cast and crew in a production.
 class CastAndCrew extends Component {
   componentDidMount() {
     const { match, onFetchCredits } = this.props;

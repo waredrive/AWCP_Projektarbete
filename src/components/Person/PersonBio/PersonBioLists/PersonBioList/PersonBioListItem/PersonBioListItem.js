@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { formatEmptyFields } from '../../../../../../shared/helperMethods';
 
+// Individual list-item
 const PersonBioListItem = props => {
   const { year, nameOfProduction, job, type, id } = props;
 

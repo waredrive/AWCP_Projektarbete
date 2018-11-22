@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Formats individual production card for top productions a person is known for.
 const MovieAndTvCard = props => {
   const { name, type, imagePath, id } = props;
 

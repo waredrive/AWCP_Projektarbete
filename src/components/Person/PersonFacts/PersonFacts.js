@@ -3,6 +3,7 @@ import './PersonFacts.module.css';
 import FactField from '../../../shared/FactField/FactField';
 import { arrayExistsIsNotEmpty } from '../../../shared/helperMethods';
 
+// A facts sidebar on persons details page.
 const TvShowFacts = props => {
   const { person } = props;
   const genders = { 1: 'Female', 2: 'Male' };

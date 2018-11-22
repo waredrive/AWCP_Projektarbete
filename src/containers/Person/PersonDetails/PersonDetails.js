@@ -9,6 +9,7 @@ import PersonTopMoviesAndTvs from '../../../components/Person/PersonTopMoviesAnd
 import * as actions from '../../../store/actions/index';
 import Spinner from '../../../shared/Spinner/Spinner';
 
+// Shows details of a given Person
 class PersonDetails extends Component {
   componentDidMount() {
     const { match, onFetchPerson } = this.props;

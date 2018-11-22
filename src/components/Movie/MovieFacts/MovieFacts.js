@@ -9,6 +9,7 @@ import {
 } from '../../../shared/helperMethods';
 import FactField from '../../../shared/FactField/FactField';
 
+// A facts sidebar on movies details page.
 const MovieFacts = props => {
   const { movie } = props;
 

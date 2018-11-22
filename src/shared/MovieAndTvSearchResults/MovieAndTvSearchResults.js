@@ -5,6 +5,7 @@ import PaginationNav from '../PaginationNav/PaginationNav';
 import { getImageUrl } from '../helperMethods';
 import Spinner from '../Spinner/Spinner';
 
+// A page showing all the productions found when searching a given query.
 class MovieSearchResults extends Component {
   onShowDetailsClickHandler = id => {
     const { history, type } = this.props;

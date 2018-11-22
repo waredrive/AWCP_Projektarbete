@@ -2,12 +2,14 @@ import React from 'react';
 import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
+// Creates a rating-bar showing the average vote for a production.
 const RatingBar = props => {
   const { sizeInPixels, hexColor, voteAverage, voteCount } = props;
   const voteAvrToDisplay =
     voteCount === 0 ? 'NR' : String(parseFloat(voteAverage.toFixed(1)));
   let strokeColor;
 
+  // Creates different colors for the bar based on average vote.
   if (voteAverage >= 7) {
     strokeColor = '#1fe250';
   } else if (voteAverage >= 4) {

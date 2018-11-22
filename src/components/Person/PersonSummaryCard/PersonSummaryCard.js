@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// A summary card shown in search result page.
 const PersonSummaryCard = props => {
   const { knownFor, profilePath, name, onShowDetailsClick, id } = props;
 

@@ -7,6 +7,7 @@ import {
 } from '../../../shared/helperMethods';
 import CarouselButton from '../../../shared/CarouselButton/CarouselButton';
 
+// A Carousel for displaying trending person/movie/tv-show.
 const TrendingCarousel = props => {
   const { headLine, type, productions } = props;
 

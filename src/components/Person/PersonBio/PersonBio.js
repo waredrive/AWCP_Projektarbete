@@ -3,6 +3,7 @@ import { Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 import classnames from 'classnames';
 import PersonBioLists from './PersonBioLists/PersonBioLists';
 
+// Presents a list of all movies and tv-shows a person has been engaged with.
 class PersonBio extends Component {
   state = {
     activeTab: 'movie'

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// Formats individual actor card to be shown as top actors.
 const ActorCard = props => {
   const { actorName, playedRoleName, imagePath, id } = props;
 

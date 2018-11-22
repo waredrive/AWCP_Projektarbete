@@ -8,6 +8,7 @@ import RecommendationsAndSimilar from '../../../shared/RecommendationsAndSimilar
 import * as actions from '../../../store/actions/index';
 import Spinner from '../../../shared/Spinner/Spinner';
 
+// Shows details of a given Movie
 class MovieDetails extends Component {
   componentDidMount() {
     const { match, onFetchMovie } = this.props;

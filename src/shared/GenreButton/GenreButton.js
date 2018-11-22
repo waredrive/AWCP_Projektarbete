@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Formats genre buttons displayed in productions facts-sidebars.
 const GenreButton = props => {
   const { name } = props;
 

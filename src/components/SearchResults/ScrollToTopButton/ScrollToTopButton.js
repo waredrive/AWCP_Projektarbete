@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+// Button that enables user to scroll upp to the top of the page.
 class ScrollToTopButton extends Component {
   state = {
     showBtn: false

@@ -4,6 +4,7 @@ import TrendingCarousel from '../../components/Trending/TrendingCarousel/Trendin
 import * as actions from '../../store/actions';
 import Spinner from '../../shared/Spinner/Spinner';
 
+// Shows carousels with trending people/movies/tv-shows.
 class Trending extends Component {
   componentDidMount() {
     const {

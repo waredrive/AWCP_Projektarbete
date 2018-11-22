@@ -3,6 +3,7 @@ import { withRouter } from 'react-router-dom';
 import ActorCard from './ActorCard/ActorCard';
 import { getImageUrl, arrayExistsIsNotEmpty } from '../helperMethods';
 
+// Shows most popular actors for a given production.
 const MovieAndTvTopCast = props => {
   const { cast, crew } = props;
 

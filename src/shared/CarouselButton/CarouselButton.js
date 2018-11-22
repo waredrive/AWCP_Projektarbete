@@ -1,5 +1,6 @@
 import React from 'react';
 
+// Custom circular left/right buttons used in carousels.
 const CarouselButton = props => {
   const { onButtonClick, orientation } = props;
 

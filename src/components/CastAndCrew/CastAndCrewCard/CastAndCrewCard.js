@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
+// A person card to be shown in all cast and crew view.
 const CastAndCrewCard = props => {
   const { actorName, playedRoleName, imagePath, id } = props;
 
