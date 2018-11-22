@@ -1,14 +1,14 @@
 import React from 'react';
 import { Route, Redirect, Switch, Link, withRouter } from 'react-router-dom';
-import SearchBar from './SearchBar/SearchBar';
-import Trending from './Trending/Trending';
-import SearchResults from './SearchResults/SearchResults';
-import MovieDetails from './Movie/MovieDetails/MovieDetails';
-import PersonDetails from './Person/PersonDetails/PersonDetails';
-import TvShowDetails from './TvShow/TvShowDetails/TvShowDetails';
-import CastAndCrew from './CastAndCrew/CastAndCrew';
-import withErrorHandler from '../hoc/withErrorHandler/withErrorHandler';
-import axios from '../axios-instance';
+import SearchBar from './containers/SearchBar/SearchBar';
+import Trending from './containers/Trending/Trending';
+import SearchResults from './containers/SearchResults/SearchResults';
+import MovieDetails from './containers/Movie/MovieDetails/MovieDetails';
+import PersonDetails from './containers/Person/PersonDetails/PersonDetails';
+import TvShowDetails from './containers/TvShow/TvShowDetails/TvShowDetails';
+import CastAndCrew from './containers/CastAndCrew/CastAndCrew';
+import withErrorHandler from './hoc/withErrorHandler/withErrorHandler';
+import axios from './axios-instance';
 
 const App = () => (
   <main>

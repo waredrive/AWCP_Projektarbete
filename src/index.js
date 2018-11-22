@@ -10,7 +10,7 @@ import ScrollToTop from './hoc/ScrollToTop/ScrollToTop';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import '../node_modules/react-modal-video/scss/modal-video.scss';
 import './index.css';
-import App from './containers/App';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
 import moviesReducer from './store/reducers/movies';
 import tvShowsReducer from './store/reducers/tvShows';
