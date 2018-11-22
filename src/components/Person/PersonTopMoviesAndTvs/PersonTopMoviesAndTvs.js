@@ -8,7 +8,7 @@ import {
 const PersonTopMoviesAndTvs = props => {
   const { credits } = props;
 
-  // Filters out duplicated productions form array (based on productions id) and sort the
+  // Filters out duplicated productions from array (based on productions id) and sort the
   // top eight popular productions based on popularity, average vote and average count.
   const movieAndTvCards = arrayExistsIsNotEmpty(credits)
     ? credits
