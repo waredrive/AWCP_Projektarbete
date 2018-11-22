@@ -1,6 +1,7 @@
 import React from 'react';
 import './Spinner.css';
 
+// Creates a css based spinner object
 const Spinner = () => (
   <div className="sk-circle">
     <div className="sk-circle2 sk-child" />
