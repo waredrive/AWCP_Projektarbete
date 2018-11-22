@@ -5,6 +5,7 @@ import CastAndCrewCard from '../../components/CastAndCrew/CastAndCrewCard/CastAn
 import { getImageUrl, arrayExistsIsNotEmpty } from '../../shared/helperMethods';
 import * as actions from '../../store/actions/index';
 import Spinner from '../../shared/Spinner/Spinner';
+import ScrollToTopButton from '../../shared/ScrollToTopButton/ScrollToTopButton';
 
 // Shows a page with all cast and crew in a production.
 class CastAndCrew extends Component {
@@ -42,6 +43,7 @@ class CastAndCrew extends Component {
 
     return crew && cast && !loading ? (
       <div className="container">
+        <ScrollToTopButton />
         <div className="row">
           <div className="col-6">
             <h4 className="text-light ml-3 mt-3">Cast</h4>
