@@ -12,7 +12,7 @@ class CastAndCrew extends Component {
     onFetchCredits(match.params.type, match.params.id);
   }
 
-  getCastAndCrewCards = people =>
+  getCastAndCrewCards = (people, notFoundText) =>
     arrayExistsIsNotEmpty(people) ? (
       people.map(person => (
         <CastAndCrewCard
@@ -24,16 +24,20 @@ class CastAndCrew extends Component {
         />
       ))
     ) : (
-      <p className="text-light ml-3 mt-3">
-        No cast was found for this production
-      </p>
+      <p className="text-light ml-3 mt-3">{notFoundText}</p>
     );
 
   render() {
     const { crew, cast } = this.props;
 
-    const allCast = this.getCastAndCrewCards(cast);
-    const allCrew = this.getCastAndCrewCards(crew);
+    const allCast = this.getCastAndCrewCards(
+      cast,
+      'No cast was found for this production.'
+    );
+    const allCrew = this.getCastAndCrewCards(
+      crew,
+      'No crew was found for this production.'
+    );
 
     return crew && cast ? (
       <div className="container">
