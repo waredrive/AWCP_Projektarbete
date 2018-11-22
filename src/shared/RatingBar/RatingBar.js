@@ -30,7 +30,7 @@ const RatingBar = props => {
         percentage={voteAverage * 10}
         text={String(voteAvr)}
         background
-        backgroundPadding={6}
+        backgroundPadding={5}
         styles={{
           background: {
             fill: `${hexColor}`
