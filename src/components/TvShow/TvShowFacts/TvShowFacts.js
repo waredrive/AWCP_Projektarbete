@@ -27,7 +27,7 @@ const TvShowFacts = props => {
               alt={network.name}
               src={`https://image.tmdb.org/t/p/w92${network.logo_path}`}
               title={network.name}
-              style={{ maxWidth: '4rem' }}
+              style={{ maxHeight: '4rem' }}
             />
           ) : (
             network.name
