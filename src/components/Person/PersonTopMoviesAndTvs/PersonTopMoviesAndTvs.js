@@ -42,7 +42,7 @@ const PersonTopMoviesAndTvs = props => {
           {movieAndTvCards}
         </div>
       ) : (
-        <p>There is no productions the person is known for.</p>
+        <p>There is no productions the person has starred in.</p>
       )}
     </div>
   );
