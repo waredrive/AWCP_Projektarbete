@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
-// This HOC acts like a middleware. It intercepts an axios instances
-// request and response and shows a modal if an error is fetched.
+// This HOC  intercepts an axios instances request and
+// response and shows a modal if an error is fetched.
 const withErrorHandler = (WrappedComponent, axios) =>
   class extends Component {
     state = {
