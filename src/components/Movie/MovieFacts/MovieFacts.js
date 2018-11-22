@@ -20,7 +20,7 @@ const MovieFacts = props => {
     : null;
 
   return (
-    <div className="ml-3 py-4 pr-3 position-sticky sticky-top">
+    <div className="ml-3 py-4 pr-3">
       <h5>Facts</h5>
       <FactField headline="Status" text={movie.status} />
       <FactField headline="Release Date" text={movie.release_date} />

@@ -43,7 +43,7 @@ const TvShowFacts = props => {
     : null;
 
   return (
-    <div className="ml-3 py-4 pr-3 position-sticky sticky-top">
+    <div className="ml-3 py-4 pr-3">
       <h5>Facts</h5>
       <FactField headline="Status" text={tvShow.status} />
       <FactField headline="Networks" text={networks} />
