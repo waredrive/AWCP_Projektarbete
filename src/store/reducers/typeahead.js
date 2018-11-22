@@ -82,8 +82,12 @@ const fetchTypeaheadResultsFailed = (state, action) =>
 const clearTypeahead = state =>
   updateObject(state, { noMatch: false, input: '' });
 
-const changeTypeaheadInput = (state, action) =>
-  updateObject(state, { input: action.input });
+const changeTypeaheadInput = (state, action) => {
+  if (action.input.length === 0) {
+    return updateObject(state, { input: action.input, noMatch: false });
+  }
+  return updateObject(state, { input: action.input });
+};
 
 // ACTION TYPE SWITCH
 
