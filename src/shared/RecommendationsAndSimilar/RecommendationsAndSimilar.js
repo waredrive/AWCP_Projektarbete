@@ -36,7 +36,6 @@ const RecommendationsAndSimilar = props => {
             heightMode="max"
             dragging={false}
             slidesToShow={3}
-            cellSpacing={15}
             disableKeyboardControls
             wrapAround
             cellAlign="center"
