@@ -1,15 +1,18 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Carousel from 'nuka-carousel';
-import { getImageUrl, arrayExistsIsNotEmpty } from '../../../shared/helperMethods';
+import {
+  getImageUrl,
+  arrayExistsIsNotEmpty
+} from '../../../shared/helperMethods';
 import CarouselButton from '../../../shared/CarouselButton/CarouselButton';
 
 const TrendingCarousel = props => {
-  const { headLine, type, results } = props;
+  const { headLine, type, productions } = props;
 
   const resultsToDisplay =
-  arrayExistsIsNotEmpty(results)
-      ? results.map(result => (
+    productions && arrayExistsIsNotEmpty(productions.results)
+      ? productions.results.map(result => (
           <Link to={`${type}/${result.id}`} key={result.id}>
             <img
               className="border rounded"

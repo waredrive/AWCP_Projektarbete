@@ -17,26 +17,33 @@ class Trending extends Component {
   }
 
   render() {
-    const { trendingMovies, trendingTvShows, trendingPeople } = this.props;
+    const {
+      trendingMovies,
+      trendingTvShows,
+      trendingPeople,
+      moviesLoading,
+      tvShowsLoading,
+      peopleLoading
+    } = this.props;
 
-    return trendingMovies && trendingTvShows && trendingPeople ? (
+    return !moviesLoading && !tvShowsLoading && !peopleLoading ? (
       <div className="container">
         <TrendingCarousel
           headLine="Trending Movies"
           type="movie"
-          results={trendingMovies.results}
+          productions={trendingMovies}
         />
 
         <TrendingCarousel
           headLine="Trending Tv Shows"
           type="tv"
-          results={trendingTvShows.results}
+          productions={trendingTvShows}
         />
 
         <TrendingCarousel
           headLine="Trending People"
           type="person"
-          results={trendingPeople.results}
+          productions={trendingPeople}
         />
       </div>
     ) : (
@@ -48,7 +55,10 @@ class Trending extends Component {
 const mapStateAsProps = state => ({
   trendingMovies: state.movies.trending,
   trendingTvShows: state.tvShows.trending,
-  trendingPeople: state.people.trending
+  trendingPeople: state.people.trending,
+  moviesLoading: state.movies.trendingLoading,
+  tvShowsLoading: state.tvShows.trendingLoading,
+  peopleLoading: state.people.trendingLoading
 });
 
 const mapDispatchAsProps = dispatch => ({
