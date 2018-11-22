@@ -4,7 +4,8 @@ import 'react-circular-progressbar/dist/styles.css';
 
 const RatingBar = props => {
   const { sizeInPixels, hexColor, voteAverage, voteCount } = props;
-  const voteAvr = voteCount === 0 ? 'NR' : parseFloat(voteAverage.toFixed(1));
+  const voteAvrToDisplay =
+    voteCount === 0 ? 'NR' : String(parseFloat(voteAverage.toFixed(1)));
   let strokeColor;
 
   if (voteAverage >= 7) {
@@ -28,7 +29,7 @@ const RatingBar = props => {
       <CircularProgressbar
         className="align-items-center"
         percentage={voteAverage * 10}
-        text={String(voteAvr)}
+        text={voteAvrToDisplay}
         background
         backgroundPadding={5}
         styles={{
