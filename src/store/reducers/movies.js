@@ -16,12 +16,12 @@ const initialState = {
 // FETCH MOVIE SEARCHES
 
 const fetchMovieSearchResultsStart = state =>
-  updateObject(state, { searchLoading: true });
+  updateObject(state, { searchLoading: true, searchError: null });
 
 const fetchMovieSearchResultsSuccess = (state, action) =>
   updateObject(state, {
     searchResults: action.searchResults,
-    searchLoading: true
+    searchLoading: false
   });
 
 const fetchMovieSearchResultsFailed = (state, action) =>
@@ -30,10 +30,10 @@ const fetchMovieSearchResultsFailed = (state, action) =>
 // FETCH TRENDING MOVIES
 
 const fetchTrendingMoviesStart = state =>
-  updateObject(state, { trendingLoading: true });
+  updateObject(state, { trendingLoading: true, trendingError: null });
 
 const fetchTrendingMoviesSuccess = (state, action) =>
-  updateObject(state, { trending: action.trending, trendingLoading: true });
+  updateObject(state, { trending: action.trending, trendingLoading: false });
 
 const fetchTrendingMoviesFailed = (state, action) =>
   updateObject(state, { trendingLoading: false, trendingError: action.error });
@@ -41,10 +41,10 @@ const fetchTrendingMoviesFailed = (state, action) =>
 // FETCH MOVIE DETAILS
 
 const fetchMovieDetailsStart = state =>
-  updateObject(state, { detailsLoading: true });
+  updateObject(state, { detailsLoading: true, detailsError: null });
 
 const fetchMovieDetailsSuccess = (state, action) =>
-  updateObject(state, { details: action.details, detailsLoading: true });
+  updateObject(state, { details: action.details, detailsLoading: false });
 
 const fetchMovieDetailsFailed = (state, action) =>
   updateObject(state, { detailsLoading: false, detailsError: action.error });

@@ -23,11 +23,11 @@ class MovieDetails extends Component {
   }
 
   render() {
-    const { movie, match } = this.props;
+    const { movie, match, loading } = this.props;
     const cast = movie && movie.credits ? movie.credits.cast : null;
     const crew = movie && movie.credits ? movie.credits.crew : null;
 
-    return movie && match.params.id.startsWith(String(movie.id)) ? (
+    return movie && match.params.id.startsWith(String(movie.id)) && !loading ? (
       <div>
         <MovieAndTvHeader production={movie} />
         <div className="bg-light">
@@ -66,7 +66,8 @@ class MovieDetails extends Component {
 }
 
 const mapStateAsProps = state => ({
-  movie: state.movies.details
+  movie: state.movies.details,
+  loading: state.movies.detailsLoading
 });
 
 const mapDispatchAsProps = dispatch => ({

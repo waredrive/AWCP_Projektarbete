@@ -16,12 +16,12 @@ const initialState = {
 // FETCH TV SHOW SEARCHES
 
 const fetchTvShowSearchResultsStart = state =>
-  updateObject(state, { searchLoading: true });
+  updateObject(state, { searchLoading: true, searchError: null });
 
 const fetchTvShowSearchResultsSuccess = (state, action) =>
   updateObject(state, {
     searchResults: action.searchResults,
-    searchLoading: true
+    searchLoading: false
   });
 
 const fetchTvShowSearchResultsFailed = (state, action) =>
@@ -30,10 +30,10 @@ const fetchTvShowSearchResultsFailed = (state, action) =>
 // FETCH TRENDING TV SHOWS
 
 const fetchTrendingTvShowsStart = state =>
-  updateObject(state, { trendingLoading: true });
+  updateObject(state, { trendingLoading: true, trendingError: null });
 
 const fetchTrendingTvShowsSuccess = (state, action) =>
-  updateObject(state, { trending: action.trending, trendingLoading: true });
+  updateObject(state, { trending: action.trending, trendingLoading: false });
 
 const fetchTrendingTvShowsFailed = (state, action) =>
   updateObject(state, { trendingLoading: false, trendingError: action.error });
@@ -41,10 +41,10 @@ const fetchTrendingTvShowsFailed = (state, action) =>
 // FETCH TV SHOW DETAILS
 
 const fetchTvShowDetailsStart = state =>
-  updateObject(state, { detailsLoading: true });
+  updateObject(state, { detailsLoading: true, detailsError: null });
 
 const fetchTvShowDetailsSuccess = (state, action) =>
-  updateObject(state, { details: action.details, detailsLoading: true });
+  updateObject(state, { details: action.details, detailsLoading: false });
 
 const fetchTvShowDetailsFailed = (state, action) =>
   updateObject(state, { detailsLoading: false, detailsError: action.error });

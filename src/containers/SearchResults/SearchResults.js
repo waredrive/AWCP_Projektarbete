@@ -60,11 +60,14 @@ class SearchResults extends Component {
       people,
       onFetchMovies,
       onFetchTvShows,
-      onFetchPeople
+      onFetchPeople,
+      moviesLoading,
+      tvShowsLoading,
+      peopleLoading
     } = this.props;
     const query = this.getQueryString('query');
 
-    return movies || tvShows || people ? (
+    return !moviesLoading && !tvShowsLoading && !peopleLoading ? (
       <div className="container mt-5">
         <ScrollToTopButton />
         <div className="row">
@@ -148,7 +151,10 @@ class SearchResults extends Component {
 const mapStateAsProps = state => ({
   movies: state.movies.searchResults,
   tvShows: state.tvShows.searchResults,
-  people: state.people.searchResults
+  people: state.people.searchResults,
+  moviesLoading: state.movies.searchLoading,
+  tvShowsLoading: state.tvShows.searchLoading,
+  peopleLoading: state.people.searchLoading
 });
 
 const mapDispatchAsProps = dispatch => ({

@@ -8,16 +8,18 @@ const initialState = {
   loading: false
 };
 
-const fetchCreditsStart = state => updateObject(state, { loading: true });
+const fetchCreditsStart = state =>
+  updateObject(state, { loading: true, error: null });
 
 const fetchCreditsSuccess = (state, action) =>
   updateObject(state, {
     cast: action.credits.cast,
     crew: action.credits.crew,
-    loading: true
+    loading: false
   });
 
-const fetchCreditsFailed = state => updateObject(state, { loading: false });
+const fetchCreditsFailed = (state, action) =>
+  updateObject(state, { loading: false, error: action.error });
 
 // ACTION TYPE SWITCH
 

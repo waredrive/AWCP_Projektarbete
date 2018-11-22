@@ -23,11 +23,13 @@ class TvShowDetails extends Component {
   }
 
   render() {
-    const { tvShow, match } = this.props;
+    const { tvShow, match, loading } = this.props;
     const cast = tvShow && tvShow.credits ? tvShow.credits.cast : null;
     const crew = tvShow && tvShow.credits ? tvShow.credits.crew : null;
 
-    return tvShow && match.params.id.startsWith(String(tvShow.id)) ? (
+    return tvShow &&
+      match.params.id.startsWith(String(tvShow.id)) &&
+      !loading ? (
       <div>
         <MovieAndTvHeader production={tvShow} />
         <div className="bg-light">
@@ -66,7 +68,8 @@ class TvShowDetails extends Component {
 }
 
 const mapStateAsProps = state => ({
-  tvShow: state.tvShows.details
+  tvShow: state.tvShows.details,
+  loading: state.tvShows.detailsLoading
 });
 
 const mapDispatchAsProps = dispatch => ({

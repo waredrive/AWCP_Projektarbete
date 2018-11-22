@@ -16,12 +16,12 @@ const initialState = {
 // FETCH PEOPLE SEARCHES
 
 const fetchPeopleSearchResultsStart = state =>
-  updateObject(state, { searchLoading: true });
+  updateObject(state, { searchLoading: true, searchError: null });
 
 const fetchPeopleSearchResultsSuccess = (state, action) =>
   updateObject(state, {
     searchResults: action.searchResults,
-    searchLoading: true
+    searchLoading: false
   });
 
 const fetchPeopleSearchResultsFailed = (state, action) =>
@@ -30,10 +30,10 @@ const fetchPeopleSearchResultsFailed = (state, action) =>
 // FETCH TRENDING PEOPLE
 
 const fetchTrendingPeopleStart = state =>
-  updateObject(state, { trendingLoading: true });
+  updateObject(state, { trendingLoading: true, trendingError: null });
 
 const fetchTrendingPeopleSuccess = (state, action) =>
-  updateObject(state, { trending: action.trending, trendingLoading: true });
+  updateObject(state, { trending: action.trending, trendingLoading: false });
 
 const fetchTrendingPeopleFailed = (state, action) =>
   updateObject(state, { trendingLoading: false, trendingError: action.error });
@@ -41,10 +41,10 @@ const fetchTrendingPeopleFailed = (state, action) =>
 // FETCH PERSON DETAILS
 
 const fetchPersonDetailsStart = state =>
-  updateObject(state, { detailsLoading: true });
+  updateObject(state, { detailsLoading: true, detailsError: null });
 
 const fetchPersonDetailsSuccess = (state, action) =>
-  updateObject(state, { details: action.details, detailsLoading: true });
+  updateObject(state, { details: action.details, detailsLoading: false });
 
 const fetchPersonDetailsFailed = (state, action) =>
   updateObject(state, { detailsLoading: false, detailsError: action.error });

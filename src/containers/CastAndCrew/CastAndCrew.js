@@ -28,7 +28,7 @@ class CastAndCrew extends Component {
     );
 
   render() {
-    const { crew, cast } = this.props;
+    const { crew, cast, loading } = this.props;
 
     const allCast = this.getCastAndCrewCards(
       cast,
@@ -39,7 +39,7 @@ class CastAndCrew extends Component {
       'No crew was found for this production.'
     );
 
-    return crew && cast ? (
+    return crew && cast && !loading ? (
       <div className="container">
         <div className="row">
           <div className="col-6">
@@ -60,7 +60,8 @@ class CastAndCrew extends Component {
 
 const mapStateAsProps = state => ({
   cast: state.credits.cast,
-  crew: state.credits.crew
+  crew: state.credits.crew,
+  loading: state.credits.loading
 });
 
 const mapDispatchAsProps = dispatch => ({

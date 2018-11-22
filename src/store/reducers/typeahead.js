@@ -59,7 +59,7 @@ const formatSearchResults = (results, query) =>
 // FETCH TYPEAHEAD RESULTS
 
 const fetchTypeaheadResultsStart = state =>
-  updateObject(state, { loading: true });
+  updateObject(state, { loading: true, error: null });
 
 const fetchTypeaheadResultsSuccess = (state, action) =>
   updateObject(state, {

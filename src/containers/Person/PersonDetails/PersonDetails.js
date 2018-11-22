@@ -24,9 +24,11 @@ class PersonDetails extends Component {
   }
 
   render() {
-    const { person, match } = this.props;
+    const { person, match, loading } = this.props;
 
-    return person && match.params.id.startsWith(String(person.id)) ? (
+    return person &&
+      match.params.id.startsWith(String(person.id)) &&
+      loading ? (
       <div>
         <PersonHeader
           imagePath={getImageUrl(person.profile_path, 'h632')}
@@ -71,7 +73,8 @@ class PersonDetails extends Component {
 }
 
 const mapStateAsProps = state => ({
-  person: state.people.details
+  person: state.people.details,
+  loading: state.people.detailsLoading
 });
 
 const mapDispatchAsProps = dispatch => ({
